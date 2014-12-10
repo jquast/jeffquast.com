@@ -55,7 +55,7 @@ to store a Custom Image for later provisioning, requiring:
         fi
         rm -f "${output}"
 
-        while [ X"$state" != ±"active" ]; do
+        while [ X"$state" != X"active" ]; do
             echo "Image state is $state"
             if [ X"$state" == X"failed" ]; then
                 sdc-getimage $image_id

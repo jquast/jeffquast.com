@@ -13,10 +13,6 @@ menu: main
 title: x84 at University of Hawaiʻi
 ---
 
-
-x84 at University of Hawaiʻi
-============================
-
 I saw an anonymous user login to my telnet host `1984.ws <telnet://1984.ws>`_
 which is an open source Python Telnet BBS Server that I author and host.  I
 joined him in chat, and he informed me that he didn't know where he was, but

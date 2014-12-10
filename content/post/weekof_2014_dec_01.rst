@@ -12,9 +12,6 @@ title: Week of Dec 01, 2014
 ---
 
 
-Week of Dec 01, 2014
-====================
-
 Quite a lot of activity lately.  This is also my first blog post, so I'm trying to catch up for more than one weeks' activity.
 
 Published a new package:

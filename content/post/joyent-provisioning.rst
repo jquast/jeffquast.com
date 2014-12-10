@@ -11,10 +11,6 @@ menu: main
 title: Joyent Provisioning from Custom Image
 ---
 
-
-Joyent Provisioning from Custom Image
-=====================================
-
 As mentioned in another `blog post </http://jeffquast.com/post/hover-api/>`_
 about abusing the Hover API, I am using `joyent.com <https://www.joyent.com>`_
 to provision a Solaris build server agent.  I prepared an image with the

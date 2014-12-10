@@ -11,9 +11,6 @@ menu: main
 title: (Ab)using the Hover API
 ---
 
-(Ab)using the Hover API
-=======================
-
 I recently switched from `DirecNIC <https://directnic.com/>`_ to
 `Hover <https://www.hover.com/>`_ as my DNS provider for two reasons.
 (1) DirectNIC was once a mom-and-pop shop in the late 90's from

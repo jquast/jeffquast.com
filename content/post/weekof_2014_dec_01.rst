@@ -11,7 +11,7 @@ Released new versions:
 
 - `wcwidth <https://pypi.python.org/pypi/wcwidth>`_: version 0.1.4 released.
   Contributions by `@thomasballinger <http://ballingt.com>`_
-  and `Leta Montopoli <http://lmontopo.github.io/>`_
+  and `@lmontopo <http://lmontopo.github.io/>`_
 
 Pull requests:
 

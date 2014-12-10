@@ -1,3 +1,16 @@
+---
+Categories:
+    - Python
+Description: Abusing the Hover API for Dynamic DNS
+Tags:
+    - Development
+    - DNS
+    - Python
+date: 2014-12-09T00:00:00-00:00
+menu: main
+title: (Ab)using the Hover API
+---
+
 (Ab)using the Hover API
 =======================
 

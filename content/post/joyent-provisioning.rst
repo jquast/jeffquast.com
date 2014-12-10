@@ -1,3 +1,17 @@
+---
+Categories:
+    - Shell
+Description: Joyent Provisioning from Custom Image
+Tags:
+    - Development
+    - SunOS
+    - Shell
+date: 2014-12-09T00:00:00-00:00
+menu: main
+title: Joyent Provisioning from Custom Image
+---
+
+
 Joyent Provisioning from Custom Image
 =====================================
 

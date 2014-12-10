@@ -1,3 +1,19 @@
+---
+Categories:
+    - Python
+    - Telnet
+Description: x84 at University of Hawaiʻi
+Tags:
+    - Development
+    - Python
+    - Telnet
+    - x/84
+date: 2014-12-09T00:00:00-00:00
+menu: main
+title: x84 at University of Hawaiʻi
+---
+
+
 x84 at University of Hawaiʻi
 ============================
 

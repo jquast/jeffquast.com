@@ -1,3 +1,17 @@
+---
+Categories:
+    - Python
+Description: Open Source Software Contributions, Week of Dec. 01 2014
+Tags:
+    - Development
+    - SunOS
+    - Shell
+date: 2014-12-01T00:00:00-00:00
+menu: main
+title: Week of Dec 01, 2014
+---
+
+
 Week of Dec 01, 2014
 ====================
 

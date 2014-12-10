@@ -1,0 +1,23 @@
+languageCode = "en-us"
+contentdir = "content"
+publishdir = ""
+builddrafts = false
+baseUrl = "http://jeffquast.com"
+canonifyurls = true
+title = "Jeff Quast"
+author = "Jeff Quast"
+
+[indexes]
+   category = "categories"
+   tag = "tags"
+
+[Params]
+  markup = "rst"
+  AuthorName = "JeffQuast"
+  email = "contact@jeffquast.com"
+  github = "jquast"
+  bitbucket = "jquast"
+  resume = "/pages/resume"
+  cover = "/images/railway.jpg"
+  logo = "/images/profile.jpg"
+  description = "Software Engineer"

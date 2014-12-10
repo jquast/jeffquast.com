@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Pages on Jeff Quast </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/pages/index.xml/</link>
+    <language>en-us</language>
+    
+    
+    <updated>Tue, 01 Jan 2008 00:00:00 UTC</updated>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/pages/resume/</link>
+      <pubDate>Tue, 01 Jan 2008 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/pages/resume/</guid>
+      <description>&lt;div class=&#34;document&#34;&gt;
+
+
+&lt;div class=&#34;section&#34; id=&#34;employment-history&#34;&gt;
+&lt;h1&gt;Employment History&lt;/h1&gt;
+&lt;div class=&#34;section&#34; id=&#34;current&#34;&gt;
+&lt;h2&gt;Current&lt;/h2&gt;
+&lt;ul class=&#34;simple&#34;&gt;
+&lt;li&gt;&lt;em&gt;Duration&lt;/em&gt;: Oct. 2014 - current&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Location&lt;/em&gt;: Undisclosed&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Title&lt;/em&gt;: Senior Cloud Engineer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section&#34; id=&#34;rivermeadow&#34;&gt;
+&lt;h2&gt;RiverMeadow&lt;/h2&gt;
+&lt;ul class=&#34;simple&#34;&gt;
+&lt;li&gt;&lt;em&gt;Duration&lt;/em&gt;: Oct. 2013 - Oct. 2014&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Location&lt;/em&gt;: San Jose, CA&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Title&lt;/em&gt;: Senior Software Engineer&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Group&lt;/em&gt;: Software Engineering&lt;/li&gt;
+&lt;li&gt;Job Responsibilities:&lt;ul&gt;
+&lt;li&gt;Developed all major components of the Rivermeadow backend: a large Python code base that performs Linux and Windows Cloud migrations to and from various providers (AWS, Openstack, Terremark, vCloud, vSphere).&lt;/li&gt;
+&lt;li&gt;Lead of code repository and packaging, release and branching strategies and testing infrastructure. Most senior expert of team at time of departure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section&#34; id=&#34;jackson-national-life-insurance&#34;&gt;
+&lt;h2&gt;Jackson National Life Insurance&lt;/h2&gt;
+&lt;ul class=&#34;simple&#34;&gt;
+&lt;li&gt;&lt;em&gt;Under contract by&lt;/em&gt;: iVantage&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Duration&lt;/em&gt;: Apr. 2012 - Jan 2013&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Location&lt;/em&gt;: Lansing, MI&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Title&lt;/em&gt;: Web Developer&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Group&lt;/em&gt;: IT Technology&lt;/li&gt;
+&lt;li&gt;Job Responsibilities:&lt;ul&gt;
+&lt;li&gt;Support, engineer, deploy BEA WebLogic, jBoss, and Apache HA systems.&lt;/li&gt;
+&lt;li&gt;Developed record keeping &amp;amp; reporting software for web server farms (Python).&lt;/li&gt;
+&lt;li&gt;Developed extensions to Interwoven Teamsite (Perl).&lt;/li&gt;
+&lt;li&gt;Support Java developers for code migration of WebSphere/5.1jdk to jBoss/1.7.&lt;/li&gt;
+&lt;li&gt;24/7 On-call support and first contact for web issues.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section&#34; id=&#34;jstor-ithaka&#34;&gt;
+&lt;h2&gt;Jstor (Ithaka)&lt;/h2&gt;
+&lt;ul class=&#34;simple&#34;&gt;
+&lt;li&gt;&lt;em&gt;Duration&lt;/em&gt;: Sep. 2008 - Dec 2011&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Location&lt;/em&gt;: Ann Arbor, MI&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Title(s)&lt;/em&gt;: Applications Support Specialist, Software Developer, Production Operations Support &amp;amp; Data Specialist&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Group(s)&lt;/em&gt;: Content Management Sys. Unit, Ithaka Delivery Operations, Technology Services Unit&lt;/li&gt;
+&lt;li&gt;Job Responsibilities:&lt;ul&gt;
+&lt;li&gt;Developed Solaris Zone management software: migrate, clone, copy, etc. (Shell).&lt;/li&gt;
+&lt;li&gt;Developed hardware allocation and accounting software (Jython, Shell).&lt;/li&gt;
+&lt;li&gt;Developed Journal archive metrics and information extraction API (Python).&lt;/li&gt;
+&lt;li&gt;Developed Identity integration software for Atlassian Jira/LDAP (Jython/Java).&lt;/li&gt;
+&lt;li&gt;Developed Pure-FTPd patch for SHA-256 password auth via MySQL store (C).&lt;/li&gt;
+&lt;li&gt;Deploy, Administrate, and support MySQL, Pure-FTPd, Atlassian Confluence, Jira, and Solaris systems. Integrated unix systems with Microsoft domain controllers.&lt;/li&gt;
+&lt;li&gt;Systems and software monitoring with Zabbix and Nagios&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section&#34; id=&#34;general-motors&#34;&gt;
+&lt;h2&gt;General Motors&lt;/h2&gt;
+&lt;ul class=&#34;simple&#34;&gt;
+&lt;li&gt;&lt;em&gt;Under contract by&lt;/em&gt;: TekSystems and EDS&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Duration&lt;/em&gt;: Oct. 2005 - Sep 2008&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Location(s)&lt;/em&gt;: Warren, MI. Detroit, MI&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Title(s)&lt;/em&gt;: Software Developer, Business Analyst, Associate Systems Engineer, Business Analyst&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Group(s)&lt;/em&gt;: FEA Structures &amp;amp; Durabilities, IS+S Identity Management, North America Operations&lt;/li&gt;
+&lt;li&gt;Job Responsibilities:&lt;ul&gt;
+&lt;li&gt;Developed Finite Element Analysis software for the Abaqus/CAE platform (Python, C++).&lt;/li&gt;
+&lt;li&gt;Developed LotusScript static analysis tools (LotusScript, C++).&lt;/li&gt;
+&lt;li&gt;Developed high-throughput network scanners (Python, Win32 COM, WinNT WMI).&lt;/li&gt;
+&lt;li&gt;Developed identity and authorization auditing systems (Java/Oracle).&lt;/li&gt;
+&lt;li&gt;Developed identity org tree relationship analysis software (Python, Sun/LDAP).&lt;/li&gt;
+&lt;li&gt;Administrate IBM Lotus Domino servers and support Lotus developers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section&#34; id=&#34;baker-college&#34;&gt;
+&lt;h2&gt;Baker College&lt;/h2&gt;
+&lt;ul class=&#34;simple&#34;&gt;
+&lt;li&gt;&lt;em&gt;Duration&lt;/em&gt;: Sept. 2002 - May 2005&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Location&lt;/em&gt;: Flint, MI&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Title&lt;/em&gt;: Tutor - Computer Information Systems&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Group&lt;/em&gt;: Learning Support Services&lt;/li&gt;
+&lt;li&gt;Job Responsibilities:&lt;ul&gt;
+&lt;li&gt;Tutored college courses to individuals and groups on an appointment basis.&lt;/li&gt;
+&lt;li&gt;Specialization in Perl/WEB CGI, C++, Unix Administration and Shell scripting,&lt;/li&gt;
+&lt;li&gt;Additional languages tutored: RPG IV, .NET, Python, Java, SQL.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section&#34; id=&#34;education&#34;&gt;
+&lt;h1&gt;Education&lt;/h1&gt;
+&lt;div class=&#34;section&#34; id=&#34;associate-of-applied-science-systems-technology&#34;&gt;
+&lt;h2&gt;Associate of Applied Science &amp;amp; Systems Technology&lt;/h2&gt;
+&lt;ul class=&#34;simple&#34;&gt;
+&lt;li&gt;&lt;em&gt;Duration&lt;/em&gt;: 2002 - 2005&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Location&lt;/em&gt;: Baker College of Flint, MI&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DID NOT FINISH&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section&#34; id=&#34;high-school-equivalency&#34;&gt;
+&lt;h2&gt;High School Equivalency&lt;/h2&gt;
+&lt;ul class=&#34;simple&#34;&gt;
+&lt;li&gt;&lt;em&gt;Duration&lt;/em&gt;: 2001&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Location&lt;/em&gt;: Lansing, MI&lt;/li&gt;
+&lt;li&gt;No. 0117992-01&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -28,4 +28,4 @@ system was recommended, but I'm honored to have my system as part of a Universit
 curriculum even though I dropped out of school myself :)
 
 .. image:: /images/x84-in-CENT-228.jpg
-   :alt: x84 in University of Hawaiʻi curriculum 
+   :alt: x84 in University of Hawaiʻi curriculum

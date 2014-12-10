@@ -32,8 +32,8 @@ I decided to have something of a dynamic DNS, so that ``sunos.pexpect.org`` woul
 always resolve to the latest provisioned host.  I was disappointed to find that
 Hover `does not provide a documented API <https://help.hover.com/entries/20860046-Hover-needs-an-API>`_.
 I did, however, find that they have one, thanks to
-`@dankrause <https://github.com/dankrause>`'s
-`gist <https://gist.github.com/dankrause/5585907>`.
+`@dankrause <https://github.com/dankrause>`_'s
+`gist <https://gist.github.com/dankrause/5585907>`_.
 
 So I used this to create a simple dynamic dns update script, given the variables:
 
@@ -122,5 +122,6 @@ Configuration.  I could then use the following script to update sunos.pexpect.or
 It works like a charm!
 
 ::
+
         [03:59:05] Deleting entry for sunos.pexpect.org ... OK
         [03:59:05] Creating A record sunos.pexpect.org => 165.225.151.208 ... OK

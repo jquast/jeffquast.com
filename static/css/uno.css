@@ -228,6 +228,23 @@ code {
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
   font-size: .85em; }
 
+
+tt {
+    color: inherit;
+    font: inherit; }
+
+tt.literal {
+  padding: .1em .4em;
+  background: #e8f2fb;
+  border: 1px solid #c9e1f6;
+  border-radius: 3px;
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  font-size: .85em; }
+
+a tt.literal {
+    border-bottom: none;
+    background-color: inherit; }
+
 pre {
   margin-bottom: 1.3em;
   padding: 1em 2.5%;

@@ -5,9 +5,9 @@ Description: Open Source Software Contributions, Week of Feb. 04 2014
 Tags:
     - Development
     - Python
-date: 2014-12-14T00:00:00-00:00
+date: 2015-02-04T00:00:00-00:00
 menu: main
-title: Week of Feb 04, 2014
+title: Week of Feb 04, 2015
 ---
 
 It has been a bit of a while since I last updated the OSS contributions

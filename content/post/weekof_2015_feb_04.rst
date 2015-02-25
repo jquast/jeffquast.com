@@ -20,7 +20,7 @@ on hacker news and reddit and even made its way into `pycoder's weekly
 release and it was ignored.  I think "being voted up on reddit" is their
 only indicator of what makes it in, which is too bad, I had to finally
 make a reddit account to make such post and I don't plan to use it ever
-again.  `pychina's weekly <http://weekly.pychina.org/issue/issue-151.html>`,
+again.  `pychina's weekly <http://weekly.pychina.org/issue/issue-151.html>`_,
 If I translate correctly, has some mention that somebody is working to x/84
 for Tsinghua bbs, which if I'm not mistaken may be `SMTH
 <http://en.wikipedia.org/wiki/SMTH_BBS>`_?
@@ -44,7 +44,7 @@ Anyway, here's my last few weeks in review, maybe missing a few:
 - More fixes to prospector, fixes regressions introduced in a new
   version, `PR #85 <https://github.com/landscapeio/prospector/pull/85>`_.
 - after adding FreeBSD to my build infrastructure, caught pexpect bug
-  `Issue #180 <https://github.com/pexpect/pexpect/issues/180>`.  Although a
+  `Issue #180 <https://github.com/pexpect/pexpect/issues/180>`_.  Although a
   primary contributor, I do not have the pypi access to release the fix, so it
   remains open at this time.
 - Sometimes improving a README is all a project like EtherTerm needs

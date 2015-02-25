@@ -21,8 +21,8 @@ release and it was ignored.  I think "being voted up on reddit" is their
 only indicator of what makes it in, which is too bad, I had to finally
 make a reddit account to make such post and I don't plan to use it ever
 again.  `pychina's weekly <http://weekly.pychina.org/issue/issue-151.html>`_,
-If I translate correctly, has some mention that somebody is working to x/84
-for Tsinghua bbs, which if I'm not mistaken may be `SMTH
+If I translate correctly, has some mention that somebody is working to 
+use x/84 for Tsinghua bbs, which if I'm not mistaken may be `SMTH
 <http://en.wikipedia.org/wiki/SMTH_BBS>`_?
 
 Anyway, here's my last few weeks in review, maybe missing a few:
@@ -65,7 +65,7 @@ Lessons learned:
 - Support issues disguised and argued as bug reports are incredibly time
   consuming.  It upsets users and drains maintainers from otherwise
   fruitful work.  I have no incentive to contribute to Stack Overflow,
-  but I may change documentation
+  but I may change documentation to suggest users to request support there.
 
 - Several documentation spelling, grammar, or technical errors were discovered
   but unreported because the offending project is not on Github.  The "drive by"

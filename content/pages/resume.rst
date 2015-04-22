@@ -135,10 +135,10 @@ Some people have said some really nice things about my work! Here are a few:
 
 - `Ned Batchelder <http://nedbatchelder.com/>`_, author of coverage.py said in `an interview <http://www.blog.pythonlibrary.org/2015/03/09/pydev-of-the-week-ned-batchelder/>`_,
 
-  Q: Which Python libraries are your favorite (core or 3rd party)?
+      Q: Which Python libraries are your favorite (core or 3rd party)?
 
-  > [...] I’m delighted to continue to find little gems like blessed [...] They demonstrate the craftsmanship that Python developers bring to their work, and a dedication to making tools that help others.
+      [...] I’m delighted to continue to find little gems like blessed [...] They demonstrate the craftsmanship that Python developers bring to their work, and a dedication to making tools that help others.
 
 - Regarding implementing the entire set of RFC's for the telnet protocol, `Guido Von Rossum says <http://permalink.gmane.org/gmane.comp.python.tulip/297>`_:
 
-  > Wow. Jaw-dropping wow.
+      Wow. Jaw-dropping wow.

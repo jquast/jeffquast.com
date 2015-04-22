@@ -108,9 +108,8 @@ Lessons with blessings:
       :paramref:`~.Terminal.keystroke_input.raw` which may be set as *True*.
 
   Ensures that a hyperlink is created directly to the full description of the
-  ``raw`` parameter.  But one problem, this particular method is wrapped by
-  function decorator ``@contextlib.contextmanager``, and the hyperlink would
-  not resolve!
+  ``raw`` parameter.  But this particular method is wrapped by function decorator
+  ``@contextlib.contextmanager``, and the hyperlink would not resolve!
 
   Luckily, somebody `found a solution
   <https://github.com/sphinx-doc/sphinx/issues/1711#issuecomment-93126473>`_

@@ -163,12 +163,15 @@ From traceback.py module::
             f = sys.exc_info()[2].tb_frame.f_back
 
 For a short time, I invested constructing my own object of ``types.TracebackType``
-so that the exception thrown the calling thread is for the original location of
-the call in the calling thread that caused the exception in the inner one:
-however, I favored against that, as it may occur at a time and location of code
-that is *not* where and when it actually occurred, opting to raise the exception
-from the inner thread, and reporting the original outer thread's stack to the
-logger as level ERROR.
+so that the exception thrown in the calling thread is for the original location of
+the call that caused the exception in the inner one: however, I favored against
+it: It may occur at a time and location of code that is *not* where and when
+it actually occurred, potentially confusing the viewer.
+
+Instead, I opted to raise the exception from the inner thread, and report
+the original outer thread's stack to the logger as level ERROR. This can
+be viewed clearly when logging is not even enabled, as it is printed
+to standard error just above the final exception.
 
 Tried https://www.livecoding.tv/ for the first time, and all of this effort
 was streamed live and archived:

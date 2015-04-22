@@ -113,7 +113,7 @@ Packages I created, maintain, or co-maintain with other authors:
 - `xmodem <https://github.com/tehmaze/xmodem>`_: XMODEM protocol implementation. ~100 downloads/week.
 - `telnetlib3 <https://github.com/jquast/telnetlib3>`_: Telnet asyncio Client and Server Protocol library. ~100 downloads/week.
 
-I have made a number of contributions. Here are a few:
+I have made a number of contributions to open source projects, these are a few of them:
 
 - `asyncio <https://github.com/python/asyncio/blob/master/AUTHORS>`_
   `astroid <https://bitbucket.org/logilab/astroid>`_,

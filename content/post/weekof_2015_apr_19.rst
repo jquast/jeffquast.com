@@ -24,59 +24,62 @@ spent working towards merging my fork of blessings ('blessed') back into blessin
 set a high bar of standards, mostly in documentation, that cost an estimated 40 hours to fulfill.
 The result is `PR #104 <https://github.com/erikrose/blessings/pull/104>`_, +9,541 and -1,506.
 
-Some things I learned:
+Lessons with blessings:
 
-- using `doc8 <https://pypi.python.org/pypi/doc8/0.5.0>`_ for style checking
-  of reStructuredText files. I use this for the entire docs/ folder.
+- Using `doc8 <https://pypi.python.org/pypi/doc8/0.5.0>`_ for style checking
+  of reStructuredText files.  Used this for the entire docs/ folder, loved it!
 
   Most unfortunate, doc8 is under the umbrella of OpenStack and suffers for
   it: there is no obvious place to communicate with the developers or file
-  bug reports (issues are disabled in github).  I began working towards fixing
+  bug reports (issues are disabled in github).  Began working towards fixing
   one when I discovered it was already fixed `quite some time ago
   <https://github.com/stackforge/doc8/commit/4d82c269ab46f0c5370c1f00be06e0c406164e85#commitcomment-10725927>`_
-  but never released to pypi.  I had to explicitly tool tox.ini to explicitly
-  chose python2.7 for static analysis to workaround the issue using phrase::
+  but never released to pypi.  Had to explicitly tool tox.ini to chose
+  python2.7 for static analysis to workaround the issue using phrase::
 
       basepython=python2.7
 
-  I later discovered another bug, but knowing the effort involved in
-  submitting a fix towards a possible void, I just worked around it by
+  Later, discovered another bug, but knowing the effort involved in
+  submitting a fix towards a possible void, just worked around it by
   editing the files analyzed to avoid the false error.
 
-  It may be time for somebody to fork doc8 it and relinquish control from the
-  lackluster OpenStack maintainership which appears typical across most of
-  their projects.  I wonder if somebody like `carlio
+  I think doc8 should be forked and relinquish control from the lackluster
+  OpenStack maintainership which appears typical across most of their
+  projects.  I wonder if somebody like `carlio
   <https://github.com/carlio>`_ would be interested in cooperatively growing
   his `prospector <https://github.com/landscapeio/prospector>`_ and
   `landscape.io <https://landscape.io/>`_ projects to fork and incorporate
   such tools.
 
-- I discovered the tool `restructuredtext_lint
+- Discovered the tool `restructuredtext_lint
   <https://github.com/twolfson/restructuredtext-lint>`_ which serves a single
-  purpose: ensure your document will be rendered on pypi.  I use this for the
+  purpose: ensure your document will be rendered on pypi.  Used this for the
   README.rst file of the blessings project.
 
   pypi has some pretty picky reStructuredText rules that differ from the sorts
-  of things I enjoy using in `sphinx <http://sphinx-doc.org/>`_.  Locally, it
-  may render perfectly fine, and you may upload the project to pypi.  But the
-  server fails to render it, does not report why, and simply dump it in its
-  original form.
+  of things available with `sphinx <http://sphinx-doc.org/>`_.  Locally, it
+  may render perfectly fine.  But, when you upload the project to pypi, the
+  server fails to render it (and does not report why), simply dumping the
+  content as plaintext, without any styling, formatting, kind hyperlinks,
+  or table of contents.
 
-  I've previously spent a lot of time manually eyeballing a README.rst top to
-  bottom, and have seen many pypi project descriptions fall to the same trap.
-  `twolfson <https://github.com/twolfson>`_ is a better coder than myself:
-  he was frustrated by the same problem, but he crafted a tool for it! Kudos!
+  Previously, I lost a lot of time manually eyeballing a README.rst, and have
+  seen many pypi project descriptions fail to discover the cause, hopefully
+  that people will prefer github to render it for them. `twolfson
+  <https://github.com/twolfson>`_ is a better coder than myself: he was
+  frustrated by the same problem, but crafted a tool for it! *Kudos!*
 
 - Setting sphinx-build with "warnings are errors" (``-W``), driven by tox
   and travis-ci ensures all of your documentation is free from errors such
   as invalid cross-referencing, unknown tags, run-on style attributes, or
   mistakes in rst formatting, at least that sphinx-build may determine.
 
-  Unfortunately this also means that some warnings may be wrong. I had one
-  such case: I *do* intend to reference *external* images, such as in the
-  case of "badges" provided by services like http://shields.io but this
-  generates a warning and fails my build. My solution was to
-  "monkey-patch" method `sphinx.environment.BuildEnvironment.warn_node
+  Unfortunately this also means that some warnings may be wrong. In blessings
+  we had one such case: We **do** intend to reference external images, such as
+  in the case of "badges" provided by services like http://shields.io.  However,
+  this generates a warning and fails the build.
+
+  The solution was to "monkey-patch" method `sphinx.environment.BuildEnvironment.warn_node
   <https://github.com/erikrose/blessings/blob/a562434ef3c681d17a8b2a0b2a9f582a3ff5c093/docs/conf.py#L23-L37>`_
   in the sphinx-generated docs/conf.py as follows::
 
@@ -86,7 +89,7 @@ Some things I learned:
                       self._warnfunc(msg, '%s:%s' % get_source_line(node))
                       sphinx.environment.BuildEnvironment.warn_node = _warn_node
 
-  It seems I'm not the only one to have had this issue, its been `discussed
+  It seems We're not the only one to have had this issue, its been `discussed
   <https://groups.google.com/forum/#!topic/sphinx-users/GNx7PVXoZIU>`_ on
   the sphinx-users mailing list, worked around by `others
   <https://github.com/SuperCowPowers/workbench/issues/172>`_ by using raw
@@ -94,16 +97,16 @@ Some things I learned:
   <http://stackoverflow.com/a/28778969>`_, where I shared this solution.
 
 - Context managers and other decorator-wrapped function and method calls render
-  as signature ``(**args, **kwds)`` by sphinx.  I found this very frustrating
-  because I integrated the `sphinx-paramlinks
-  <https://pypi.python.org/pypi/sphinx-paramlinks>`_ which allows me to
+  as signature ``(**args, **kwds)`` by sphinx.  This was very frustrating
+  because we integrated the `sphinx-paramlinks
+  <https://pypi.python.org/pypi/sphinx-paramlinks>`_ which allows us to
   cross-reference the parameters of another function or method with a symlink,
   for phrases such as::
 
       :meth:`~.Terminal.keystroke_input` also accepts optional parameter
       :paramref:`~.Terminal.keystroke_input.raw` which may be set as *True*.
 
-  ensures that a hyperlink is created directly to the full description of the
+  Ensures that a hyperlink is created directly to the full description of the
   ``raw`` parameter.  But one problem, this particular method is wrapped by
   function decorator ``@contextlib.contextmanager``, and the hyperlink would
   not resolve!
@@ -129,12 +132,6 @@ Some things I learned:
        import contextlib
        contextlib.wraps = no_op_wraps
 
-  I still struggled a bit with it, since it took me a while to notice that
-  the contextlib library had already loaded and cached a reference to the
-  original functools.wraps before it was modified.  The solution was to
-  also import contextlib and modify its imported reference of functools.wraps
-  as well.
-
 - Code cleanliness: I feel the effort in solid documentation and strict
   enforcement of styling will decrease the effort of application developers
   who chose to integrate with the API and increase the likelihood of
@@ -142,18 +139,19 @@ Some things I learned:
 
   `@signalpillar <https://github.com/signalpillar>`_ is working towards a fix
   for a bug in tox, and commented on how surprising it was that such poorly
-  formatted code could be so popular.  I feel the same about IPython, whose
-  source code I dived into only to be horrified and lost: My vim editor
-  lights up with red colors, highlighting all kinds of style, static
-  analysis dangers, and spelling mistakes, making it very difficult to
-  read, much less contribute to while restraining the natural impulsion of
-  cleaning up unrelated bits as I read them.
+  formatted code could be so popular.
+
+  I feel the same about IPython, whose source code I dived into only to be
+  horrified and lost: My vim editor lights up with red colors, highlighting
+  all kinds of style, static analysis dangers, and spelling mistakes, making
+  it very difficult to read, much less contribute to while restraining the
+  natural impulsion of cleaning up unrelated bits as I read them.
 
 
 sqlitedict
 ----------
 
-I recently submitted a pull request to `sqlitedict
+Submitted a pull request to `sqlitedict
 <https://github.com/piskvorky/sqlitedict>`_ to resolve a terrible crash
 behavior. The solution is rather tricky due to the asynchronous "fire and forget"
 method of some kinds of queries.  The solution included a compromise and a
@@ -169,9 +167,10 @@ method of some kinds of queries.  The solution included a compromise and a
   into the inner thread, so that it may store and report it should an exception
   occur.
 
-Something interesting that I learned, how do you get the stack of the current
+Something interesting: how do you get the stack of the current
 thread? By `raising an exception
 <https://github.com/python-git/python/blob/715a6e5035bb21ac49382772076ec4c630d6e960/Lib/traceback.py#L273-305>`_!
+
 From traceback.py module::
 
         try:
@@ -179,19 +178,15 @@ From traceback.py module::
         except ZeroDivisionError:
             f = sys.exc_info()[2].tb_frame.f_back
 
-Fascinating! Irregardless, I hope to contribute more to sqlitedict, the author
-very kindly provided me contributor access for my contribution, I hope to make
-well on such a kind offer.
+For a short time, I invested constructing my own object of ``types.TracebackType``
+so that the exception thrown the calling thread is for the original location of
+the call in the calling thread that caused the exception in the inner one:
+however, I favored against that, as it may occur at a time and location of code
+that is *not* where and when it actually occurred, opting to raise the exception
+from the inner thread, and reporting the original outer thread's stack to the
+logger as level ERROR.
 
-For a short time, I invested constructing my own object of
-``types.TracebackType`` so that the exception thrown the calling thread is for
-the original location of the call in the calling thread that caused the
-exception in the inner one: however, I favored against that, as it may occur
-at a time and location of code that is *not* where and when it actually
-occurred, opting to raise the exception from the inner thread, and reporting
-the original outer thread's stack to the logger as level ERROR.
-
-I tried https://www.livecoding.tv/ for the first time, and all of this effort
+Tried https://www.livecoding.tv/ for the first time, and all of this effort
 was streamed live and archived:
 
  - https://www.livecoding.tv/video/foss-gardening-sqlitedict-5/
@@ -201,6 +196,10 @@ was streamed live and archived:
 Though I admit the audience a thing is very limited, approaching 0.  Real
 world systems programming is no where near as dramatic as the movies make
 it out to be!
+
+I hope to contribute more to sqlitedict, the author very kindly provided me
+contributor access for my contribution.
+
 
 saltstack
 ---------

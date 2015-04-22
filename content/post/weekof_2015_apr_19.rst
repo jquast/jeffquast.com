@@ -180,9 +180,8 @@ was streamed live and archived:
 - https://www.livecoding.tv/video/foss-gardening-sqlitedict-6/
 - https://www.livecoding.tv/video/foss-gardening-sqlitedict-7/
 
-Though I admit the audience a thing is very limited, approaching 0.  Real
-world systems programming is no where near as dramatic as the movies make
-it out to be!
+Though I admit the audience is very limited (approaching 0):  Real world systems
+programming is no where near as dramatic as the movies make it out to be!
 
 I hope to contribute more to sqlitedict, the author very kindly provided me
 contributor access for my contribution.

@@ -190,8 +190,8 @@ contributor access for my contribution.
 saltstack
 ---------
 
-A ran into a rare race condition during my $JOB that stems from a very common
-mistake made in any programming language::
+A race condition found while doing my $JOB that stems from a very common mistake
+made in any programming language::
 
    if not os.path.isdir(folder_name):
           os.makedirs(folder_name)

@@ -71,14 +71,14 @@ Lessons with blessings:
   crafted a tool for it! *Kudos!*
 
 - Setting sphinx-build with "warnings are errors" (``-W``), driven by tox
-  and travis-ci ensures all of your documentation is free from errors such
+  and travis-ci ensured all of the documentation is free from errors such
   as invalid cross-referencing, unknown tags, run-on style attributes, or
-  mistakes in rst formatting, at least that sphinx-build may determine.
+  mistakes in rst formatting.
 
-  Unfortunately this also means that some warnings may be wrong. In blessings
-  we had one such case: We **do** intend to reference external images, such as
-  in the case of "badges" provided by services like http://shields.io.  However,
-  this generates a warning and fails the build.
+  This also means that some warnings may be wrong. In blessings we had one such
+  case: We **do** intend to reference external images such as "badges" provided
+  by services like http://shields.io.  However, this generates a warning and
+  fails the build.
 
   The solution was to "monkey-patch" method `sphinx.environment.BuildEnvironment.warn_node
   <https://github.com/erikrose/blessings/blob/a562434ef3c681d17a8b2a0b2a9f582a3ff5c093/docs/conf.py#L23-L37>`_
@@ -101,15 +101,15 @@ Lessons with blessings:
   as signature ``(**args, **kwds)`` by sphinx.  This was very frustrating
   because we integrated the `sphinx-paramlinks
   <https://pypi.python.org/pypi/sphinx-paramlinks>`_ which allows us to
-  cross-reference the parameters of another function or method with a symlink,
-  for phrases such as::
+  cross-reference the parameters of another function by hyperlink, such as:
 
       :meth:`~.Terminal.keystroke_input` also accepts optional parameter
       :paramref:`~.Terminal.keystroke_input.raw` which may be set as *True*.
 
   Ensures that a hyperlink is created directly to the full description of the
   ``raw`` parameter.  But this particular method is wrapped by function decorator
-  ``@contextlib.contextmanager``, and the hyperlink would not resolve!
+  ``@contextlib.contextmanager``, and the hyperlink would not resolve! Furthermore,
+  the "signature" didn't include the raw parameter at all.
 
   Luckily, somebody `found a solution
   <https://github.com/sphinx-doc/sphinx/issues/1711#issuecomment-93126473>`_
@@ -229,7 +229,13 @@ Code cleanliness
 
 I feel the effort in solid documentation and strict enforcement of styling will
 decrease the effort of application developers who chose to integrate with the
-API and increase the likelihood of contributions.
+API and increase the likelihood of contributions.  Over time, I have begun to
+feel very strongly that code should not be released without documentation, and
+that a build should be failed if it does not adhere to good style.  As
+frustrating as it may be to have a build fail because a "hotfix" used poor
+indentation, when a project grows beyond 10K LOC the ability of a team or
+contributors to comprehend the codebase drastically declines without setting
+such standards.
 
 `@signalpillar <https://github.com/signalpillar>`_ is working towards a fix
 for a bug in tox, and commented on how surprising it was that such poorly

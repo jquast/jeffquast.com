@@ -98,3 +98,47 @@ High School Equivalency
 - *Duration*: 2001
 - *Location*: Lansing, MI
 - No. 0117992-01
+
+Open Source
+===========
+
+Packages I created, maintain, or co-maintain with other authors:
+
+- `pexpect <http://github.com/pexpect/pexpect>`_: Pexpect allows easy control of
+  interactive console applications. ~100,000 downloads/week.
+- `blessings <https://github.com/erikrose/blessings>`_: A thin, practical wrapper around terminal coloring, styling, and positioning. ~100,000 downloads/week.
+- `wcwidth <https://github.com/jquast/wcwidth>`_: Determine the printable width of wide unicode characters on terminals. ~2,000 downloads/week.
+- `sqlitedict <https://github.com/piskvorky/sqlitedict>`_: A lightweight wrapper around Python's sqlite3 database with a simple, Pythonic dict-like interface and support for multi-thread access. ~2,00 downloads/week.
+- `x84 <https://github.com/jquast/x84>`_: An experimental python Telnet and SSH server framework. ~500 downloads/week.
+- `xmodem <https://github.com/tehmaze/xmodem>`_: XMODEM protocol implementation. ~100 downloads/week.
+- `telnetlib3 <https://github.com/jquast/telnetlib3>`_: Telnet asyncio Client and Server Protocol library. ~100 downloads/week.
+
+I have made a number of contributions. Here are a few:
+
+- `asyncio <https://github.com/python/asyncio/blob/master/AUTHORS>`_
+  `astroid <https://bitbucket.org/logilab/astroid>`_,
+  `box-cutter <https://github.com/box-cutter>`_,
+  `ec2-api-tools-rpm <https://github.com/aquto/ec2-api-tools-rpm>`_,
+  `homebrew <https://github.com/homebrew/homebrew>`_,
+  `packer <https://github.com/mitchellh/packer/>`_,
+  `paramiko <https://github.com/paramiko/paramiko/>`_,
+  `pip-accel <https://github.com/paylogic/pip-accel>`_,
+  `prospector <https://github.com/landscapeio/prospector>`_,
+  `pyinstaller <https://github.com/pyinstaller/pyinstaller>`_,
+  `pylint <https://bitbucket.org/logilab/pylint>`_,
+  `pytest-cov <https://github.com/schlamar/pytest-cov>`_,
+  `saltstack <https://github.com/saltstack/salt/>`_,
+  `sh <https://github.com/amoffat/sh>`_,
+  `vagrant <https://github.com/mitchellh/vagrant/>`_,
+
+Some people have said some really nice things about my work! Here are a few:
+
+- `Ned Batchelder <http://nedbatchelder.com/>`_, author of coverage.py said in `an interview <http://www.blog.pythonlibrary.org/2015/03/09/pydev-of-the-week-ned-batchelder/>`_,
+
+  Q: Which Python libraries are your favorite (core or 3rd party)?
+
+  > [...] I’m delighted to continue to find little gems like blessed [...] They demonstrate the craftsmanship that Python developers bring to their work, and a dedication to making tools that help others.
+
+- Regarding implementing the entire set of RFC's for the telnet protocol, `Guido Von Rossum says <http://permalink.gmane.org/gmane.comp.python.tulip/297>`_:
+
+  > Wow. Jaw-dropping wow.

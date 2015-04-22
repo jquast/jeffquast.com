@@ -132,22 +132,6 @@ Lessons with blessings:
        import contextlib
        contextlib.wraps = no_op_wraps
 
-- Code cleanliness: I feel the effort in solid documentation and strict
-  enforcement of styling will decrease the effort of application developers
-  who chose to integrate with the API and increase the likelihood of
-  contributions.
-
-  `@signalpillar <https://github.com/signalpillar>`_ is working towards a fix
-  for a bug in tox, and commented on how surprising it was that such poorly
-  formatted code could be so popular.
-
-  I feel the same about IPython, whose source code I dived into only to be
-  horrified and lost: My vim editor lights up with red colors, highlighting
-  all kinds of style, static analysis dangers, and spelling mistakes, making
-  it very difficult to read, much less contribute to while restraining the
-  natural impulsion of cleaning up unrelated bits as I read them.
-
-
 sqlitedict
 ----------
 
@@ -236,3 +220,21 @@ others
   <https://github.com/ulope/pyformat.info/pull/14>`_ to https://pyformat.info/ to add padding
   "by argument:" -- this particular feature took me quite a while
   to find when I first needed it, hope it helps someone else!
+
+
+Code cleanliness
+----------------
+
+I feel the effort in solid documentation and strict enforcement of styling will
+decrease the effort of application developers who chose to integrate with the
+API and increase the likelihood of contributions.
+
+`@signalpillar <https://github.com/signalpillar>`_ is working towards a fix
+for a bug in tox, and commented on how surprising it was that such poorly
+formatted code could be so popular.
+
+I feel the same about IPython, whose source code I dived into only to be
+horrified and lost: My vim editor lights up with red colors, highlighting
+all kinds of style, static analysis dangers, and spelling mistakes, making
+it very difficult to read, much less contribute to while restraining the
+natural impulsion of cleaning up unrelated bits as I read them.

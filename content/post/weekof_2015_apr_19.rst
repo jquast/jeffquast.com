@@ -32,8 +32,8 @@ Some things I learned:
   Most unfortunate, doc8 is under the umbrella of OpenStack and suffers for
   it: there is no obvious place to communicate with the developers or file
   bug reports (issues are disabled in github).  I began working towards fixing
-  one when I discovered it was already fixed `quite some time ago <
-  https://github.com/stackforge/doc8/commit/4d82c269ab46f0c5370c1f00be06e0c406164e85#commitcomment-10725927>`_
+  one when I discovered it was already fixed `quite some time ago
+  <https://github.com/stackforge/doc8/commit/4d82c269ab46f0c5370c1f00be06e0c406164e85#commitcomment-10725927>`_
   but never released to pypi.  I had to explicitly tool tox.ini to explicitly
   chose python2.7 for static analysis to workaround the issue using phrase::
 
@@ -95,8 +95,8 @@ Some things I learned:
 
 - Context managers and other decorator-wrapped function and method calls render
   as signature ``(**args, **kwds)`` by sphinx.  I found this very frustrating
-  because I integrated the `sphinx-paramlinks <
-  https://pypi.python.org/pypi/sphinx-paramlinks>`_ which allows me to
+  because I integrated the `sphinx-paramlinks
+  <https://pypi.python.org/pypi/sphinx-paramlinks>`_ which allows me to
   cross-reference the parameters of another function or method with a symlink,
   for phrases such as::
 
@@ -170,8 +170,8 @@ method of some kinds of queries.  The solution included a compromise and a
   occur.
 
 Something interesting that I learned, how do you get the stack of the current
-thread? By `raising an exception <
-https://github.com/python-git/python/blob/715a6e5035bb21ac49382772076ec4c630d6e960/Lib/traceback.py#L273-305>`_!
+thread? By `raising an exception
+<https://github.com/python-git/python/blob/715a6e5035bb21ac49382772076ec4c630d6e960/Lib/traceback.py#L273-305>`_!
 From traceback.py module::
 
         try:

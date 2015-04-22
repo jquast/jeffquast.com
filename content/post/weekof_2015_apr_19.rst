@@ -77,7 +77,7 @@ Some things I learned:
   case of "badges" provided by services like http://shields.io but this
   generates a warning and fails my build. My solution was to
   "monkey-patch" method `sphinx.environment.BuildEnvironment.warn_node
-  <https://github.com/erikrose/blessings/blob/blessed-integration/docs/conf.py#L23-L37>`_
+  <https://github.com/erikrose/blessings/blob/a562434ef3c681d17a8b2a0b2a9f582a3ff5c093/docs/conf.py#L23-L37>`_
   in the sphinx-generated docs/conf.py as follows::
 
           import sphinx.environment

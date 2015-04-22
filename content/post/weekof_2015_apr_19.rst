@@ -19,10 +19,10 @@ title: Week of Apr 19, 2015
 blessings
 ---------
 
-Almost two months since my last "week of": It's still hard to find the time.  Most of my time was
-spent working towards merging my fork of blessings ('blessed') back into blessings.  Erik Rose
-set a high bar of standards, mostly in documentation, that cost an estimated 40 hours to fulfill.
-The result is `PR #104 <https://github.com/erikrose/blessings/pull/104>`_, +9,541 and -1,506.
+Most of my time was spent working towards merging my fork of blessings upstream.
+`Erik Rose <https://github.com/erikrose/>`_ set a high bar of standard, mostly
+in documentation, that cost an estimated 40 hours to fulfill.  The result is
+`PR #104 <https://github.com/erikrose/blessings/pull/104>`_, +9,541 and -1,506.
 
 Lessons with blessings:
 

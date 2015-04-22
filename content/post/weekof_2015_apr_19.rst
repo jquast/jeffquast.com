@@ -189,9 +189,9 @@ logger as level ERROR.
 Tried https://www.livecoding.tv/ for the first time, and all of this effort
 was streamed live and archived:
 
- - https://www.livecoding.tv/video/foss-gardening-sqlitedict-5/
- - https://www.livecoding.tv/video/foss-gardening-sqlitedict-6/
- - https://www.livecoding.tv/video/foss-gardening-sqlitedict-7/
+- https://www.livecoding.tv/video/foss-gardening-sqlitedict-5/
+- https://www.livecoding.tv/video/foss-gardening-sqlitedict-6/
+- https://www.livecoding.tv/video/foss-gardening-sqlitedict-7/
 
 Though I admit the audience a thing is very limited, approaching 0.  Real
 world systems programming is no where near as dramatic as the movies make

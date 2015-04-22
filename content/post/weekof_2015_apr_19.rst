@@ -64,10 +64,11 @@ Lessons with blessings:
   or table of contents.
 
   Previously, I lost a lot of time manually eyeballing a README.rst, and have
-  seen many pypi project descriptions fail to discover the cause, hopefully
-  that people will prefer github to render it for them. `twolfson
-  <https://github.com/twolfson>`_ is a better coder than myself: he was
-  frustrated by the same problem, but crafted a tool for it! *Kudos!*
+  seen many pypi project descriptions fail to discover the cause, hopeful
+  that people will prefer github to render it for them, or themselves
+  never able to resolve the issue. `twolfson <https://github.com/twolfson>`_
+  is a better coder than myself: he was frustrated by the same problem, but
+  crafted a tool for it! *Kudos!*
 
 - Setting sphinx-build with "warnings are errors" (``-W``), driven by tox
   and travis-ci ensures all of your documentation is free from errors such

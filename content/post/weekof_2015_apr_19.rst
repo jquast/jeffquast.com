@@ -101,7 +101,7 @@ Lessons with blessings:
   as signature ``(**args, **kwds)`` by sphinx.  This was very frustrating
   because we integrated the `sphinx-paramlinks
   <https://pypi.python.org/pypi/sphinx-paramlinks>`_ which allows us to
-  cross-reference the parameters of another function by hyperlink, such as:
+  cross-reference the parameters of another function by hyperlink, such as::
 
       :meth:`~.Terminal.keystroke_input` also accepts optional parameter
       :paramref:`~.Terminal.keystroke_input.raw` which may be set as *True*.

@@ -39,7 +39,7 @@ Employment History
     and testing infrastructure. Most senior expert of team at time of
     departure.
 
-`Jackson National Life Insurance <http://jnli.com>`
+`Jackson National Life Insurance <http://jnli.com>`_
 ---------------------------------------------------
 
 - **Under contract by**: iVantage
@@ -73,7 +73,7 @@ Employment History
     Furthermore, pairing hardware allocation analysis and fault reporting
     software (Python, Java, Shell)
   - Developed several Jira, LDAP, and account management tools, plugins,
-    and reporting systems (Java, C, Python), and other miscellanea.
+    and reporting systems (Java, C, Python), and other miscellany.
 
 General Motors
 --------------

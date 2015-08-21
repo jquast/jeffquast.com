@@ -15,7 +15,7 @@ Employment History
     clusters.
   - Lead of build systems, with rigorous focus on deterministic builds,
     release and version tracking of the Linux software components that
-    compose the cloud software components.
+    compose the cloud product.
   - Completed 309 of team total 603 pull requests over 42 weeks across all
     internal software components, primarily Python, Jinja/yaml, Shell,
     and Ruby.

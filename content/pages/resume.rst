@@ -52,7 +52,7 @@ Employment History
   - Engineer deployment of BEA WebLogic, jBoss, and Apache HA systems and
     applications, developing record keeping & reporting software of web
     server farms (Python), extensions to Interwoven Teamsite (Perl), and
-    various related accounting and management infrastructure tools.
+    various related accounting and infrastructure management tools.
 
 `Jstor (Ithaka) <http://jstor.org>`_
 ------------------------------------

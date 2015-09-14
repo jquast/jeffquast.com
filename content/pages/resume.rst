@@ -13,7 +13,7 @@ Employment History
     on using SaltStack as the primary mechanism to declaratively network boot
     and provision Arch Linux nodes into OpenStack storage and compute
     clusters.
-  - Lead of build systems, with rigorous focus on deterministic builds,
+  - Lead of build systems, with rigorous focus on determinism,
     release and version tracking of the Linux software components that
     compose the cloud product.
   - Completed 309 of team total 603 pull requests over 42 weeks across all
@@ -40,7 +40,7 @@ Employment History
     departure.
 
 `Jackson National Life Insurance <http://jnli.com>`_
----------------------------------------------------
+----------------------------------------------------
 
 - **Under contract by**: iVantage
 - **Duration**: Apr. 2012 - Jan 2013
@@ -75,8 +75,8 @@ Employment History
   - Developed several Jira, LDAP, and account management tools, plugins,
     and reporting systems (Java, C, Python), and other miscellany.
 
-General Motors
---------------
+`General Motors <https://gm.com>`_
+----------------------------------
 
 - **Under contract by**: TekSystems and EDS
 - **Duration**: Oct. 2005 - Sep 2008
@@ -95,8 +95,8 @@ General Motors
   - Developed Java/LDAP/Oracle identity accounting and auditing tools, as well
     as organizational tree analysis software in Python.
 
-Baker College
--------------
+`Baker College <https://baker.edu>`_
+------------------------------------
 
 - **Duration**: Sept. 2002 - May 2005
 - **Location**: Flint, Michigan

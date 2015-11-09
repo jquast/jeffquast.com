@@ -16,19 +16,20 @@ title: Automation, Terminal Programming with Python series 1
 Introduction
 ============
 
-Anything providing an interactive command-line interface may be automated.
+Anything command-line interface may be automated.
  
-This article will demonstrate the use of pseudo-terminals which causes programs
-to believe they are attached to a terminal, even when they are not!  At first,
-executing programs **as though they are attached to a terminal, even if they
-are not** might not seem like a useful programming technique, but is in fact
-used in a wide variety of software solutions.
+This article will demonstrate the use of pseudo-terminals, which cause
+programs to believe they are attached to a terminal, even when they are not!
+
+At first, executing programs as though they are attached to a terminal,
+even if they are not might not seem like a useful programming technique,
+but is in fact used in a wide variety of software solutions.
 
 The case of color ls(1)
 -----------------------
 
-The command ``ls -G`` displays files with colors on OSX and FreeBSD only
-when *stdin* is attached to a terminal::
+The command ``ls -G`` displays files with colors on OSX and FreeBSD **only
+when *stdin* is attached to a terminal**::
 
 When using the subprocess_ module, we will not see any of these qualities::
 
@@ -42,7 +43,7 @@ Interactive
 -----------
 
 Furthermore, some programs are interactive when attached to a terminal.  The
-python executable is an example of this: if we run python directly from a
+python executable is an example of this.  When we run python directly from a
 terminal, we receive an **interactive** REPL_::
 
         $ python
@@ -54,12 +55,12 @@ terminal, we receive an **interactive** REPL_::
         >>> exit()
 
 If we run these commands as part of a script, however, it will not display
-these decorators.  From bash::
+these decorators, from bash::
 
         $ printf 'print(2+2)\nexit()' | python
         4
 
-From Python, using subprocess::
+And executing Python, from Python, using subprocess::
 
         import subprocess, sys
         python = subprocess.Popen(
@@ -77,6 +78,7 @@ Try this command with and without shell input redirection::
 
         $ python -c 'import sys,os;print(os.isatty(sys.stdin.fileno()))'
         True
+
         $ echo|python -c 'import sys,os;print(os.isatty(sys.stdin.fileno()))'
         False
 
@@ -89,12 +91,12 @@ begins by a call to the standard python pty.fork_ function.  This behaves
 exactly as os.fork_, except that a pseudo terminal (`pty(4)`_) is wedged
 between the child and parent process.
 
-Why is this useful? Let's example several interesting programs that make use
-of `pty(3)`_ and `fork(3)`_:
+Why is this useful? Let's examine some programs that make use of `pty(4)`_
+and `fork(2)`_:
 
-- `tmux(1)`_, `screen(1)`_, and `detach(1)`_ all make use `pty(4)`_ to
-  perform their magic: the real terminal may leave (detach), while the
-  child continues to believe it is connected with a terminal.
+- `tmux(1)`_ and `screen(1)`_ make use `pty(4)`_ to perform their magic:
+  the real terminal may leave (detach), while the child continues to
+  believe it is connected with a terminal.
 
 - `script(1)`_ records interactive sessions, ensuring all terminal
   sequences are written to file ``typescript`` for analysis.
@@ -108,7 +110,7 @@ of `pty(3)`_ and `fork(3)`_:
 
 Finally, the traditional Unix `expect(1)`_ by `Don Libes`_ uses a `pty(4)`_
 to allow "programmed dialogue with interactive programs". The remainder
-of this article will use pexpect_: a variant of `epxect(1)`_ authored by
+of this article will use pexpect_: a variant of `expect(1)`_ authored by
 `Noah Spurrier`_
 
 The rainmaker
@@ -118,9 +120,9 @@ The telnet host ``rainmaker.wunderground.com`` offers weather reports and other
 various data by major U.S. Airport codes.  We can use `telnet(1)`_ and
 summarize our session as follows:
 
-- send return
+- send *return*
 - send ``sjc`` (airport cord) and return
-- send return
+- send *return*
 - send ``X`` and return
 
 We could script this **only** with timed input: we must provide sufficient
@@ -136,8 +138,9 @@ time for the appearance of each prompt::
          echo X
         ) | telnet rainmaker.wunderground.com
 
-By using pexpect_ to wait until a prompt before sending our input, we see a
-markable improvement in efficiency, our script would then read as follows::
+By using pexpect_ to wait for a prompt before sending our input, we see a
+markable improvement in efficiency and fault tolerance.  Our script would
+then read as follows::
 
         import pexpect
 
@@ -162,3 +165,39 @@ markable improvement in efficiency, our script would then read as follows::
         if __name__ == '__main__':
             import sys
             main(airport_code=sys.argv[1])
+
+Closing thoughts
+================
+
+A REPL_ is a particularly interesting target.  The SageMath_ project uses
+pexpect_ to bundle a great variety of math software by driving REPL_ shells
+of software in the background, bypassing the need to link with software of
+other programming languages.  Software and language suites providing a shell
+or REPL may be functionally tested using pexpect_, and this is where the
+library serves its purpose best.
+
+In many industries where technology systems migrate slowly, it may become
+very useful to automate commercial software systems that provide only a
+shell interpreter, such as mainframe applications, or embedded control
+devices.  With the technique of terminal automation, we may now provide
+a sensible REST API to such legacy systems.
+
+.. _detach: http://inglorion.net/software/detach/
+.. _subprocess: https://docs.python.org/3/library/subprocess.html
+.. _REPL: https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop
+.. _isatty(3): http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man3/isatty.3
+.. _pty.fork: https://docs.python.org/3/library/pty.html#pty.fork
+.. _pty(4): http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man4/ptm.4
+.. _fork(2): http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man2/fork.2
+.. _tmux(1): https://tmux.github.io/
+.. _screen(1): https://www.gnu.org/software/screen/
+.. _script(1): http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man1/script.1
+.. _ttyrec(1): https://en.wikipedia.org/wiki/Ttyrec
+.. _IPython: http://ipython.org/
+.. _Travis CI: https://travis-ci.org/
+.. _expect(1): http://www.tcl.tk/man/expect5.31/expect.1.html
+.. _Don Libes: https://en.wikipedia.org/wiki/Don_Libes
+.. _pexpect: http://pexpect.readthedocs.org/en/stable/
+.. _Noah Spurrier: http://noah.org
+.. _telnet(1): http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man1/telnet.1
+.. _SageMath: http://www.sagemath.org/

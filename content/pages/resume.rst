@@ -3,7 +3,7 @@ Employment History
 
 `io <http://io.com>`_
 ---------------------
-- **Duration**: Oct. 2014 - current
+- **Duration**: Oct. 2014 - Sep. 2015
 - **Location**: Home, California
 - **Title**: Senior Cloud Engineer
 - **Group**: Systems Engineering

@@ -10,8 +10,10 @@ Tags:
     - ansi
 date: 2015-10-27T00:00:00-00:00
 menu: main
-title: Automation, Terminal Programming with Python series 1
+title: Automation and pty(4)
 ---
+
+Terminal Programming with Python series 1: Automation and pty(4)
 
 Introduction
 ============
@@ -29,9 +31,8 @@ The case of color ls(1)
 -----------------------
 
 The command ``ls -G`` displays files with colors on OSX and FreeBSD **only
-when *stdin* is attached to a terminal**::
-
-When using the subprocess_ module, we will not see any of these qualities::
+when *stdin* is attached to a terminal**.  When using the subprocess_ module,
+we will not see any of these qualities::
 
         import subprocess
         print(subprocess.check_output(['ls', '-G', '/dev']))
@@ -186,6 +187,7 @@ a sensible REST API to such legacy systems.
 .. _subprocess: https://docs.python.org/3/library/subprocess.html
 .. _REPL: https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop
 .. _isatty(3): http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man3/isatty.3
+.. _os.fork: https://docs.python.org/3/library/os.html#os.fork
 .. _pty.fork: https://docs.python.org/3/library/pty.html#pty.fork
 .. _pty(4): http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man4/ptm.4
 .. _fork(2): http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man2/fork.2

@@ -3,11 +3,13 @@ Categories:
     - Python
 Tags:
     - Development
-    - Python
+    - Automation
     - Terminal
-    - xterm
-    - curses
-    - ansi
+    - pexpect
+    - Python
+    - isatty
+    - pty
+
 date: 2015-10-27T00:00:00-00:00
 menu: main
 title: Automation and pty(4)
@@ -18,14 +20,14 @@ Terminal Programming with Python series 1: Automation and pty(4)
 Introduction
 ============
 
-Anything command-line interface may be automated.
+Any command-line UNIX interface may be automated.
  
 This article will demonstrate the use of pseudo-terminals, which cause
 programs to believe they are attached to a terminal, even when they are not!
 
-At first, executing programs as though they are attached to a terminal,
-even if they are not might not seem like a useful programming technique,
-but is in fact used in a wide variety of software solutions.
+At first, fooling programs into beleiving they are attached to a terminal may
+not seem useful, but it is used in a wide variety of software solutions.  
+technique is indespensible in automation and testing.
 
 The case of color ls(1)
 -----------------------
@@ -56,12 +58,13 @@ terminal, we receive an **interactive** REPL_::
         >>> exit()
 
 If we run these commands as part of a script, however, it will not display
-these decorators, from bash::
+these decorators demonstrated here using the standard shell::
 
         $ printf 'print(2+2)\nexit()' | python
         4
 
-And executing Python, from Python, using subprocess::
+And strangely enough, executing Python from Python, using the subprocess_
+module demonstrates the same output::
 
         import subprocess, sys
         python = subprocess.Popen(
@@ -71,31 +74,34 @@ And executing Python, from Python, using subprocess::
 
         (b'4\n', b'')
 
-Only a terminal can provide input at any indeterminate future time, and a
-terminal is considered connected when standard input tests true for function
-`isatty(3)`_.
+With a keyboard attached, a terminal is expected to provide input at any
+non-determinate future time.  Software tests whether any of the standard
+file descriptors (*stdin*, *stdout*, *stderr*) are attached to a terminal
+to conditionally branch behaviour.
 
-Try this command with and without shell input redirection::
+We can reproduce this conditional behaviour easily again from shell::
 
         $ python -c 'import sys,os;print(os.isatty(sys.stdin.fileno()))'
         True
 
-        $ echo|python -c 'import sys,os;print(os.isatty(sys.stdin.fileno()))'
+        $ echo | python -c 'import sys,os;print(os.isatty(sys.stdin.fileno()))'
         False
+
+As standard in is piped input, this fails test.
 
 Cheating isatty(3)
 ------------------
 
 The remainder of this article will focus on tricking `isatty(3)` into returning
-``True`` even if standard in is not actually terminal.  This peculiar behavior
-begins by a call to the standard python pty.fork_ function.  This behaves
-exactly as os.fork_, except that a pseudo terminal (`pty(4)`_) is wedged
-between the child and parent process.
+``True`` even when the standard descriptors are not actually terminal.  This
+peculiar behavior begins by a call to the standard python pty.fork_ function.
+ This behaves exactly as os.fork_, except that a pseudo terminal (`pty(4)`_) is
+wedged between the child and parent process.
 
 Why is this useful? Let's examine some programs that make use of `pty(4)`_
-and `fork(2)`_:
+and `fork(2)`_ to explain for themselves:
 
-- `tmux(1)`_ and `screen(1)`_ make use `pty(4)`_ to perform their magic:
+- `tmux(1)`_ and `screen(1)`_ make use of `pty(4)`_ to perform their magic:
   the real terminal may leave (detach), while the child continues to
   believe it is connected with a terminal.
 
@@ -122,12 +128,12 @@ various data by major U.S. Airport codes.  We can use `telnet(1)`_ and
 summarize our session as follows:
 
 - send *return*
-- send ``sjc`` (airport cord) and return
+- send ``sjc`` (airport code) and return
 - send *return*
 - send ``X`` and return
 
-We could script this **only** with timed input: we must provide sufficient
-time for the appearance of each prompt::
+Using pipes, we could script this using only timed input: we must provide
+sufficient time to elapse for the appearance of each prompt::
 
         (sleep 2
          echo

@@ -40,19 +40,17 @@ strings parsed by `xterm(1)`_: **sequences that elicit a response**.
 Capabilities
 ============
 
-We refer to these special string characters as a terminal capability string --
-If we enter the shell command::
+If we review the manual for `terminfo(5)`_::
 
     $ man 5 terminfo
 
 
-We'll discover a *terminal capability database* that allows us to discover
-these sequences without knowing their special value.  If we `dig deeper
+We'll discover a database of terminal capabilities that allows us to construct
+these special sequence strings.  If we `dig deeper
 <http://www.amazon.com/termcap-terminfo-OReilly-Nutshell-Linda/dp/0937175226>`_,
 we will find a parameterized language for describing terminal capabilities and
-the termcap.src_ file that makes it all possible.  With the curses_ module of
-python, we can access the C library routines that parse this capabilities
-database::
+the termcap.src_ file authored in it.  With the curses_ module of python, we
+can access the C library routines that parse this capabilities database::
 
         import curses
         curses.setupterm()
@@ -63,7 +61,7 @@ database::
         print(cyan + 'cyan is a primary CGA color.')
 
 
-The blessed_ library provides a much simpler interface to `termcap(5)`_::
+The blessed_ library provides a much simpler interface::
 
         import blessed
         term = blessed.Terminal()
@@ -73,24 +71,22 @@ The blessed_ library provides a much simpler interface to `termcap(5)`_::
 Rendering
 =========
 
-There are special control characters such as *Carriage Return* (``'\r'``) that
-immediately modify the state of the terminal upon receipt, but the control
-character *Escape* ``\x1b`` has special meaning for entering a special
-processing state in the parser.
+The control character *Escape* ``\x1b`` has special meaning when received by
+an emulator, entering a special processing state of the parser.
 
-The full string phrase ``'\x1b[0;35m'`` is meaningful as a markup language
-in the terminal emulator: we can read this as a standard polish notation
-parser, placing arguments onto the stack, then calling defining the function.
+As you may have guessed, the string phrase ``'\x1b[0;35m'`` is meaningful as a
+kind of markup language.  We can read this as a standard polish notation
+parser: placing arguments onto the stack, then calling defining the function.
 
 ``\x1b[`` is the `Control Sequence Inducer`_ (CSI) sequence, followed by
 parameters ``1;31`` with final function ``m`` for `Select Graphics Rendition`_
-(SGR).
+(SGR).  This in turn sets the foreground color to *Magenta*.
 
 xterm
 -----
 
 Most modern terminal emulators claim ``xterm`` as their ``TERM`` environment
-value, so let us examine the source code of xterm_ to discover where these
+value.  So let us examine the source code of xterm_ to discover where these
 special sequences are parsed.
 
 Within a 2,740-line function, ``doparsing()``, we find the `application of the
@@ -106,13 +102,16 @@ color red <https://github.com/joejulian/xterm/blob/defc6dd5684a12dc8e56cb6973ef9
      2684                     });
      3685                     break;
 
+So we can see here very rudimentary token parser that sets the foreground
+color when the second parameter is valued ``31`` through ``37``.
+
 Interesting and Strange
 -----------------------
 
 Now that we've clearly defined the markup language and its acting parser, we
 have time to discover some interesting sequences we may not have seen before,
 such as ``\x1b#8``, the DEC tube alignment test that causes the screen to
-*fill*, a sort of inverse clear screen!
+*fill*, a sort of inverse clear screen.
 
 We also find ways to manipulate our **character set**, making our output text
 incomprehensible -- put this in your co-worker's ``.profile`` for a holiday
@@ -122,7 +121,8 @@ prank::
 
 Which reads: ``Designate G0 Character Set`` as ``DEC Special Character and Line
 Drawing``.  Then, Designate G1 Character Set as ``US-ASCII``.  You may have
-noticed a similar problem accidentally outputting a binary file directly to the terminal that happened to contain a similar sequence of instructions.
+noticed a similar problem accidentally outputting a binary file directly to
+the terminal.
 
 Perhaps you learned to fix this by invoking ``reset(1)``, but this is little
 more than a wrapper to ``\x1bc``, the instruction that causes the terminal to

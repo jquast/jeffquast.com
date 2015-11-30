@@ -3,7 +3,6 @@ Categories:
     - Python
 Tags:
     - Development
-    - Automation
     - Terminal
     - sequence
     - parsing
@@ -32,10 +31,11 @@ changing text color::
     magenta = '\x1b[0;35m'
     print(magenta + 'magenta is a primary CGA color.')
 
-In this article we will examine how the string ``\x1b[0;35m`` may be
-constructed and view the source code of `xterm(1)`_ to discover where it is
-interpreted.  This allows us to discover an interesting new set of special
-strings parsed by `xterm(1)`_: **sequences that elicit a response**.
+In this article we will examine how the magic string ``\x1b[0;35m`` may be
+constructed with determinism, and view the source code of `xterm(1)`_ to
+view how it is interpreted.  Finally, we will look at a class of sequences
+parsed by `xterm(1)`_ that elicit a response from your terminal emulator
+and how this may be used in espionage.
 
 Capabilities
 ============
@@ -43,7 +43,6 @@ Capabilities
 If we review the manual for `terminfo(5)`_::
 
     $ man 5 terminfo
-
 
 We'll discover a database of terminal capabilities that allows us to construct
 these special sequence strings.  If we `dig deeper
@@ -68,6 +67,12 @@ The blessed_ library provides a much simpler interface::
 
         print(term.red('red did not appear until EGA.'))
 
+Although you are welcome to print raw strings directly to the user's terminal,
+as often recommended by introductory guides, for professional software, using
+the `terminfo(5)`_ database ensures the correct sequences for the user's
+given terminal ``TERM`` environment value are used, and allows the operating
+system packaging to maintain terminal support independently of your software.
+
 Rendering
 =========
 
@@ -85,9 +90,9 @@ parameters ``1;31`` with final function ``m`` for `Select Graphics Rendition`_
 xterm
 -----
 
-Most modern terminal emulators claim ``xterm`` as their ``TERM`` environment
-value.  So let us examine the source code of xterm_ to discover where these
-special sequences are parsed.
+Most modern terminal emulators export environment value ``TERM=xterm``, even
+though their parser is not fully compatible.  One thing is clear, however,
+the behavior and code for `xterm(1)`_ is the most principal.
 
 Within a 2,740-line function, ``doparsing()``, we find the `application of the
 color red <https://github.com/joejulian/xterm/blob/defc6dd5684a12dc8e56cb6973ef973e7a32caa3/charproc.c#L2673-2685>`_::
@@ -102,16 +107,22 @@ color red <https://github.com/joejulian/xterm/blob/defc6dd5684a12dc8e56cb6973ef9
      2684                     });
      3685                     break;
 
-So we can see here very rudimentary token parser that sets the foreground
-color when the second parameter is valued ``31`` through ``37``.
+We can see a fall-through switch statement for the numeric parameter 31
+through 37 and setting the foreground color.  Similar code
+can be found in Microsoft's `upcoming win32 OpenSSH client 
+<https://github.com/PowerShell/Win32-OpenSSH/blob/e743b54a61a272fc403ff288f98150ddd2065838/contrib/win32/win32compat/ansiprsr.c#L438>`_.
 
 Interesting and Strange
 -----------------------
 
 Now that we've clearly defined the markup language and its acting parser, we
-have time to discover some interesting sequences we may not have seen before,
-such as ``\x1b#8``, the DEC tube alignment test that causes the screen to
-*fill*, a sort of inverse clear screen.
+have time to discover some interesting sequences we may not have seen before.
+Some strings, such as the DEC tube alignment test, have no capability name
+in the `terminfo(5)`_ database.  In such cases, it is necessary to print
+these sequences directly.  DEC tube alignment test causes the screen to
+**fill**, a sort of inverse clear screen::
+
+    print('\x1b#8')
 
 We also find ways to manipulate our **character set**, making our output text
 incomprehensible -- put this in your co-worker's ``.profile`` for a holiday
@@ -119,19 +130,36 @@ prank::
 
     printf "\x1b(0\x1b)B"
 
-Which reads: ``Designate G0 Character Set`` as ``DEC Special Character and Line
-Drawing``.  Then, Designate G1 Character Set as ``US-ASCII``.  You may have
-noticed a similar problem accidentally outputting a binary file directly to
-the terminal.
+Which reads, "Designate G0 Character Set as DEC Special Character and Line
+Drawing, Designate G1 Character Set as US-ASCII".  You may have noticed a
+similar problem accidentally outputting a binary file directly to the
+terminal, and used `reset(1)`_ to resolve it, which is little more than
+a wrapper to::
 
-Perhaps you learned to fix this by invoking ``reset(1)``, but this is little
-more than a wrapper to ``\x1bc``, the instruction that causes the terminal to
-perform a full reset.
+        printf "\x1bc"
 
-Changing the title of our terminal, showing or hiding the cursor and its blink
-rate, or swapping between an "alternate screen" to allow restoration of the
-terminal's original screen state on program exit are among many other
-interesting output sequences.
+There are several more interesting sequences, the blessed_ library provides
+access to many of these state-changing sequences using context managers:
+
+`hidden_cursor <http://blessed.readthedocs.org/en/latest/api.html#blessed.terminal.Terminal.hidden_cursor>`_
+
+   Context manager that hides the cursor, setting visibility on exit.
+
+`location <http://blessed.readthedocs.org/en/latest/api.html#blessed.terminal.Terminal.location>`_
+
+   Context manager for temporarily moving the cursor.
+
+`fullscreen <http://blessed.readthedocs.org/en/latest/api.html#blessed.terminal.Terminal.fullscreen>`_
+
+   Context manager that switches to secondary screen, restoring on exit.
+
+`keypad <http://blessed.readthedocs.org/en/latest/api.html#blessed.terminal.Terminal.keypad>`_
+
+   Context manager that enables directional keypad input.
+
+The reader is encouraged to investigate the source code of their preferred
+terminal emulator and try some of the more interesting capabilities found
+there.
 
 Reactor
 =======
@@ -145,6 +173,13 @@ Let's try one, *Report Cursor Position*::
    $ printf "\x1b[6n"; read input
    $ set | grep ^input
    input=$'\E[38;1R'
+
+This is a feature of the blessed_ library::
+
+    import blessed 
+    term = blessed.Terminal()
+
+    print(term.get_location())
 
 Espionage
 ---------
@@ -167,3 +202,5 @@ to copy our output to their clipboard.
 .. _termc,ap.src: http://invisible-island.net/ncurses/terminfo.src.html#tic-xterm-basic
 .. _Control Sequence Inducer: http://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h2-Functions-using-CSI-_-ordered-by-the-final-character_s_
 .. _Select Graphics Rendition:
+.. _Color Bash Prompt:
+.. _xterm(1): 

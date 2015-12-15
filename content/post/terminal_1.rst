@@ -26,8 +26,8 @@ This article will demonstrate the use of pseudo-terminals, which cause
 programs to believe they are attached to a terminal, even when they are not!
 
 At first, fooling programs into beleiving they are attached to a terminal may
-not seem useful, but it is used in a wide variety of software solutions.  
-technique is indespensible in automation and testing.
+not seem useful, but it is used in a wide variety of software solutions.
+This programming technique is indespensible in automation and testing fields.
 
 The case of color ls(1)
 -----------------------

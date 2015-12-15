@@ -25,17 +25,17 @@ Introduction
 A student new to Systems Programming will eventually stumble upon a strange
 method for printing color in a terminal.  They might see something like the
 Arch Linux `Color Bash Prompt`_ guide, introducing a table of shell variables
-that, when printed to the screen, creates something like a markup language for
-changing text color::
+that appear something like a markup language for::
 
     magenta = '\x1b[0;35m'
-    print(magenta + 'magenta is a primary CGA color.')
+
+    print(magenta + 'magenta is an original primary CGA color.')
 
 In this article we will examine how the magic string ``\x1b[0;35m`` may be
-constructed with determinism, and view the source code of `xterm(1)`_ to
-view how it is interpreted.  Finally, we will look at a class of sequences
-parsed by `xterm(1)`_ that elicit a response from your terminal emulator
-and how this may be used in espionage.
+constructed with some determinism.  Then, view the source code of `xterm(1)`_
+to learn how they are interpreted.  Finally, we will look at a class of
+sequences parsed by `xterm(1)`_ that elicit a response from your terminal
+emulator.
 
 Capabilities
 ============
@@ -44,12 +44,17 @@ If we review the manual for `terminfo(5)`_::
 
     $ man 5 terminfo
 
-We'll discover a database of terminal capabilities that allows us to construct
+We discover a database of terminal capabilities that allows us to construct
 these special sequence strings.  If we `dig deeper
 <http://www.amazon.com/termcap-terminfo-OReilly-Nutshell-Linda/dp/0937175226>`_,
-we will find a parameterized language for describing terminal capabilities and
-the termcap.src_ file authored in it.  With the curses_ module of python, we
-can access the C library routines that parse this capabilities database::
+we will find a parameterized language for describing terminal capabilities.
+
+The termcap.src_ file is authored in a special language that helps associate
+terminals defined by ``TERM`` environment value to their terminal capability
+strings.
+
+With the curses_ module of python, we can access the C library routines that
+for the capabilities database defined by `terminfo(5)`_::
 
         import curses
         curses.setupterm()
@@ -65,37 +70,38 @@ The blessed_ library provides a much simpler interface::
         import blessed
         term = blessed.Terminal()
 
-        print(term.red('red did not appear until EGA.'))
+        print(term.red + 'red was not introduced until EGA.')
 
 Although you are welcome to print raw strings directly to the user's terminal,
-as often recommended by introductory guides, for professional software, using
-the `terminfo(5)`_ database ensures the correct sequences for the user's
-given terminal ``TERM`` environment value are used, and allows the operating
-system packaging to maintain terminal support independently of your software.
+as often recommended by introductory guides, using the `terminfo(5)`_ database
+ensures the correct sequences for the given user's ``TERM`` environment value
+are used.  It also allows the Operating System to maintain terminal support
+independently of your software.
 
 Rendering
 =========
 
-The control character *Escape* ``\x1b`` has special meaning when received by
-an emulator, entering a special processing state of the parser.
+The ASCII control character *ESCAPE* (``\x1b``) begins a detour to a special
+processing routine when received by a terminal emulator.  The string phrase
+``'\x1b[1;35m'`` is meaningful as a kind of markup language. 
 
-As you may have guessed, the string phrase ``'\x1b[0;35m'`` is meaningful as a
-kind of markup language.  We can read this as a standard polish notation
-parser: placing arguments onto the stack, then calling defining the function.
+We can read this as a standard polish notation parser: placing arguments onto
+the stack, then calling the defining function:
 
-``\x1b[`` is the `Control Sequence Inducer`_ (CSI) sequence, followed by
-parameters ``1;31`` with final function ``m`` for `Select Graphics Rendition`_
-(SGR).  This in turn sets the foreground color to *Magenta*.
+- ``\x1b[`` is the `Control Sequence Inducer`_ (CSI) sequence,
+- followed by parameters ``1;31`` (*Bold*, *Magenta*),
+- with final function ``m`` for `Select Graphics Rendition`_ (SGR).
 
 xterm
 -----
 
 Most modern terminal emulators export environment value ``TERM=xterm``, even
-though their parser is not fully compatible.  One thing is clear, however,
-the behavior and code for `xterm(1)`_ is the most principal.
+though their parser is not fully compatible. This marks the behavior and code
+for `xterm(1)`_ as the most principal and correct.
 
 Within a 2,740-line function, ``doparsing()``, we find the `application of the
-color red <https://github.com/joejulian/xterm/blob/defc6dd5684a12dc8e56cb6973ef973e7a32caa3/charproc.c#L2673-2685>`_::
+color red
+<https://github.com/joejulian/xterm/blob/defc6dd5684a12dc8e56cb6973ef973e7a32caa3/charproc.c#L2673-2685>`_::
 
      2673                 case 31:
      (...)
@@ -115,47 +121,45 @@ can be found in Microsoft's `upcoming win32 OpenSSH client
 Interesting and Strange
 -----------------------
 
-Now that we've clearly defined the markup language and its acting parser, we
+Now that we have clearly defined the markup language and its acting parser, we
 have time to discover some interesting sequences we may not have seen before.
 Some strings, such as the DEC tube alignment test, have no capability name
 in the `terminfo(5)`_ database.  In such cases, it is necessary to print
-these sequences directly.  DEC tube alignment test causes the screen to
-**fill**, a sort of inverse clear screen::
+these sequences directly.
+
+The DEC tube alignment test sequence causes the screen to **fill**,
+a sort of inverse clear screen::
 
     print('\x1b#8')
 
 We also find ways to manipulate our **character set**, making our output text
 incomprehensible -- put this in your co-worker's ``.profile`` for a holiday
-prank::
+laugh::
 
     printf "\x1b(0\x1b)B"
 
-Which reads, "Designate G0 Character Set as DEC Special Character and Line
-Drawing, Designate G1 Character Set as US-ASCII".  You may have noticed a
-similar problem accidentally outputting a binary file directly to the
-terminal, and used `reset(1)`_ to resolve it, which is little more than
-a wrapper to::
+Which reads,
+
+- Designate G0 Character Set as DEC Special Character and Line Drawing,
+- Designate G1 Character Set as US-ASCII.
+
+You may have noticed a similar problem occurs as a byproduct when
+accidentally outputting a binary file directly to the terminal. The
+`reset(1)`_ command may be executed to reset your terminal.  Or, you
+may simply emit the sequence, ``ESC c`` to correct your terminal::
 
         printf "\x1bc"
 
 There are several more interesting sequences, the blessed_ library provides
-access to many of these state-changing sequences using context managers:
+access to many of the common state-changing sequences as context managers:
 
-`hidden_cursor <http://blessed.readthedocs.org/en/latest/api.html#blessed.terminal.Terminal.hidden_cursor>`_
+- `hidden_cursor <http://blessed.readthedocs.org/en/latest/api.html#blessed.terminal.Terminal.hidden_cursor>`_: hides cursor, restoring visibility on exit.
 
-   Context manager that hides the cursor, setting visibility on exit.
+- `location <http://blessed.readthedocs.org/en/latest/api.html#blessed.terminal.Terminal.location>`_: Temporarily move the cursor, restoring original position on exit.
 
-`location <http://blessed.readthedocs.org/en/latest/api.html#blessed.terminal.Terminal.location>`_
+- `fullscreen <http://blessed.readthedocs.org/en/latest/api.html#blessed.terminal.Terminal.fullscreen>`_: Switch to secondary screen, restoring primary screen on exit.
 
-   Context manager for temporarily moving the cursor.
-
-`fullscreen <http://blessed.readthedocs.org/en/latest/api.html#blessed.terminal.Terminal.fullscreen>`_
-
-   Context manager that switches to secondary screen, restoring on exit.
-
-`keypad <http://blessed.readthedocs.org/en/latest/api.html#blessed.terminal.Terminal.keypad>`_
-
-   Context manager that enables directional keypad input.
+- `keypad <http://blessed.readthedocs.org/en/latest/api.html#blessed.terminal.Terminal.keypad>`_: Enable directional keypad input.
 
 The reader is encouraged to investigate the source code of their preferred
 terminal emulator and try some of the more interesting capabilities found
@@ -170,9 +174,9 @@ return!
 
 Let's try one, *Report Cursor Position*::
 
-   $ printf "\x1b[6n"; read input
-   $ set | grep ^input
-   input=$'\E[38;1R'
+    $ printf "\x1b[6n"; read input
+    $ set | grep ^input
+    input=$'\E[38;1R'
 
 This is a feature of the blessed_ library::
 
@@ -181,26 +185,38 @@ This is a feature of the blessed_ library::
 
     print(term.get_location())
 
+There are other sequences that cause a terminal emulator to write a response,
+some terminals respond to the raw control character, *^E* (``\x05``) with
+a terminal identifier, such as PuTTY_.
+
 Espionage
 ---------
 
-One can quickly separate automatic robots from a human using a terminal
-emulator by requesting their cursor position.  This is useful for providing
-something like a "are you human" test for terminals that are so popular with
-html sites to discern the same.
+We can elicit responses of a variety of details about the client through this
+in-band control channel, and we can temporarily disable echo to ensure it is
+hidden and collected without the user's knowledge.
+
+Combined with the protocol such as ssh or telnet, we can produce a fingerprint
+and guess of the client's operating system with a very high confidence value.
 
 Furthermore, we can deduce the round trip time to the distant end's
 emulator, allowing us to estimate actual time of transmission and receipt
 of I/O, an important factor in providing responsive interfaces.
 
-We can elicit responses of a variety of details about the client through this
-in-band control channel, and we can temporarily disable echo to ensure it is
-hidden.  We can learn whether the window is minimized, whether input was
-*pasted*, and not keyed in, or detect mouse clicks, like when a user attempts
-to copy our output to their clipboard.
+whatis.telnet.org
+=================
 
-.. _termc,ap.src: http://invisible-island.net/ncurses/terminfo.src.html#tic-xterm-basic
+An upcoming project will be an interactive, fingerprinting telnet server.  It
+will produce a private report of all of the details it was able to retrieve,
+and hosted at telnet address ``whatis.telnet.org``.
+
+.. _termcap.src: http://invisible-island.net/ncurses/terminfo.src.html#tic-xterm-basic
 .. _Control Sequence Inducer: http://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h2-Functions-using-CSI-_-ordered-by-the-final-character_s_
-.. _Select Graphics Rendition:
-.. _Color Bash Prompt:
-.. _xterm(1): 
+.. _Select Graphics Rendition: http://www.vt100.net/docs/vt510-rm/SGR
+.. _Color Bash Prompt: https://wiki.archlinux.org/index.php/Color_Bash_Prompt
+.. _xterm(1): http://invisible-island.net/xterm/
+.. _terminfo(5): http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/terminfo.5
+.. _reset(1): http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man1/reset.1
+.. _PuTTY: http://www.chiark.greenend.org.uk/~sgtatham/putty/
+.. _curses: https://docs.python.org/3.3/howto/curses.html
+.. _blessed: https://pypi.python.org/pypi/blessed/

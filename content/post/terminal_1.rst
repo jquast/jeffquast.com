@@ -95,7 +95,7 @@ Cheating isatty(3)
 The remainder of this article will focus on tricking `isatty(3)` into returning
 ``True`` even when the standard descriptors are not actually terminal.  This
 peculiar behavior begins by a call to the standard python pty.fork_ function.
- This behaves exactly as os.fork_, except that a pseudo terminal (`pty(4)`_) is
+This behaves exactly as os.fork_, except that a pseudo terminal (`pty(4)`_) is
 wedged between the child and parent process.
 
 Why is this useful? Let's examine some programs that make use of `pty(4)`_

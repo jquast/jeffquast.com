@@ -177,17 +177,18 @@ Closing thoughts
 ================
 
 A REPL_ is a particularly interesting target.  The SageMath_ project uses
-pexpect_ to bundle a great variety of math software by driving REPL_ shells
-of software in the background, bypassing the need to link with software of
-other programming languages.  Software and language suites providing a shell
-or REPL may be functionally tested using pexpect_, and this is where the
-library serves its purpose best.
+pexpect_ to bundle a great variety of math software by driving the REPL_
+interface of a variety of mathematics programs, bypassing the need to link with
+software of other programming languages.
+
+Software and language suites providing a shell or REPL may be functionally
+tested using pexpect_, and this is where the library serves its purpose best.
 
 In many industries where technology systems migrate slowly, it may become
-very useful to automate commercial software systems that provide only a
-shell interpreter, such as mainframe applications, or embedded control
-devices.  With the technique of terminal automation, we may now provide
-a sensible REST API to such legacy systems.
+very useful to automate commercial or blackbox software systems that provide
+only a shell, such as mainframes or embedded control devices.  With the
+technique of terminal automation, we may now provide a sensible REST API to
+such legacy systems!
 
 .. _detach: http://inglorion.net/software/detach/
 .. _subprocess: https://docs.python.org/3/library/subprocess.html

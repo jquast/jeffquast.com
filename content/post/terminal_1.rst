@@ -33,21 +33,22 @@ The case of color ls(1)
 -----------------------
 
 The command ``ls -G`` displays files with colors on OSX and FreeBSD **only
-when *stdin* is attached to a terminal**.  When using the subprocess_ module,
-we will not see any of these qualities::
+when standard input is attached to a terminal**.  When using the subprocess_
+module, we will not see any of these qualities::
 
         import subprocess
         print(subprocess.check_output(['ls', '-G', '/dev']))
 
-This quick example shows that programs behave differently when attached to a
-terminal.
+With an explicit ``-G`` parameter, the output of this program is still
+colorless.  This quick example shows that some programs behave differently
+when attached to a terminal.
 
 Interactive
 -----------
 
-Furthermore, some programs are interactive when attached to a terminal.  The
-python executable is an example of this.  When we run python directly from a
-terminal, we receive an **interactive** REPL_::
+Furthermore, some programs are only interactive when attached to a terminal.
+The python executable is an example of this.  When we run python directly from
+a terminal, we receive an interactive REPL_::
 
         $ python
         Python 3.5.0 (default, Oct 28 2015, 21:00:27)
@@ -57,8 +58,8 @@ terminal, we receive an **interactive** REPL_::
         8
         >>> exit()
 
-If we run these commands as part of a script, however, it will not display
-these decorators demonstrated here using the standard shell::
+If we run these commands by piping them to standard input, it will not display
+such decorators, demonstrated here using the standard shell::
 
         $ printf 'print(2+2)\nexit()' | python
         4
@@ -74,10 +75,10 @@ module demonstrates the same output::
 
         (b'4\n', b'')
 
-With a keyboard attached, a terminal is expected to provide input at any
-non-determinate future time.  Programs such as python tests whether any of the
+With a keyboard attached, **a terminal may be expected to provide input at any
+non-determinate future time**.  Programs such as python test whether any of the
 standard file descriptors (*stdin*, *stdout*, *stderr*) are attached to a
-terminal to conditionally branch their behaviour.
+terminal to conditionally offer this behaviour.
 
 We can reproduce this conditional check of `isatty(3)`_ easily from shell::
 
@@ -183,6 +184,7 @@ software of other programming languages.
 
 Software and language suites providing a shell or REPL may be functionally
 tested using pexpect_, and this is where the library serves its purpose best.
+We can now write automated tests for the python interactive shell, for example.
 
 In many industries where technology systems migrate slowly, it may become
 very useful to automate commercial or blackbox software systems that provide

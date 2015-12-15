@@ -75,11 +75,11 @@ module demonstrates the same output::
         (b'4\n', b'')
 
 With a keyboard attached, a terminal is expected to provide input at any
-non-determinate future time.  Software tests whether any of the standard
-file descriptors (*stdin*, *stdout*, *stderr*) are attached to a terminal
-to conditionally branch behaviour.
+non-determinate future time.  Programs such as python tests whether any of the
+standard file descriptors (*stdin*, *stdout*, *stderr*) are attached to a
+terminal to conditionally branch their behaviour.
 
-We can reproduce this conditional behaviour easily again from shell::
+We can reproduce this conditional check of `isatty(3)`_ easily from shell::
 
         $ python -c 'import sys,os;print(os.isatty(sys.stdin.fileno()))'
         True
@@ -87,7 +87,7 @@ We can reproduce this conditional behaviour easily again from shell::
         $ echo | python -c 'import sys,os;print(os.isatty(sys.stdin.fileno()))'
         False
 
-As standard in is piped input, this fails test.
+As *stdin* is piped, this fails the test for `isatty(3)`_ test.
 
 Cheating isatty(3)
 ------------------
@@ -113,7 +113,7 @@ and `fork(2)`_ to explain for themselves:
 
 - IPython_ notebook executes programs through a `pty(4)`_ for color output.
 
-- `Travis CI`_ use a `pty(4)`_ so test runners produce colorized output.
+- `Travis CI`_ uses a `pty(4)`_ so test runners produce colorized output.
 
 Finally, the traditional Unix `expect(1)`_ by `Don Libes`_ uses a `pty(4)`_
 to allow "programmed dialogue with interactive programs". The remainder

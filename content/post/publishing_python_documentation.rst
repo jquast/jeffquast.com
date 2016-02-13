@@ -124,22 +124,50 @@ With this in mind, we create ``tox.ini`` as follows::
 
         [testenv]
         deps = pytest
-               pytest-cov
-               pytest-xdist
-        usedevelop = True
         commands = py.test {posargs:--verbose --verbose} qwack/tests
 
         [testenv:docs]
+        deps = restructuredtext_lint
+               doc8
+               sphinx
         commands = rst-lint README.rst
-                   doc8 docs
+                   doc8 docs/
                    sphinx-build -v -W -b html docs
 
         [testenv:check]
         basepython = python3.5
-        deps = prospector
+        deps = prospector[with_pyroma]
         commands = python -m compileall -fq {toxinidir}/qwack
                    prospector {toxinidir}
 
         [pytest]
         looponfailroots = qwack
         norecursedirs = .git .tox
+
+With this, we now have 3 basic targets and can use ``tox`` to execute those
+specified by the *envlist* option, or list and execute individual targets. The
+target *testenv* is special, invoked using any specified version of python, we
+could execute our tests defined by ``testenv`` with python2.7 using command
+``tox -epy27``, even though ``py27`` is not explicitly defined here.  We
+specify the default python version used as ``py35`` in our *envlist* option.
+
+Furthermore, we define target ``docs``, which executes ``rst-lint`` for our
+README.rst file, ensuring it will not fail to render on pypi.  Then, we use
+the ``doc8`` tool to verify our rst documentation of our ``docs/`` sub-folder.
+Then, we generate html documentation using sphinx with *turn warnings into
+errors* enabled, which informs our CI and shell of a non-zero exit code for
+any errors when rendered.
+
+Lastly, the ``check`` target first ensures that all python files compile for
+our target python version (3.5), before executing the prospector_ tool, which
+front-ends several useful static analysis utilities with a unified
+configuration and command interface in a ``.landscape.yaml`` file.  This same
+file can be parsed by the https://landscape.io service to produce a
+CI-integrated HTML report of static analysis results.
+
+From a single ``tox.ini`` file, all stages of software development may be
+defined and easily shared.  We've removed the need of programming in any kind
+of special shell, batch, or Makefile.  The barriers for discovering how to
+prepare an environment and execute tests is reduced for newcomers, and reduces
+the cost of making changes in the *test->build->release* cycle.  We may easily
+test new versions of python as they are released with minimal changes.

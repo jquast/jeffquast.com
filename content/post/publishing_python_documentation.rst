@@ -1,5 +1,5 @@
-Publishing to pypi with quality
-===============================
+Publishing Quality Python Documentation
+=======================================
 
 As our documentation grows, how do we bind the three services GitHub_,
 readthedocs.org_, and pypi_ in a consistent format?  Minimally, we should

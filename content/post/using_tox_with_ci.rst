@@ -1,8 +1,61 @@
+
+see also
+http://www.slideshare.net/WmyllPillar/tt-presentationppt
+
+
+
+From a single ``tox.ini`` file, all stages of software development may be
+defined and easily shared.  We've removed the need of programming in any kind
+of OS-dependent bash, batch, or Makefile.  The barriers for discovering how to
+prepare an environment and execute tests is reduced for newcomers, and reduces
+the cost of making changes in the *test->build->release* cycle.  We may easily
+test new versions of python as they are released with minimal changes.
+
+With this, we now have 3 basic targets and can use ``tox`` to execute those
+specified by the *envlist* option, or list and execute individual targets. The
+target testenv_ is special, allowing invocation of explicit python versions.
+For example, to execute the same tests using python2.7, we run::
+
+    tox -epy27
+
+even though ``py27`` is not explicitly defined here, it has an implicit
+relationship with testenv_.  If no target is specified, ``py34`` is used
+as defined by *envlist*.
+
+Furthermore, w
+
+
 Advanced tox
 ------------
 
-- Interestingly, we can create a tox target command to execute only {posargs}::
+- fully featured ... :: 
+
+    commands = {envbindir}/py.test \
+               {posargs:\
+                   --log-format='%(levelname)s %(relativeCreated)2.2f %(filename)s:%(lineno)d %(message)s' \
+                   --cov={toxinidir}/telnetlib3 \
+                   --cov-config={toxinidir}/.coveragerc \
+                   --strict --verbose --verbose \
+                   --junit-xml=results.{envname}.xml\
+                   --durations=10\
+                   } telnetlib3/tests
+               coverage combine
+               cp \
+                   {toxinidir}/.coverage \
+                   {toxinidir}/._coverage.{envname}.{env:COVERAGE_ID:local}
+               {toxinidir}/tools/custom-combine.py
+
+
+- Interestingly, we can create a tox target command to execute only {posargs}
+  when given instead of the standard default target::
       
+
+    [testenv:develop]
+        deps = pytest
+    develop target // loop on fail ..
+        looponfailroots = qwack
+
+
         [testenv:develop]
         commands = {posargs}
 
@@ -100,6 +153,20 @@ Advanced tox
   ``windows``.  When unset (default), the term 'local' is used, instead.  By
   collecting each coverage output file in a build series, we may report on
   coverage of our full platform matrix.
+
+- Do you have shell code? Use shellcheck_ to discover
+
+.. _envname: http://testrun.org/tox/latest/plugins.html?highlight=envname#tox.config.TestenvConfig.envname
+
+.. _testenv: http://testrun.org/tox/latest/example/basic.html#a-simple-tox-ini-default-environments
+
+.. _tools/custom-combine.py: https://github.com/jquast/blessed/blob/05a53c6ea66f0e0d440bd0d74aee1e4424be02dd/tools/custom-combine.py
+
+.. _signalpillar: https://github.com/signalpillar
+.. _setenv: http://testrun.org/tox/latest/example/basic.html#setting-environment-variables
+.. _passenv: http://testrun.org/tox/latest/example/basic.html#passing-down-environment-variables
+.. _pytest.mark.skipif: https://pytest.org/latest/skipping.html#marking-a-test-function-to-be-skipped
+
 
 
 

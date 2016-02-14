@@ -252,17 +252,19 @@ the time of the build or publication date.
 Extensions
 ----------
 
-Sphinx extensions such as sphinx-issues_ adds *domains*, such as
+Sphinx extensions such as sphinx-issues_ adds *domains*, allowing markup
 ``:ghissue:`29``` to refer to pull requests or issue numbers on GitHub.
-sphinx_paramlinks_ extends api links even further to allow referencing
-function arguments, For example::
+sphinx_paramlinks_ further extends API documentation to allow referencing
+**function arguments**, one level deeper than referring to a function::
 
         The :paramref:`Terminal.get_location.timeout` keyword argument can be
         specified to return coordinates (-1, -1) after a blocking timeout.
 
 Unlike their "Markdown-flavored" derivatives, these *domains* allow rendering
-through unsupported extensions.  More extensions can be found by querying
-pypi.org for the term, 'sphinxcontrib_'.
+of sphinx-extended text to be compiled by other reStructuredText-compatible
+tools *even when unsupported*.  Most requirements of a technical writer may be
+satisfied by the hundreds of extensions available.
+
 
 readthedocs.org
 ---------------
@@ -333,6 +335,10 @@ manage the steps used to develop and publish this article::
         [testenv:publish]
         whitelist_externals = rsync
         commands = rsync -a upload/ jeffquast.com:jeffquast.com/
+
+And deployed using::
+
+        $ tox -ebuild,publish
 
 Code Linting
 ````````````

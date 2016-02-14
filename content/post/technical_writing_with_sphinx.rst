@@ -28,6 +28,7 @@ page, but this article will focus on:
 
 - Using tox_ to automate checking our reStructuredText markup.
 - Cross-platform builds without any ``Makefile`` or ``make.bat``.
+- Perform linting of reStructuredText_ and project code.
 - Create API documentation from ``""" docstrings """`` in code.
 - Uniformly present an introduction on GitHub, PyPi, and readthedocs.org_.
 
@@ -243,7 +244,7 @@ documentation::
 
         This is a context manager for :func:`tty.setcbreak`.
 
-This is made possible with intersphinx_, external references made outside of
+This is made possible with intersphinx_.  External references made outside of
 sphinx may also be checked by adding the ``sphinx-build`` argument
 ``-blinkcheck``, this can ensure links to external resources are verified at
 the time of the build or publication date.
@@ -304,22 +305,46 @@ signature by escaping with the traditional getopt_ delimiter ``--``::
 
     tox -epy35 -- --looponfail --exitfirst qwack/tests/core.py
 
-There are currently over 22,000 ``tox.ini`` file examples on GitHub using the
-query, '`filename:tox.ini <https://github.com/search?q=filename%3Atox.ini>`_'.
-Some of them are rather creative.
+For CI systems, tox recommends building using a pytest_ target in their
+`jenkins integration page`_, but tox alone will propagate a non-zero exit
+code for our build tools, which is sufficient and less complex.
+
+Some of them are rather creative, or used for projects that have nothing to
+do with python.  There are over 22,000 ``tox.ini`` file examples on GitHub
+using the query, '`filename:tox.ini
+<https://github.com/search?q=filename%3Atox.ini>`_' to explore.  A tox file to
+manage the steps used to develop and publish this article::
+
+        [tox]
+        skipsdist=True
+
+        [testenv:build]
+        deps = docutils
+               pygments
+        whitelist_externals = hugo
+        commands = hugo -d upload
+
+        [testenv:develop]
+        deps = docutils
+               pygments
+        whitelist_externals = hugo
+        commands = hugo -w server -d /tmp/hugo-develop
+
+        [testenv:publish]
+        whitelist_externals = rsync
+        commands = rsync -a upload/ jeffquast.com:jeffquast.com/
 
 Code Linting
 ````````````
 
-The tox target, ``check`` first compiles all of the python files.  This is
-the fastest and simplest form of Syntax checking -- if the file cannot be
-byte-compiled, then this target will exit and alert early.
+Then, the prospector_ tool is used after byte-compiling the project,
+prospector_ front-ends several useful static analysis and style guide-enforcing
+tools.
 
-Then, the prospector_ tool is invoked, which front-ends several useful static
-analysis and style guide-enforcing programs.  With prospector_, we declare an
-explicit list of exclusions to the rules that you wish for your team, such as
-changing the "80-column" rule of pep8 to 120, or adjusting mccabe complexity
-values in the optional file, ``.landscape.yaml``
+With prospector_, we declare an explicit list of exclusions to the rules that
+you wish for your team, such as changing the "80-column" rule of pep8 to 120,
+or making exclusions to pylint messages in the optional file,
+``.landscape.yaml``:
 
 .. code:: yaml
 
@@ -354,8 +379,8 @@ Contributors then have no doubt about which style rules are enforced, this
 file becomes a contract among developers and enforced by our CI.  The same
 review process for code changes are used to propose changes.
 
-By using GitHub, the cloud service https://landscape.io can benefit us with
-archive access to HTML reports, without installing any of these tools on our
+By using GitHub, the cloud service https://landscape.io can automatically
+report prospector results, without installing any of these tools on our
 workstation.
 
 Closing remarks
@@ -391,3 +416,4 @@ most premium "Office" software suites can offer.
 .. _glob: https://en.wikipedia.org/wiki/Glob_%28programming%29
 .. _sphinx_rtd_theme: https://pypi.python.org/pypi/sphinx_rtd_theme
 .. _getopt: http://man7.org/linux/man-pages/man1/getopt.1.html#DESCRIPTION
+.. _jenkins integration page: http://tox.readthedocs.org/en/latest/example/jenkins.html

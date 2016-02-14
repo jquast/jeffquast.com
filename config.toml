@@ -1,24 +1,38 @@
+baseurl = "https://jeffquast.com/"
 languageCode = "en-us"
-contentdir = "content"
-publishdir = ""
-builddrafts = false
-baseUrl = "https://jeffquast.com"
+title = "Articles"
+theme = "hugo-hikari-theme"
 canonifyurls = true
-title = "Jeff Quast"
-author = "Jeff Quast"
 
-[indexes]
-   category = "categories"
-   tag = "tags"
+[params]
+        markup = "rst"
+	name = "Jeff Quast"
+	description = "Software Engineer"
+	copyright = "have a day."
+	newer = "Newer"
+	older = "Older"
+	pageNotFoundTitle = "Page not found"
+	pageNotFoundSubtitle = "Sorry, but the requested page wasn’t <br> found on the server."
 
-[Params]
-  markup = "rst"
-  AuthorName = "JeffQuast"
-  email = "contact@jeffquast.com"
-  github = "jquast"
-  bitbucket = "jquast"
-  linkedin = "jeffreyquast"
-  resume = "/pages/resume"
-  cover = "/images/railway.jpg"
-  logo = "/images/profile.jpg"
-  description = "Systems Software Engineer"
+[params.offcanvas]
+	# Menu items
+	title = "Jeff Quast"
+	bio = "Software Engineer"
+	subscribe = "Subscribe"
+	followme = "contact@jeffquast.com"
+
+	# Enable Google search
+	search_enabled = false
+	search = "Search"
+
+	[[params.offcanvas.socialnetworks]]
+		name = "Github"
+		url = "//github.com/jquast"
+
+	[[params.offcanvas.socialnetworks]]
+		name = "Linkedin"
+		url = "//linkedin.com/jeffreyquast"
+
+	[[params.offcanvas.socialnetworks]]
+		name = "PDF Resume"
+		url = "/resume-jquast.pdf"

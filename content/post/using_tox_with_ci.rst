@@ -1,3 +1,4 @@
+(draft)
 
 see also
 http://www.slideshare.net/WmyllPillar/tt-presentationppt
@@ -30,7 +31,7 @@ Advanced tox
 
 - fully featured ... :: 
 
-    commands = {envbindir}/py.test \
+    commands = {envbindir}/pytest \
                {posargs:\
                    --log-format='%(levelname)s %(relativeCreated)2.2f %(filename)s:%(lineno)d %(message)s' \
                    --cov={toxinidir}/telnetlib3 \
@@ -50,14 +51,13 @@ Advanced tox
   when given instead of the standard default target::
       
 
-    [testenv:develop]
-        deps = pytest
-    develop target // loop on fail ..
-        looponfailroots = qwack
-
-
         [testenv:develop]
-        commands = {posargs}
+        deps = pytest
+               pytest-xdist
+        commands = {posargs:pytest --looponfail --verbose --verbose}
+
+        [pytest]
+        looponfailroots = qwack
 
   This allows us to maintain a common environment from which to execute
   commands in. For example, we could specify a flake8_ dependency along
@@ -74,7 +74,7 @@ Advanced tox
 
         deps = pytest-cov
                pytest
-        commands = {envbindir}/py.test {posargs:\
+        commands = pytest {posargs:\
                        --strict --verbose --verbose --color=yes \
                        --junit-xml=results.{envname}.xml \
                        --cov qwack qwack/tests}
@@ -123,7 +123,7 @@ Advanced tox
 
            [testenv]
            whitelist_externals = cp
-           commands = py.test --cov qwack qwack/tests {posargs}
+           commands = pytest --cov qwack qwack/tests {posargs}
                       coverage combine
                       cp {toxinidir}/.coverage \
                           {toxinidir}/._coverage.{envname}.{env:COVERAGE_ID:local}

@@ -1,0 +1,3 @@
+[submodule "themes/hugo-hikari-theme"]
+	path = themes/hugo-hikari-theme
+	url = https://github.com/digitalcraftsman/hugo-hikari-theme.git

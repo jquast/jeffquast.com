@@ -146,11 +146,8 @@ target we specify may be discovered and using ``tox -l`` and executed using
         check
         docs
 
-        $ tox -e docs
-
-
-The others are
-described here, under section title, `More on Tox`_.
+Details of the other Tox targets are later described under section,
+`More on Tox`_.
 
 The 'docs' target
 `````````````````
@@ -343,14 +340,16 @@ And deployed using::
 Code Linting
 ````````````
 
-Then, the prospector_ tool is used after byte-compiling the project,
-prospector_ front-ends several useful static analysis and style guide-enforcing
-tools.
+Returning to our tox.ini_ file declared earlier in this article, our ``check``
+target byte-compiles all python files using command ``python -m compileall``.
+This ensures the code is free of some kinds of syntax errors, quickly.
 
-With prospector_, we declare an explicit list of exclusions to the rules that
-you wish for your team, such as changing the "80-column" rule of pep8 to 120,
-or making exclusions to pylint messages in the optional file,
-``.landscape.yaml``:
+After byte-compiling the project, prospector_ is used, prospector_ front-ends
+several useful static analysis and style guide-enforcing tools.
+
+Using the optional file, ``.landscape.yaml``, we may declare an explicit list of exclusions to any of the linting or code checking rules that are reported as
+violated.  We might change the "80-column" rule 120, or make exclusions to
+certain pylint messages:
 
 .. code:: yaml
 

@@ -249,10 +249,21 @@ the time of the build or publication date.
 Extensions
 ----------
 
+Sphinx provides several built-in extensions_, and many more can be discovered
+on pypi.  To use them, we define *extensions* as a python list in
+``docs/conf.py``::
+
+        extensions = ['sphinx.ext.autodoc',
+                      'sphinx.ext.intersphinx',
+                      'sphinx.ext.viewcode',
+                      'sphinx_paramlinks',
+                      ]
+
 Sphinx extensions such as sphinx-issues_ adds *domains*, allowing markup
 ``:ghissue:`29``` to refer to pull requests or issue numbers on GitHub.
 sphinx_paramlinks_ further extends API documentation to allow referencing
-**function arguments**, one level deeper than referring to a function::
+*function arguments*, an additional level of link targets deeper, providing
+a link for each individual argument::
 
         The :paramref:`Terminal.get_location.timeout` keyword argument can be
         specified to return coordinates (-1, -1) after a blocking timeout.
@@ -261,6 +272,11 @@ Unlike their "Markdown-flavored" derivatives, these *domains* allow rendering
 of sphinx-extended text to be compiled by other reStructuredText-compatible
 tools *even when unsupported*.  Most requirements of a technical writer may be
 satisfied by the hundreds of extensions available.
+
+The wonderful thing about integrating with `tox.ini`_, is that we can add 3rd
+party extensions as deps_,  abstracting away maintenance and complication,
+such as a ``requirements-docs.txt`` or similar solution, we also contain the
+installation within the `The 'docs' target`_.
 
 
 readthedocs.org
@@ -295,7 +311,7 @@ extension, such as `scala
 More on Tox
 -----------
 
-Reviewing the ``tox.ini`` listed earlier, we see a pytest_ command
+Reviewing the `tox.ini`_ file listed earlier, we see a pytest_ command
 from our testenv_ section, as suggested by the tox guide section,
 `General tips and tricks`_.
 
@@ -422,3 +438,5 @@ most premium "Office" software suites can offer.
 .. _sphinx_rtd_theme: https://pypi.python.org/pypi/sphinx_rtd_theme
 .. _getopt: http://man7.org/linux/man-pages/man1/getopt.1.html#DESCRIPTION
 .. _jenkins integration page: http://tox.readthedocs.org/en/latest/example/jenkins.html
+.. _extensions: http://www.sphinx-doc.org/en/stable/extensions.html
+.. _deps: http://tox.readthedocs.org/en/latest/config.html?highlight=deps#confval-deps=MULTI-LINE-LIST

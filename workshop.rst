@@ -126,6 +126,7 @@ Edit docs/intro.rst to try out a few fancy markups::
         .. warning:: Be careful!
 
         ::
+        
                 def f(x):
                     # this is syntax highlighted as Python code.
                     return x ** 2

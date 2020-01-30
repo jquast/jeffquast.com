@@ -1,9 +1,15 @@
-(draft)
-
-see also
-http://www.slideshare.net/WmyllPillar/tt-presentationppt
-
-
+---
+Categories:
+    - Python
+Description: On using tox in CI environments
+Tags:
+    - Development
+    - Python
+    - tox
+date: 2016-12-09T00:00:00-00:00
+menu: main
+title: On using tox in CI environments
+---
 
 From a single ``tox.ini`` file, all stages of software development may be
 defined and easily shared.  We've removed the need of programming in any kind
@@ -23,13 +29,7 @@ even though ``py27`` is not explicitly defined here, it has an implicit
 relationship with testenv_.  If no target is specified, ``py34`` is used
 as defined by *envlist*.
 
-Furthermore, w
-
-
-Advanced tox
-------------
-
-- fully featured ... :: 
+- a fully featured example:: 
 
     commands = {envbindir}/pytest \
                {posargs:\
@@ -49,7 +49,6 @@ Advanced tox
 
 - Interestingly, we can create a tox target command to execute only {posargs}
   when given instead of the standard default target::
-      
 
         [testenv:develop]
         deps = pytest
@@ -72,12 +71,15 @@ Advanced tox
   a great deal of detail, here is a more complex py.test command that
   produces a jUnit xml file and coverage report by envname_::
 
+        [testenv:pytest]
         deps = pytest-cov
                pytest
         commands = pytest {posargs:\
                        --strict --verbose --verbose --color=yes \
                        --junit-xml=results.{envname}.xml \
                        --cov qwack qwack/tests}
+
+  Or, we can override it, maybe, ``tox -e pytest -- -k mytest``
 
 - To create test groups, or a "quick test" feature, we can use the tox setenv_
   and passenv_ options to specify a ``TEST_QUICK`` environment variable,
@@ -116,57 +118,12 @@ Advanced tox
   The environment variable ``COVERALLS_REPO_TOKEN`` would be hidden from any
   non-administrator accounts of the CI system, and outside of VCS.
 
-- We can even combine our coverage across python interpreters, generate an HTML
-  report, and emit special strings to notify our CI system of our coverage
-  values with a custom script, such as the `tools/custom-combine.py`_ file of
-  the blessed project with careful tox integration::
-
-           [testenv]
-           whitelist_externals = cp
-           commands = pytest --cov qwack qwack/tests {posargs}
-                      coverage combine
-                      cp {toxinidir}/.coverage \
-                          {toxinidir}/._coverage.{envname}.{env:COVERAGE_ID:local}
-                      {toxinidir}/tools/custom-combine.py
-
-           # CI buildchain target
-           [testenv:coverage]
-           deps = coverage six
-           commands = {toxinidir}/tools/custom-combine.py
-
-  We provide two targets, the first default target always executes py.test
-  with ``--cov`` unconditionally, allowing extra parameters by ``--``.
-
-  Then, the coverage file is duplicated to a pattern unique for the build
-  environment, hidden, but prevented from further combining using
-  ``COVERAGE_ID``, perhaps as *linux* or *windows* to specify the OS platform
-  of the build slave, and envname_
-
-  The CI system may collect these coverage files by pattern,
- 
-  build step, such as a file named ``./build.sh`` should
-  contain the additional explicit target execution, ``tox -ecoverage``
-
-.  We would simply invoke this command at the end of each
-  testenv_ target::
-  This would move each invocation to a unique file name, such as
-  ``windows``.  When unset (default), the term 'local' is used, instead.  By
-  collecting each coverage output file in a build series, we may report on
-  coverage of our full platform matrix.
-
-- Do you have shell code? Use shellcheck_ to discover
-
 .. _envname: http://testrun.org/tox/latest/plugins.html?highlight=envname#tox.config.TestenvConfig.envname
-
 .. _testenv: http://testrun.org/tox/latest/example/basic.html#a-simple-tox-ini-default-environments
-
 .. _tools/custom-combine.py: https://github.com/jquast/blessed/blob/05a53c6ea66f0e0d440bd0d74aee1e4424be02dd/tools/custom-combine.py
-
 .. _signalpillar: https://github.com/signalpillar
 .. _setenv: http://testrun.org/tox/latest/example/basic.html#setting-environment-variables
 .. _passenv: http://testrun.org/tox/latest/example/basic.html#passing-down-environment-variables
 .. _pytest.mark.skipif: https://pytest.org/latest/skipping.html#marking-a-test-function-to-be-skipped
-
-
-
-
+.. _flake8: https://flake8.readthedocs.io/en/latest/
+.. _shellcheck: https://www.shellcheck.net

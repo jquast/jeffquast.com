@@ -5,7 +5,7 @@ theme = "hugo-hikari-theme"
 canonifyurls = true
 
 [params]
-        markup = "rst"
+    markup = "rst"
 	name = "Jeff Quast"
 	description = "Software Engineer"
 	copyright = "have a day."
@@ -15,7 +15,7 @@ canonifyurls = true
 [params.offcanvas]
 	# Menu items
 	title = "Jeff Quast"
-	bio = "Software Engineer"
+	bio = "Python Engineer"
 	subscribe = "Subscribe"
 	followme = "contact@jeffquast.com"
 
@@ -29,7 +29,7 @@ canonifyurls = true
 
 	[[params.offcanvas.socialnetworks]]
 		name = "Linkedin"
-		url = "//linkedin.com/jeffreyquast"
+		url = "//linkedin.com/in/jeffreyquast"
 
 	[[params.offcanvas.socialnetworks]]
 		name = "PDF Resume"

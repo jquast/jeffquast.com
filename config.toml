@@ -29,9 +29,5 @@ enableRobotsTXT = true
 		url = "//github.com/jquast"
 
 	[[params.offcanvas.socialnetworks]]
-		name = "Linkedin"
-		url = "//linkedin.com/in/jeffreyquast"
-
-	[[params.offcanvas.socialnetworks]]
 		name = "PDF Resume"
 		url = "/resume-jquast.pdf"

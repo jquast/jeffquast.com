@@ -121,7 +121,9 @@ Interim
 
 Download and install ucs-detect_, and add to your shell profile::
 
-    eval "$(ucs-detect)"
+    if [ -z "$UNICODE_VERSION" ] && command -v ucs-detect >/dev/null; then
+        eval "$(ucs-detect)"
+    fi
 
 While I have your attention
 ============================

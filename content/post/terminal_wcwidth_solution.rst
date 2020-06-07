@@ -18,15 +18,15 @@ Quicktro
 ========
 
 The printable length of most characters are equal to the number of cells they
-occupy on the screen, ``1 character : 1 cell``. However, there are categories of
+occupy on the screen: ``1 character : 1 cell``. However, there are categories of
 characters that occupy **2 cells** (full-width_), and others that occupy **0
 cells** (zero-width_).
 
 All popular terminals support displaying full and zero-width Unicode characters
-correctly. For CLI applications and their libraries, such as
-IPython_ and the python-prompt-toolkit_, it is just a matter of calling into the
-wcwidth_ library when rendering characters for display, albeit with a `small bit
-of care`_ around the occasional `-1` return value.
+correctly. For CLI applications and their libraries, such as IPython_ and
+python-prompt-toolkit_, it is just a matter of calling into the python wcwidth_
+library when rendering characters for display, albeit with a `small bit of
+care`_ around the occasional `-1` return value.
 
 The Problem
 ===========
@@ -37,11 +37,15 @@ in Terminal applications?
 .. image:: /images/hyper-example.png
    :alt: An example of misaligned wide characters by the Hyper Terminal
 
-At this time of writing, each Unicode version, ``4.1.0``, ``5.1.0``, ``5.2.0``,
-``8.0.0``, ``9.0.0``, ``10.0.0``, ``11.0.0``, ``12.0.0``, ``12.1.0``, and
-``13.0.0``, have support for more full and zero-width characters than their
-previous version. Many more versions are expected to come over the next few
-years.
+At this time of writing, each Unicode version, ``4.1``, ``5.1``, ``5.2``,
+``8.0``, ``9.0``, ``10.0``, ``11.0``, ``12.0``, ``12.1``, and ``13.0``, have
+support for more full and zero-width characters than their previous version,
+with many more versions expected to be released in the coming years.
+
+Chinese, Japanese, and Korean users, whose languages use full-width characters
+almost exclusively have been the most impacted by this problem, whereas the
+Western world only seemed to notice it with the introduction of emoticons in
+`Unicode version 9.0`_.
 
 Terminal and library authors **select only one** version of Unicode when they
 implement `zero <zero-width>`_ and full-width_ support. Sometimes, the latest
@@ -49,18 +53,17 @@ specification is used, but usually not. Most just copy any existing solution
 without too much care, and we can't really blame them, it's actually a pretty
 difficult decision.
 
-iTerm2_, for example, supports version ``8.0.0`` unless the `checkbox Use
-unicode version 9+ widths`_ is enabled (which is ``12.1.0`` at the time of this
-post). The choice to use an older version by default is most likely a conscious
-design decision to better match the libc wcwidth.c_ version linked by most
-CLI's.  Many languages and libraries based in C/C++ continue to conform to
-Unicode ``5.0``, the version of Unicode used the last version of wcwidth.c_
-released by `Markus Khun`_ in to the public domain 2007. This appears to be
-true of the `hyper`_ terminal, displayed in the above figure.
+iTerm2_, for example, makes great care for Unicode support, but supports only
+version 8.0_ unless the check box, `"Use unicode version 9+ widths"`_ is
+enabled (``12.1.0`` at time of this writing). The choice to use 8.0_ by default
+is likely made to match the libc version linked by by most C/C++ Terminal apps
+that include ``wchar.h`` from the standard C library. On `Mac OS X 10.11.5 and
+newer`_, this is also version 8.
 
-Chinese, Japanese, and Korean users, whose languages use full-width characters
-almost exclusively are the most impacted. The Western world only seemed to
-notice this problem with the introduction of emoticons in version ``9.0``.
+Many 3rd party applications and languages conform to only Unicode ``5.0`` (such
+as hyper_ terminal in the above figure), which happens to be the version of
+Unicode in the wcwidth.c_ file released by `Markus Khun`_ into the public
+domain in 2007 from which almost all implementations are duplicated from.
 
 Problem statement
 -----------------
@@ -82,16 +85,18 @@ it requires only a matter of selecting the right version, by function argument,
 or, by environment variable, ``UNICODE_VERSION``.
 
 But how can we know what version is used?  Well, I do hope other language
-implementations of wcwidth_ can follow my example of multi-version and selection
-support by the environment ``UNICODE_VERSION``, and that terminal emulators can
-export their supported version by environment value. But this is going to take
-some time.
+implementations of ``wcwidth()`` and ``wcswidth()`` can follow my example of
+multi-version and selection support by the environment ``UNICODE_VERSION``, and,
+that terminal emulators can export their supported version by environment value.
 
-And so, I've authored another tool, ucs-detect_, which is able to
-**automatically detect the version of unicode** that the connecting Terminal
-supports. For any python CLI application using wcwidth_, the correct return
-value is selected for any of its dependent libraries and CLI's by using the
-given value of the UNICODE_VERSION environment variable.
+But this is going to take some time, perhaps only by my own volunteer efforts,
+which is probably a lot more in discussion and education than code. So, this
+article is my first attempt at starting those discussions.
+
+I've authored another tool, ucs-detect_, which is able to **automatically detect
+the version of unicode** that the connecting Terminal supports. For any
+application using the python wcwidth_ library, the correct return value is
+selected by using the given value of the ``UNICODE_VERSION`` environment variable.
 
 With this solution, we can correctly determine the ``UNICODE_VERSION`` of hyper_
 terminal as ``5.1.0``, and those cells that were previously thought to be
@@ -101,18 +106,21 @@ library, and align correctly:
 .. image:: /images/hyper-example-fixed.png
    :alt: An example of corrected alignment by Hyper Terminal
 
+Take a look at the ucs-detect_ and wcwidth_ documentation for a more complete
+description of this solution, which I would like to see adapted to more shells
+and CLI apps until Terminal emulator authors can be persuaded to export their
+value.
+
+If you author a library like wcwidth_, please also consider supporting this
+proposal for version selection by environment variable.
+
+
 Interim
 -------
 
 Download and install ucs-detect_, and add to your shell profile::
 
     eval "$(ucs-detect)"
-
-Take a look at the ucs-detect_ documentation for a more complete description of
-the solution, which I would like to see adapted to more shells and dynamic
-languages of CLI applications until Terminal emulator authors can be persuaded
-to export their value. If you author a library like wcwidth_, please also
-consider supporting this proposal for version selection by environment variable.
 
 While I have your attention
 ============================
@@ -151,4 +159,7 @@ experience, I'm pretty OK at those, and a few other things, too.
 .. _`$JOB or $HOME`: /post/without_a_job_or_home/
 .. _hyper: https://github.com/vercel/hyper
 .. _iTerm2: https://www.iterm2.com
-.. _`checkbox Use unicode version 9+ widths`: https://www.iterm2.com/documentation-preferences-profiles-text.html
+.. _`"Use unicode version 9+ widths"`: https://www.iterm2.com/documentation-preferences-profiles-text.html
+.. _`Unicode version 9.0`: http://unicode.org/versions/Unicode9.0.0/
+.. _8.0: http://unicode.org/versions/Unicode8.0.0/
+.. _`Mac OS X 10.11.5 and newer`: https://stackoverflow.com/questions/9352753/which-unicode-versions-are-supported-in-which-os-x-and-ios-versions/38442010#38442010

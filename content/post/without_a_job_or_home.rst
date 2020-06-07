@@ -49,7 +49,7 @@ I am effectively both *unemployed and homeless* -- Woah!
 
 **If you are employing, I am looking**, and willing to relocate.  Please take a
 look at my resume_!  I have about 19 years of Python and about 23 years of Linux
-experience, I'm pretty good at those and a few other things.
+experience.
 
 .. _resume: https://jeffquast.com/resume-jquast.pdf
 .. _air quality equipment: https://www.getawair.com/

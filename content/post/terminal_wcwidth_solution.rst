@@ -106,14 +106,15 @@ library, and align correctly:
 .. image:: /images/hyper-example-fixed.png
    :alt: An example of corrected alignment by Hyper Terminal
 
-Take a look at the ucs-detect_ and wcwidth_ documentation for a more complete
-description of this solution, which I would like to see adapted to more shells
-and CLI apps until Terminal emulator authors can be persuaded to export their
-value.
+For developers who work on this stuff, please take a look at the ucs-detect_ and
+wcwidth_ documentation for a more complete description of how this all works.  I
+would like to see this solution adapted to more shells and CLI apps until
+Terminal emulators and libraries can be persuaded.
 
-If you author a library like wcwidth_, please also consider supporting this
-proposal for version selection by environment variable.
-
+The standard C library in particular is very unlikely to adopt, and only after
+many several years if it does. Luckily for us, modern Terminal applications are
+rapidly developed in dynamic languages where such changes can be much more
+quickly propagated.
 
 Interim
 -------

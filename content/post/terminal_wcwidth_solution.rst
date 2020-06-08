@@ -56,7 +56,7 @@ difficult decision.
 iTerm2_, for example, makes great care for Unicode support, but supports only
 version 8.0_ unless the check box, `"Use unicode version 9+ widths"`_ is
 enabled (``12.1.0`` at time of this writing). The choice to use 8.0_ by default
-is likely made to match the libc version linked by by most C/C++ Terminal apps
+is likely made to match the libc version linked by most C/C++ Terminal apps
 that include ``wchar.h`` from the standard C library. On `Mac OS X 10.11.5 and
 newer`_, this is also version 8.
 

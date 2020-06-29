@@ -43,9 +43,8 @@ support for more full and zero-width characters than their previous version,
 with many more versions expected to be released in the coming years.
 
 Chinese, Japanese, and Korean users, whose languages use full-width characters
-almost exclusively have been the most impacted by this problem, whereas the
-Western world only seemed to notice it with the introduction of emoticons in
-`Unicode version 9.0`_.
+have been the most impacted by this problem. The Western world only seemed to
+notice it with the introduction of emoticons in `Unicode version 9.0`_.
 
 Terminal and library authors **select only one** version of Unicode when they
 implement `zero <zero-width>`_ and full-width_ support. Sometimes, the latest

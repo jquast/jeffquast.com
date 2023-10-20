@@ -1,4 +1,4 @@
-baseurl = "https://jeffquast.com/"
+baseurl = "https://www.jeffquast.com/"
 languageCode = "en-us"
 title = "Articles"
 theme = "hugo-hikari-theme"
@@ -31,3 +31,9 @@ enableRobotsTXT = true
 	[[params.offcanvas.socialnetworks]]
 		name = "PDF Resume"
 		url = "/resume-jquast.pdf"
+
+
+[security]
+  enableInlineShortcodes = false
+  [security.exec]
+    allow = ['^rst2html$']

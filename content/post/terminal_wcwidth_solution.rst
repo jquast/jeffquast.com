@@ -140,11 +140,6 @@ one of those exemplary folks who have the discipline to solve the smallest and
 most difficult problems that can add up to the greatest change.  Every engineer
 should have at least 1 role model, and Mr. Dickey is one of mine.
 
-And also, I'm no longer with a `$JOB or $HOME`_. **If you are employing, I am
-looking**, and willing to relocate (except for maybe SF and NYC).  Please take a
-look at my resume_!  I have about 19 years of Python and about 23 years of Linux
-experience, I'm pretty OK at those, and a few other things, too.
-
 .. _`small bit of care`: https://github.com/prompt-toolkit/python-prompt-toolkit/blob/ff0548487a644e722943f9685666c3963311c17f/prompt_toolkit/utils.py#L136-L144
 .. _wcwidth: https://github.com/jquast/wcwidth
 .. _python-prompt-toolkit: https://github.com/prompt-toolkit/python-prompt-toolkit/blob/master/PROJECTS.rst#projects-using-prompt_toolkit

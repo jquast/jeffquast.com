@@ -152,8 +152,6 @@ should have at least 1 role model, and Mr. Dickey is one of mine.
 .. _ucs-detect: https://github.com/jquast/ucs-detect/
 .. _`Markus Khun`: https://en.wikipedia.org/wiki/Markus_Kuhn_(computer_scientist)
 .. _IPython: https://ipython.org/
-.. _resume: https://jeffquast.com/resume-jquast.pdf
-.. _`$JOB or $HOME`: /post/without_a_job_or_home/
 .. _hyper: https://github.com/vercel/hyper
 .. _iTerm2: https://www.iterm2.com
 .. _`"Use unicode version 9+ widths"`: https://www.iterm2.com/documentation-preferences-profiles-text.html

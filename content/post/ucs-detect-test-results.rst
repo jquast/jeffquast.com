@@ -9,7 +9,7 @@ Tags:
     - full-width
     - wcwidth
     - UNICODE_VERSION
-date: 2023-11-13T00:00:00Z
+date: 2023-12-14T00:00:00Z
 menu: main
 title: Terminal Emulators Battle Royale – Unicode Edition!
 ---
@@ -28,13 +28,13 @@ Terminals:
   This is something like a special case of combining_, but encoded in a
   completely different way.
 
-- "Varitation Selector-16" is a special character that, for "Narrow"
+- "Variation Selector-16" is a special character that, for "Narrow"
   characters, causes them to occupy two cells instead of one.
 
-I maintain the python wcwidth_ library, which determines the printable width of
-a string when displayed to a terminal and handles all such factors.  This year,
-I fixed several bugs by adding support for VS-16 and making corrections in
-to the tables considered zero-width.
+I share maintenance of the python wcwidth_ library, which determines the
+printable width of a string when displayed to a terminal. This year, I added
+support for VS-16 and made several bugfixes to the zero-width table definitions.
+At this time I believe it is the most accurate implementation of "wcwidth".
 
 I also published a formal Specification_ of how characters should be measured.
 
@@ -56,7 +56,7 @@ All terminals tested support Wide Characters, but at varying versions of
 unicode.  Konsole_, iTerm2_, and Kovid Goyle's kitty_ supports wide characters
 up to Unicode release version 15.0.0 (2022), while Hyper_ and `Visual Studio
 Code`_ support only up to unicode release 12.1.0 (2019), both based on
-`xterm.js`_, which has poor support for all unicode specifications tested.
+`xterm.js`_.
 
 This means that these wide characters take up 1 cell instead of 2, often
 occluded by the next character.
@@ -140,13 +140,13 @@ translated into over 500 languages. The UDHR Unicode project provides a
 collection of these translations.  This is a great resource for testing
 Zero-Width characters, as it contains large number of languages and scripts.
 
-Afterall, outside of Emoji, we really only care about whether any particular
-language is supported, and for many languages, zero-width characters are
-necessary to properly write them.
+Outside of Emoji, we really only care about whether any particular language is
+supported, and for many languages, zero-width characters are necessary to
+properly write them.
 
 Using the ucs-detect_ tool to display phrases from UDHR in each language and
 measuring the displayed width, we can more completely test for Zero-Width
-character support of a Terminal by each Language.
+character support of a Terminal by Language.
 
 Zero Width Results
 ------------------
@@ -190,20 +190,20 @@ Codepoint                                  Python     Category      wcwidth  Nam
 - python `wcwidth.wcswidth()`_ measures width 4, while `Terminal.exe`_ measures width 5.
 
 It is understandable that these category codes are not considered for zero-width
-support by so many developers. Unicode.org documents make only general
-statements about the purpose of these categories and they do not directly make
-statements about Terminal Emulators. Developers must then find such answers
-among thousands of pages of documents that can be sometimes cryptic and
-othertimes verbose.  Without a search engine and a "hunch", it would be very
-difficult to discover naturally.
+support by so many other wcwidth and terminal developers. Unicode.org documents
+make only general statements about the purpose of these categories and they do
+not make any direct statements about Terminal Emulators. Developers must then
+seek for answers among thousands of pages of documents that can be cryptic and
+verbose.  Without a search engine and a "hunch", it would be very difficult to
+discover naturally!
 
-From Standard Annex #24 Unicode Script Property::
+From Standard `Annex #24`_ Unicode Script Property::
 
 > Implementations that determine the boundaries between characters of given
 > scripts should never break between a combining mark (a character with
 > General_Category value of Mc, Mn or Me) 
 
-And, from Unicode Standard Annex #14 Unicode Line Breaking Algorithm::
+And, from Unicode Standard `Annex #14`_ Unicode Line Breaking Algorithm::
 
 > The CM line break class includes all combining characters with
 > General_Category Mc, Me, and Mn, unless listed explicitly elsewhere. This
@@ -219,9 +219,9 @@ emojis. These emojis may be displayed in either "text" or "emoji" style, and
 default to "text" style. Text style should display without color in a single
 cell (Narrow), while "emoji" style should be color and occupy 2 cells (Wide).
 
-Very few fonts differentiate them, displaying both types in color, and,
-when not in sequence with `U+FE0F`_ "Variation
-Selector-16", they are occluded by any next character.
+Very few fonts differentiate them, displaying both types in color, and, when not
+in sequence with `U+FE0F`_ "Variation Selector-16", they are occluded by any
+next character.
 
 For example, `U+23F1 <https://codepoints.net/U+23F1>`_ "Stopwatch":
 
@@ -243,10 +243,16 @@ VS-16 Results
 -------------
 
 Only 7 of the 23 terminals tested correctly display these Emojis as "Wide"
-characters when combined with VS-16 as a sequence. Wezterm_, for example,
-complies with all other Unicode specifications outlined in this article except
-for this one, and, so like the other 16 terminals tested, these emojis are
-always occluded by the next character, even when in sequence with VS-16.
+characters when combined with VS-16 as a sequence.  I found very little, really,
+no documentation about VS-16 and its effects in Terminals, so it is no surprise
+that so few terminals support it. The lack of documentation on this matter is
+the driving force of writing this article, though I suspect the declining
+quality of search engines may also be at fault.
+
+Wezterm_, for example, performs spectacularly with all other Unicode
+specifications outlined in this article except for this one, and, so like the
+other 16 terminals tested, these emojis are always occluded by the next
+character, even when in sequence with VS-16.
 
 .. image:: /images/wezterm-vs16.png
 
@@ -258,20 +264,19 @@ Emoji ZWJ
 =========
 
 `U+200D`_ "Zero Width Joiner" is a special character that allows multiple Emojis
-to be reduced to a single emoji that represents their combination.
-
-This is something like a special case of combining_, but it is encoded in a
-completely different way.
+to be reduced to a single emoji that represents their combination.  This is
+something like a special case of combining_, but it is encoded in a completely
+different way.
 
 The python wcwidth Specification_ on "Width of 0" reads::
 
-> Any character following a ZWJ (`U+200D`_) when in sequence by function
+> Any character following a ZWJ (U+200D) when in sequence by function
 > wcwidth.wcswidth().
 
-One such example from Kovid Goyle’s kitty_ (which I cannot mention without also
-clarifying that it is **not to be confused with KiTTY**, another terminal
-emulator of the same name that predates it by 14 years.  Mr. Goyle appears
-`particularly hostile
+One example of a terminal without ZWJ support is Kovid Goyle’s kitty_, which I
+cannot mention without also clarifying that it is **not to be confused with
+KiTTY**, another terminal emulator of the same name that predates it by 14
+years.  (Mr. Goyle appears `particularly hostile
 <https://github.com/kovidgoyal/kitty/issues/9#issuecomment-418566309>`_ about
 this naming conflict).
 
@@ -295,7 +300,6 @@ Depicted here in kitty_ is the above sequence, expected to measure as width 2,
 but measured by kitty as 6 because it does not interpret the Zero Width Joiner
 character to reduce the three wide characters into one.
 
-
 Concluding remarks
 ==================
 
@@ -308,17 +312,20 @@ specification.
 You might also like to know that the python wcwidth_ project systematically
 creates code lookup tables for Wide, Zero-width, and VS-16 sequences, and that
 these tables are generated by `update-tables.py`_, fetching the latest data from
-unicode.org, and uses jinja2 templating to transform that data into python code.
-This could be easily extended for C/C++, Rust, Ruby, Go, or any other language.
+unicode.org, and uses jinja2 templates to transform that data into python code.
 
-Finally, I believe that Python as well as all other modern programming languages
-should implement some version of wcwidth_ directly. That `str.ljust()`_,
-`textwrap.wrap()`_, or format strings such as ``f'{my_string:<{width}}'`` should
-directly perform the accounting necessary to format strings, rather than
-requiring a 3rd party library. These functions currently use the **count** of
-characters without any understanding of their printed width, and I believe this
-is to the detriment of developers who discover "the hard way" that they need to
-use an external library.
+This could be easily extended for C/C++, Rust, Ruby, Go, or any other language.
+Please feel free to contribute any such code templates to wcwidth_ directly.
+
+Finally, I believe that Python should implement some version of wcwidth_
+internally. That `str.ljust()`_, `textwrap.wrap()`_, or format strings such as
+``f'{my_string:<{width}}'`` should perform the accounting necessary to format
+strings that contain non-ascii characters. These functions currently use the
+**count** of characters without any understanding of their printed width, and I
+believe this is to the detriment of many hundreds, possibly thousands, of
+developers who have discovered "the hard way" that they need to use an external
+library. As wcwidth_ is downloaded over 50 million times per month, it just
+makes good economic sense that this functionality should be built-in.
 
 I have found one such Draft standard for C++, P1868R0_ that proposes to add this
 support to C++ and I absolutely support this direction, though I am not certain

@@ -14,6 +14,11 @@ menu: main
 title: Offering a solution for Terminal Wide Character issues
 ---
 
+.. note::
+   Support for UNICODE_VERSION environment variable will likely
+   be removed, please disregard this article. See
+   https://github.com/jquast/wcwidth/issues/104 for more details.
+
 Quicktro
 ========
 

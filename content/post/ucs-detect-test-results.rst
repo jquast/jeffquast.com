@@ -104,19 +104,19 @@ possible in join *some* combining characters with *any* other unicode
 characters, such as `U+0309 <https://codepoints.net/U+0309>`_ "Combining Hook
 Above" with box drawing character `U+2532 <https://codepoints.net/U+2532>`_::
 
-    ┲̉
+        ┲̉
 
 This is not true for *most* combining characters, that may only combine with
 specific characters.  For example, `U+094D <https://codepoints.net/U+094D>`_
 "Devanagari Sign Virama" may combine with an appropriate Devanagari letter, such
 as `U+0915 <https://codepoints.net/U+0915>`_ "Devanagari Letter Ka"::
 
-    क्
+        क्
 
 But fails to combine for non-devanagari letters, such as `U+0061
 <https://codepoints.net/U+0061>`_ "Latin Small Letter A"::
 
-    A्
+        A्
 
 The "dotted donut" depicted is used as a placeholder for such illegal
 combinations.
@@ -159,15 +159,14 @@ for approximately 100 of the world's languages.
 Common among these terminals is that they fail to account for characters of the
 category codes Nonspacing Mark (Mn) and Spacing Mark (Mc).
 
-One example of the Hindi language from ConsoleZ_ where the `U+093e
-<https://codepoints.net/U+093e>`_ of 'Mc' category is incorrectly measured as
-Narrow:
+One example of the Hindi language from ConsoleZ_ where the `U+093e`_
+of 'Mc' category is incorrectly measured as Narrow:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  ========================
 `U+092E <https://codepoints.net/U+092E>`_  '\\u092e'  Lo                  1  DEVANAGARI LETTER MA
-`U+093E <https://codepoints.net/U+093E>`_  '\\u093e'  Mc                  0  DEVANAGARI VOWEL SIGN AA
+`U+093e`_                                  '\\u093e'  Mc                  0  DEVANAGARI VOWEL SIGN AA
 `U+0928 <https://codepoints.net/U+0928>`_  '\\u0928'  Lo                  1  DEVANAGARI LETTER NA
 `U+0935 <https://codepoints.net/U+0935>`_  '\\u0935'  Lo                  1  DEVANAGARI LETTER VA
 =========================================  =========  ==========  =========  ========================
@@ -213,7 +212,7 @@ And, from Unicode Standard Annex #14 Unicode Line Breaking Algorithm::
 Variation Selector-16
 =====================
 
-`U+FE0F <https://codepoints.net/U+FE0F>`_ "Variation Selector-16" is peculiar.
+`U+FE0F`_ "Variation Selector-16" is peculiar.
 
 I suspect it is some kind of "fixup" or compatibility sequence for the earliest
 emojis. These emojis may be displayed in either "text" or "emoji" style, and
@@ -221,7 +220,7 @@ default to "text" style. Text style should display without color in a single
 cell (Narrow), while "emoji" style should be color and occupy 2 cells (Wide).
 
 Very few fonts differentiate them, displaying both types in color, and,
-when not in sequence with `U+FE0F <https://codepoints.net/U+FE0F>`_ "Variation
+when not in sequence with `U+FE0F`_ "Variation
 Selector-16", they are occluded by any next character.
 
 For example, `U+23F1 <https://codepoints.net/U+23F1>`_ "Stopwatch":
@@ -230,13 +229,13 @@ For example, `U+23F1 <https://codepoints.net/U+23F1>`_ "Stopwatch":
 
 Depicted here in iTerm2_ is a single  `U+23F1 <https://codepoints.net/U+23F1>`_
 "Stopwatch" character partially occluded by any next character. Believe it or
-not, this is correct behavior of a terminal when `U+FE0F
-<https://codepoints.net/U+FE0F>`_ "Variation Selector-16" is not in sequence.
+not, this is correct behavior of a terminal when `U+FE0F`_ "Variation
+Selector-16" is not in sequence.
 
 From python wcwidth Specification_ on Wide characters::
 
-> Any character in sequence with `U+FE0F <https://codepoints.net/U+FE0F>`_
-> (Variation Selector 16) defined by Emoji Variation Sequences txt as ``emoji style``.
+> Any character in sequence with `U+FE0F`_ (Variation Selector 16) defined by
+> Emoji Variation Sequences txt as ``emoji style``.
 
 A list of such characters is found in `emoji-variation-sequence.txt`_.
 
@@ -251,22 +250,22 @@ always occluded by the next character, even when in sequence with VS-16.
 
 .. image:: /images/wezterm-vs16.png
 
-Depicted here in Wezterm_ is ``U+23F1`` "Stopwatch" followed in sequence by
-``U+FE0F`` "Variation Selector-16", but the stopwatch is occluded by any
-next character.
+Depicted here in Wezterm_ is `U+23F1 <https://codepoints.net/U+23F1>`_
+"Stopwatch" followed in sequence by `U+FE0F`_ "Variation Selector-16", but the
+stopwatch is displayed as Narrow, partially occluded by any next character.
 
 Emoji ZWJ
 =========
 
-``U+200D`` "Zero Width Joiner" is a special character that allows multiple
-Emojis to be reduced to a single emoji that represents their combination.
+`U+200D`_ "Zero Width Joiner" is a special character that allows multiple Emojis
+to be reduced to a single emoji that represents their combination.
 
 This is something like a special case of combining_, but it is encoded in a
 completely different way.
 
 The python wcwidth Specification_ on "Width of 0" reads::
 
-> Any character following a ZWJ (U+200D) when in sequence by function
+> Any character following a ZWJ (`U+200D`_) when in sequence by function
 > wcwidth.wcswidth().
 
 One such example from Kovid Goyle’s kitty_ (which I cannot mention without also
@@ -280,11 +279,11 @@ this naming conflict).
 Codepoint                                          Python         Category      wcwidth  Name
 =================================================  =============  ==========  =========  ======================
 `U+0001F9D1 <https://codepoints.net/U+0001F9D1>`_  '\\U0001f9d1'  So                  2  ADULT
-`U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
+`U+200D`_                                          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
 `U+0001F9BC <https://codepoints.net/U+0001F9BC>`_  '\\U0001f9bc'  So                  2  MOTORIZED WHEELCHAIR
-`U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
+`U+200D`_                                          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
 `U+27A1 <https://codepoints.net/U+27A1>`_          '\\u27a1'      So                  1  BLACK RIGHTWARDS ARROW
-`U+FE0F <https://codepoints.net/U+FE0F>`_          '\\ufe0f'      Mn                  0  VARIATION SELECTOR-16
+`U+FE0F`_                                          '\\ufe0f'      Mn                  0  VARIATION SELECTOR-16
 =================================================  =============  ==========  =========  ======================
 
 - python `wcwidth.wcswidth()`_ measures width 2, while Kovid Goyle's kitty_
@@ -356,3 +355,6 @@ efforts for all modern programming languages.
 .. _`cmd.exe`: https://ucs-detect.readthedocs.io/sw_results/cmdexe.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/api.html#wcwidth.wcswidth
 .. _Konsole: https://ucs-detect.readthedocs.io/sw_results/Konsole.html
+.. _`U+093e`: https://codepoints.net/U+093e
+.. _`U+FE0F`: https://codepoints.net/U+FE0F
+.. _`U+200D`: https://codepoints.net/U+200D

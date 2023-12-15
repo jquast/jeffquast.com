@@ -16,7 +16,7 @@ enableRobotsTXT = true
 [params.offcanvas]
 	# Menu items
 	title = "Jeff Quast"
-	bio = "Python Engineer"
+	bio = "Python Developer"
 	subscribe = "Subscribe"
 	followme = "contact@jeffquast.com"
 

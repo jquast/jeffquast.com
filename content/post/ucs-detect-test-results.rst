@@ -36,10 +36,10 @@ Terminals:
   consuming two cells.
 
 I share maintenance of the python wcwidth_ library, which is responsible for
-determining the printable width of a string when displayed to a terminal. In the
-past year, I made improvements, including the addition of support for VS-16 and
-several bug fixes to the Zero-Width table definitions.  At this time I believe
-it is the most accurate implementation of "wcwidth".
+determining the printable width of a string when displayed to a terminal. I
+worked hard to close all open issues, adding support for VS-16, ZWJ, and several
+bug fixes to the Zero-Width table definitions.  I now believe it to be the most
+accurate implementation.
 
 Additionally, I authored a formal Specification_ detailing how characters should
 be measured.  Then, I updated the python ucs-detect_ tool to systematically asses
@@ -57,7 +57,7 @@ characters, generating interest across developers and users of *all* languages.
 
 While all tested terminals demonstrate support for wide characters, there are
 variations in the Unicode versions they support. Notably, Konsole_, iTerm2_,
-and Kovid Goyle's kitty_ support wide characters up to Unicode release version
+and Kovid Goyal's kitty_ support wide characters up to Unicode release version
 15.0.0 (2022). In contrast, Hyper_ and Visual Studio Code, both built on
 `xterm.js`_, provide support only up to Unicode release 12.1.0 (2019).
 
@@ -255,8 +255,9 @@ Selector-16" is not in sequence.
 
 From python wcwidth Specification_ on Wide characters::
 
-> Any character in sequence with `U+FE0F`_ (Variation Selector 16) defined by
-> Emoji Variation Sequences txt as ``emoji style``.
+> Any character in sequence with `U+FE0F`_
+> (Variation Selector 16) defined by Emoji
+> Variation Sequences txt as ``emoji style``.
 
 A list of such characters is found in `emoji-variation-sequence.txt`_.
 
@@ -294,10 +295,10 @@ The python wcwidth Specification_ on "Width of 0" reads::
 > Any character following a ZWJ (U+200D) when
 > in sequence by function wcwidth.wcswidth().
 
-An instance of a terminal lacking ZWJ support is Kovid Goyle’s kitty_. It's
+An instance of a terminal lacking ZWJ support is Kovid Goyal’s kitty_. It's
 important to note that this terminal should not be confused with KiTTY, another
 terminal emulator sharing a similar name but predating it by 14 years.
-Mr. Goyle expresses `particular hostility
+Mr. Goyal expresses `particular hostility
 <https://github.com/kovidgoyal/kitty/issues/9#issuecomment-418566309>`_ about
 this naming conflict.
 
@@ -312,7 +313,7 @@ Codepoint                                          Python         Category      
 `U+FE0F`_                                          '\\ufe0f'      Mn                  0  VARIATION SELECTOR-16
 =================================================  =============  ==========  =========  ======================
 
-- python `wcwidth.wcswidth()`_ measures width 2, while Kovid Goyle's kitty_
+- python `wcwidth.wcswidth()`_ measures width 2, while Kovid Goyal's kitty_
   measures width 6.
 
 .. image:: /images/kitty-zwj.png
@@ -380,7 +381,7 @@ languages.
 .. _`P1868R0`: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1868r0.html
 .. _`Issue #94`: https://github.com/jquast/wcwidth/issues/94
 .. _`Specification`: https://wcwidth.readthedocs.io/en/latest/specs.html
-.. _`kitty`: https://ucs-detect.readthedocs.io/sw_results/KovidGoyleskitty.html
+.. _`kitty`: https://ucs-detect.readthedocs.io/sw_results/KovidGoyalskitty.html
 .. _`ucs-detect`: https://github.com/jquast/ucs-detect
 .. _`cmd.exe`: https://ucs-detect.readthedocs.io/sw_results/cmdexe.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/api.html#wcwidth.wcswidth

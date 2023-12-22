@@ -69,7 +69,7 @@ occluded by the next character.
 Pictured here in Hyper_ terminal, the wcwidth_ developer tool
 `wcwidth-browser.py`_ shows several Wide Emoji mistakenly displayed as Narrow
 instead of Wide, due to out-of-date code tables in `xterm.js`_, causing
-partially occluded by the Pipe character (``|``).
+some to be partially occluded by the Pipe character (``|``).
 
 The wcwidth project Specification_ describes Wide characters as::
 

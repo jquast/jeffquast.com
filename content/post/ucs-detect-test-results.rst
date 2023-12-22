@@ -152,8 +152,8 @@ of characters.
 A Rosetta Stone?
 ----------------
 
-The Universal Declaration of Human Rights (UDHR) is a remarkable document that
-translated into over 500 languages. The UDHR Unicode project curates a collection
+The Universal Declaration of Human Rights (UDHR_) is a remarkable document
+translated to over 500 languages. The UDHR_ Unicode project curates a collection
 of these translations, offering a valuable resource for testing support of
 Zero-Width characters.
 
@@ -161,7 +161,7 @@ Outside of Emoji, we really only care about whether any particular language is
 supported, and for many languages, Zero-Width characters are necessary to
 properly write them.
 
-Using the ucs-detect_ tool to display phrases from UDHR in each language and
+Using the ucs-detect_ tool to display phrases from UDHR_ in each language and
 measuring the displayed width, we can conduct a comprehensive test for
 Zero-Width character support of each Terminal by Language.
 
@@ -365,7 +365,7 @@ languages.
 .. _`xterm.js`: http://xtermjs.org/
 .. _Hyper: https://ucs-detect.readthedocs.io/sw_results/Hyper.html
 .. _`Visual Studio Code`: https://ucs-detect.readthedocs.io/sw_results/VisualStudioCode.html
-.. _`UDHR in Unicode`: https://unicode.org/udhr/index.html
+.. _UDHR: https://unicode.org/udhr/index.html
 .. _iTerm2: https://ucs-detect.readthedocs.io/sw_results/iTerm2.html
 .. _`Terminal.exe`: https://ucs-detect.readthedocs.io/sw_results/Terminalexe.html
 .. _zoc: https://ucs-detect.readthedocs.io/sw_results/zoc.html

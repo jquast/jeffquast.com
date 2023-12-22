@@ -280,7 +280,9 @@ consistently occluded by the next character, even when in sequence with VS-16.
 
 Depicted here in Wezterm_ is `U+23F1 <https://codepoints.net/U+23F1>`_
 "Stopwatch" followed in sequence by `U+FE0F`_ "Variation Selector-16". However,
-the stopwatch is displayed as Narrow, partially occluded by any next character.
+the stopwatch is displayed as Narrow. Wezterm does however do a good job of
+scaling the font to fit within a single cell, while most other terminals cause
+it to be partially occluded by any next character.
 
 Emoji ZWJ
 =========

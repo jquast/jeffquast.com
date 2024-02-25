@@ -34,6 +34,7 @@ enableRobotsTXT = true
 
 
 [security]
-  enableInlineShortcodes = false
-  [security.exec]
-    allow = ['^rst2html$']
+enableInlineShortcodes = false
+
+[security.exec]
+allow = ['^rst2html$', '^pygmentize$']

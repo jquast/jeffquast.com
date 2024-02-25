@@ -38,12 +38,12 @@ Terminals:
 I share maintenance of the python wcwidth_ library, which is responsible for
 determining the printable width of a string when displayed to a terminal. I
 worked hard to close all open issues, adding support for VS-16, ZWJ, and several
-bug fixes to the Zero-Width table definitions.  I now believe it to be the most
-accurate implementation.
+bug fixes to the Zero-Width table definitions.
 
-Additionally, I authored a formal Specification_ detailing how characters should
-be measured.  Then, I updated the python ucs-detect_ tool to systematically asses
-terminal emulators for their compliance with the specification.
+Additionally, I authored a Specification_ of how the python wcwidth library
+measures characters.  Then, I updated the python ucs-detect_ tool to
+systematically asses terminal emulators for their compliance with the
+specification.
 
 Finally, I have `published results`_ for the most popular terminal emulators on
 Linux, macOS, and Windows.  This article is a summary of my findings.

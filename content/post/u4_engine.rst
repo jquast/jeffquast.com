@@ -224,8 +224,8 @@ https://github.com/jquast/qwack/blob/09b46faf02a40ba9d1ea963d272322cb9f8f1f77/qw
 Spellcasting & Confusion
 ========================
 
-When casting a spell in Ultima IV, the graphics on the screen are inverted in an
-unnatural by their internal RGB colorspace, basic enough:
+When casting a spell in Ultima IV, the graphics on the screen are inverted in
+unnatural colors by inversion of RGB colorspace, basic enough:
 
 .. code-block:: python
 

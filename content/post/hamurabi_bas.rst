@@ -154,7 +154,7 @@ game, leaving hundreds of acres unplantable.
 This land acts as an investment, available for sale on poor harvest years. 
 
 We don't have any care for the value of land. Though it is variable, it would be
-foolish to try to "play the stock market", as any amount of bushels in not
+foolish to try to "play the stock market", as any amount of bushels not
 invested in land is at risk of being eaten by rats.  Purchasing land ensures
 safe store of value -- **rats cannot eat land!**
 

@@ -66,12 +66,12 @@ occluded by the next character.
 
 .. image:: /images/hyper-wide.png
 
-Pictured here in Hyper_ terminal, the wcwidth_ developer tool
+Pictured here in Hyper_ terminal, the Python wcwidth_ developer tool
 `wcwidth-browser.py`_ shows several Wide Emoji mistakenly displayed as Narrow
 instead of Wide, due to out-of-date code tables in `xterm.js`_, causing
 some to be partially occluded by the Pipe character (``|``).
 
-The wcwidth project Specification_ describes Wide characters as::
+The Python wcwidth project Specification_ describes Wide characters as::
 
 > Any character defined by East Asian Fullwidth (F)
 > or Wide (W) properties in EastAsianWidth txt
@@ -339,16 +339,16 @@ the latest data from unicode.org. The project utilizes jinja2 templates to
 transform that data into Python code.
 
 This can be easily extended for languages like C/C++, Rust, Ruby, Go, or any
-other.  Feel free to contribute new code templates to wcwidth_ project for
+other.  Feel free to contribute new code templates to Python wcwidth_ project for
 seamless integration with your preferred language.
 
 Finally, I strongly advocate for Python to internally implement some version of
-wcwidth_. Functions like `str.ljust()`_, `textwrap.wrap()`_, or format strings
+Python wcwidth_. Functions like `str.ljust()`_, `textwrap.wrap()`_, or format strings
 such as ``f'{my_string:<{width}}'`` should inherently account for the width of
 non-ascii characters when formatting strings.  Presently, these functions rely
 solely on the **count** of characters without understanding their printed width.
 I believe this adversely affects many developers who discover 'the hard way'
-that an external library is necessary.  Given that wcwidth_ is downloaded over
+that an external library is necessary.  Given that Python wcwidth_ is downloaded over
 50 million times per month, incorporating this functionality into Python should
 be a sound and economically sensible decision.
 

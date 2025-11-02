@@ -8,7 +8,7 @@ Tags:
     - terminal
     - ucs-detect
     - wcwidth
-date: 2025-11-01T00:00:00Z
+date: 2025-11-02T00:00:00Z
 menu: main
 title: State of Terminal Emulators in 2025: The Errant Champions
 ---
@@ -79,16 +79,16 @@ The Long Road
 The most notable finding relates to performance.  That many terminals perform so slowly
 was surprising, so I have included the elapsed time in the results.
 
-iTerm2 consumes a full CPU core and performs so slowly that the test parameters
-were reduced to finish in under one hour what other terminals complete in minutes.
+iTerm2_ and Extraterm_ consume a majority of the CPU and performs so slowly that
+the test parameters were reduced to finish within the hour what many other
+terminals manage in a few minutes.
 
 `GNOME Terminal`_ and its VTE-based derivatives also perform too slowly for a
-full-sized test, though they consume very little CPU while doing so and may be
-tested simultaneously. All libvte_-based terminals have identical results.
-
-Many terminals exhibit stalls or inefficiencies in their event loops that
-result in slow automatic responses, but we should be forgiving; nobody really
-considered the need to handle hundreds of answer-back sequences per second.
+full test, taking over 5 hours in my testing, though they consume very little
+CPU while doing so and may be tested simultaneously.  Many terminals exhibit
+stalls or inefficiencies in their event loops that result in slow automatic
+responses, but we should be forgiving; nobody really considered the need to
+handle hundreds of automatic sequence replies per second!
 
 I expected Python wcwidth_ to consume most CPU resources during testing, as it
 is frequently called and always the "highest-level" language in the mix, but
@@ -101,14 +101,14 @@ search`_ with a functools.lru_cache_ decorator.
 
 The LRU_ cache is effective because human languages typically use a small,
 repetitive subset of Unicode. The ucs-detect_ tool tests hundreds of languages
-from the `UDHR dataset`_, excluding only those without any interesting combining
-or wide characters. This provides an extreme but practical demonstration of LRU
-cache benefits when processing Unicode.
+from the `UDHR dataset`_, excluding only those without any interesting zero
+or wide characters. This dataset provides an extreme but practical demonstration
+of LRU cache benefits when processing Unicode.
 
-I previously `considered distributing`_ a C module with Python wcwidth_ for greater
-performance, but the existing Python implementation keeps up with some of the
-faster terminals when text scroll speed is fast enough to produce screen
-tearing artifacts.
+I previously `considered distributing`_ a C module with Python wcwidth_ for
+greater performance, but the existing Python implementation keeps up well enough
+with the fastest terminals, when fully exhausted the text scroll speed is fast
+enough to produce screen tearing artifacts.
 
 Tilting at Edges
 ================
@@ -120,9 +120,8 @@ that would be welcome in other terminals.
 
 iTerm2_ may report "supported, but disabled, and cannot be changed" status for
 all `DEC Private Modes`_ queried, including fictional modes like ``9876543``.
-
 For this reason, the summary of DEC Private Modes shows only those modes that
-are either ``enabled``, or currently disabled but ``may enable``.
+are changeable.
 
 Konsole_ does not reply to support queries for `DEC Private modes`_, but does
 support several modes when they are enabled. For this reason, ucs-detect_ cannot
@@ -227,3 +226,4 @@ the world's languages.
 .. _wcwidth: https://github.com/jquast/wcwidth
 .. _zig: https://ziglang.org/
 .. _`considered distributing`: https://github.com/jquast/wcwidth/issues/103
+.. _`Extraterm`: https://extraterm.org/

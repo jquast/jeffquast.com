@@ -185,9 +185,8 @@ and varying implementation levels create inherent tension.
 The `text sizing protocol`_ published early this year represents a significant
 development. Kovid Goyal describes the motivation `in a recent interview`_:
 
-> And then my next windmill that I'm looking at is variable-sized text in the
-> terminal. So when I'm catting a markdown file, I want to see the headings big
-> and. Like in Emacs, right? Yes, yes. So why should only Emacs users benefit.
+   And then my next windmill that I'm looking at is variable-sized text in the
+   terminal. So when I'm catting a markdown file, I want to see the headings big.
 
 While this feature may enable more advanced typesetting-like capabilities in
 terminal apps, it also promises to increase accessibility. Allowing text

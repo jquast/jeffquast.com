@@ -19,7 +19,7 @@ emulators. Since then, the ucs-detect_ tool and its supporting blessed_ library
 have been extended to automatically detect support of `DEC Private Modes`_, `sixel graphics`_,
 `pixel size`_, and `software version`_.
 
-The ucs-detect_ program tests terminal cursor positioning by sending visible
+The ucs-detect program tests terminal cursor positioning by sending visible
 text followed by control sequences that request the cursor position. The
 terminal responds by writing the cursor location as simulated keyboard input.
 The ucs-detect program reads and compares these values against the `Python wcwidth`_
@@ -69,8 +69,8 @@ so highly in our test.
 
 Kitty_ and Ghostty_ are the only terminals that correctly support `Variation
 Selector 15`_, I have not written much about it because it is not likely to see
-any practical use, but, it will be added to a future release of `Python
-wcwidth`_ now that there is are multiple standards and reference implementations
+any practical use, but, it will be added to a future release of Python
+wcwidth now that there is are multiple standards and reference implementations
 in agreement.
 
 Testing Results
@@ -107,22 +107,22 @@ terminals exhibit stalls or inefficiencies in their event loops that result in
 slow automatic responses, but we should be forgiving; nobody really considered
 the need to handle hundreds of automatic sequence replies per second!
 
-I expected `Python wcwidth`_ to consume most CPU resources during testing, as it
+I expected Python wcwidth to consume most CPU resources during testing, as it
 is frequently called and always the "highest-level" language in the mix, but
 it keeps up pretty well for most terminals.
 
-Earlier this year, I dedicated effort to optimizing the `Python wcwidth`_
+Earlier this year, I dedicated effort to optimizing the Python wcwidth
 implementation using techniques including bit vectors, bloom filters, and varying
 sizes of LRU_ caches. The results confirmed that the existing implementation
 performed best: a `binary search`_ with a functools.lru_cache_ decorator.
 
 The LRU_ cache is effective because human languages typically use a small,
-repetitive subset of Unicode. The ucs-detect_ tool tests hundreds of languages
+repetitive subset of Unicode. The ucs-detect tool tests hundreds of languages
 from the `UDHR dataset`_, excluding only those without any interesting zero
 or wide characters. This dataset provides an extreme but practical demonstration
 of LRU cache benefits when processing Unicode.
 
-I previously `considered distributing`_ a C module with `Python wcwidth`_ for
+I previously `considered distributing`_ a C module with Python wcwidth for
 greater performance, but the existing Python implementation keeps up well enough
 with the fastest terminals. When fully exhausted the text scroll speed is fast
 enough to produce screen tearing artifacts.
@@ -141,10 +141,10 @@ For this reason, the summary of DEC Private Modes shows only those modes that
 are changeable.
 
 Konsole_ does not reply to queries about `DEC Private modes`_, but does support
-several modes when they are enabled. For this reason, ucs-detect_ cannot
+several modes when they are enabled. For this reason, ucs-detect cannot
 automatically infer which DEC Modes Konsole supports.
 
-Similarly, ucs-detect_ reports "No DEC Private Mode Support" for Contour_. I
+Similarly, ucs-detect reports "No DEC Private Mode Support" for Contour_. I
 investigated this discrepancy because Contour's author also authored a `Mode
 2027`_ specification dependent on this functionality.  The issue was that
 Contour responded with a different mode number than the one queried. While
@@ -174,7 +174,7 @@ level. Since other terminals with similar capabilities do not respond to Mode
 
 The only practical approach to determining Unicode support of a terminal is to
 interactively test for specific features, codepoints, and at the Unicode version
-levels of interest, as ucs-detect_ does.
+levels of interest, as ucs-detect does.
 
 Beyond Fixed Widths
 ===================
@@ -200,8 +200,8 @@ take a look at a result of the language Khün_:
 
 .. image:: /images/contour-khun-example.png
 
-In this case Contour_ and `Python wcwidth`_ disagree on measurement, but more
-important is the legibility. We can compare this given Khün_ text to the
+In this case Contour_ and Python wcwidth disagree on measurement, but more
+important is the legibility. We can compare this given Khün text to the
 Kate_ editor:
 
 .. image:: /images/kate-khun-example.png

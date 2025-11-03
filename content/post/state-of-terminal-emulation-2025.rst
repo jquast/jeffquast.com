@@ -240,7 +240,7 @@ suggested by the `text sizing protocol`_.
 .. _`Terminal Emulators Battle Royale – Unicode Edition!`: https://www.jeffquast.com/post/ucs-detect-test-results/
 .. _Terminology: https://www.enlightenment.org/about-terminology
 .. _`text-splitting algorithm description`: https://sw.kovidgoyal.net/kitty/text-sizing-protocol/#the-algorithm-for-splitting-text-into-cells
-.. _`UDHR dataset`: https://github.com/eric-muller/udhr/tree/main
+.. _`UDHR dataset`: https://ucs-detect.readthedocs.io/intro.html#udhr-data
 .. _`text sizing protocol`: https://sw.kovidgoyal.net/kitty/text-sizing-protocol/
 .. _ucs-detect: https://ucs-detect.readthedocs.io/intro.html#ucs-detect
 .. _Unicode.org: https://unicode.org/

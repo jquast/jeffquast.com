@@ -155,10 +155,9 @@ being stuck in vi required typing ``CTRL + [`` as a workaround!
 Terminals based on libvte_ with software version label ``VTE/7600`` continue to
 show identical performance with low scores in our tests, unchanged from 2023.
 
-My `sincere discussion`_ proposing Unicode support improvements in libvte
-received substantial criticism. However, recent issue `Support Emoji Sequences`_
-in libvte indicates that proper Emoji support may finally arrive in many more
-terminals in 2026.
+My `attempt to discuss`_ improving Unicode support in libvte received substantial
+criticism. However, recent libvte project issue `Support Emoji Sequences`_ in
+indicates a positive outlook for Emoji support in 2026.
 
 On Mode 2027
 ============
@@ -233,7 +232,7 @@ suggested by the `text sizing protocol`_.
 .. _`Mode 2027`: https://github.com/contour-terminal/terminal-unicode-core/blob/master/spec/terminal-unicode-core.tex
 .. _`pixel size`: https://blessed.readthedocs.io/en/latest/sixel.html#window-dimensions
 .. _`Python wcwidth specification`: https://wcwidth.readthedocs.io/en/latest/specs.html
-.. _`sincere discussion`: https://gitlab.gnome.org/GNOME/vte/-/issues/2580#note_1973274
+.. _`attempt to discuss`: https://gitlab.gnome.org/GNOME/vte/-/issues/2580#note_1973274
 .. _`sixel graphics`: https://blessed.readthedocs.io/en/latest/sixel.html
 .. _`software version`: https://blessed.readthedocs.io/en/latest/terminal.html#terminal-software-version
 .. _`Support Emoji Sequences`: https://gitlab.gnome.org/GNOME/vte/-/issues/2909

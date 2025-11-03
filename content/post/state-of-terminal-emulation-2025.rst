@@ -47,13 +47,13 @@ The Gentleman Errant
 
 Before presenting the latest results, Ghostty_ warrants particular attention,
 not only because it scored the highest among all terminals tested, but that it
-was publicly released only this year, by Mitchell Hashimoto.  It is a
-significant advancement. Developed from scratch in zig_, the Unicode support
-implementation is thoroughly correct.
+was publicly released only this year by Mitchell Hashimoto.  It is a significant
+advancement. Developed from scratch in zig_, the Unicode support implementation
+is thoroughly correct.
 
 In 2023, Mitchell published `Grapheme Clusters and Terminal Emulators`_,
 demonstrating a commitment to understanding and implementing the fundamentals.
-The related announcement of libghostty_ provides a welcome alternative to libvte_,
+His recent announcement of libghostty_ provides a welcome alternative to libvte_,
 potentially enabling a new generation of terminal implementations that share a
 foundation of strong Unicode support and modern features.
 

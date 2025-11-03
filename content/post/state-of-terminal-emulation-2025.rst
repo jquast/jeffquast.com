@@ -37,9 +37,10 @@ glyphs.
 These predictions fail routinely. Zero-width joiners, variation selectors, and
 grapheme clustering compound in complexity. When terminals and CLI applications
 guess wrong, text becomes unreadable - cursors misalign and corrupt output and
-so then also the location of our input in readline-like_ applications.
+so then also corrupt the location of our input.
 
-Our results share which terminals have the best "Unicode support".
+Our results share which terminals have the best "Unicode support" -- the least
+likely to exhibit these kinds of problems.
 
 The Gentleman Errant
 ====================

@@ -116,7 +116,7 @@ implementation using techniques including bit vectors, bloom filters, and varyin
 sizes of LRU_ caches. The results confirmed that the existing implementation
 performed best: a `binary search`_ with a functools.lru_cache_ decorator.
 
-The LRU_ cache is effective because human languages typically use a small,
+The LRU cache is effective because human languages typically use a small,
 repetitive subset of Unicode. The ucs-detect tool tests hundreds of languages
 from the `UDHR dataset`_, excluding only those without any interesting zero
 or wide characters. This dataset provides an extreme but practical demonstration

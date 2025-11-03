@@ -1,7 +1,7 @@
 ---
 Categories:
     - Python
-Description: State of Terminal Emulators in 2025: The Errant Champions
+Description: "State of Terminal Emulators in 2025: The Errant Champions"
 Tags:
     - Python
     - Unicode
@@ -10,7 +10,7 @@ Tags:
     - wcwidth
 date: 2025-11-02T00:00:00Z
 menu: main
-title: State of Terminal Emulators in 2025: The Errant Champions
+title: "State of Terminal Emulators in 2025: The Errant Champions"
 ---
 
 This is a follow-up to my previous article, `Terminal Emulators Battle Royale –
@@ -44,9 +44,10 @@ The Gentleman Errant
 ====================
 
 Before presenting the latest results, Ghostty_ warrants particular attention.
-Released this year by Mitchell Hashimoto, it represents a significant
-advancement in terminal emulation. Developed from scratch in zig_, the
-implementation is modern and thorough, demonstrating strong Unicode support.
+It scored the highest among all terminals tested. Released this year by Mitchell
+Hashimoto, it represents a significant advancement.  Developed from scratch in
+zig_, the implementation is modern and thorough, demonstrating very strong
+Unicode support.
 
 In 2023, Mitchell published `Grapheme Clusters and Terminal Emulators`_,
 demonstrating a commitment to understanding and implementing the fundamentals.
@@ -57,13 +58,14 @@ foundation of strong Unicode support and modern features. It scores well in our 
 The Errant Champion
 ===================
 
-Kovid Goyal's Kitty_ scored the highest among all terminals tested. Additionally,
-a `text-splitting algorithm description`_ was published for Kitty_ that closely
-matches the Python wcwidth specification_, which is unsurprising as both derive
-from careful interpretation of Unicode.org_ standards.
+Kovid Goyal's Kitty_ scored the highest among all terminals tested.
+Additionally, a `text-splitting algorithm description`_ was published this year
+that closely matches the Python wcwidth specification_, which is unsurprising as
+they are derived from careful interpretation of Unicode.org_ standards.
 
-Kitty_ is the only terminal that correctly supports `Variation Selector 15`_, which
-will be released for Python wcwidth now that we have a reference implementation.
+Kitty_ is the only terminal that correctly supports `Variation Selector 15`_,
+which will be released for Python wcwidth now that there is a reference
+implementation.
 
 Testing Results
 ===============
@@ -76,19 +78,19 @@ unicode support score, performance time, version tested]
 The Long Road
 =============
 
-The most notable finding relates to performance.  That many terminals perform so slowly
-was surprising, so I have included the elapsed time in the results.
+The most notable finding relates to performance.  That many terminals perform so
+slowly was surprising, so I have included the total time elapsed time in the
+results.
 
 iTerm2_ and Extraterm_ consume a majority of the CPU and performs so slowly that
 the test parameters were reduced to finish within the hour what many other
 terminals manage in a few minutes.
 
 `GNOME Terminal`_ and its VTE-based derivatives also perform too slowly for a
-full test, taking over 5 hours in my testing, though they consume very little
-CPU while doing so and may be tested simultaneously.  Many terminals exhibit
-stalls or inefficiencies in their event loops that result in slow automatic
-responses, but we should be forgiving; nobody really considered the need to
-handle hundreds of automatic sequence replies per second!
+full test, taking over 5 hours, though consuming very little CPU.  Many
+terminals exhibit stalls or inefficiencies in their event loops that result in
+slow automatic responses, but we should be forgiving; nobody really considered
+the need to handle hundreds of automatic sequence replies per second!
 
 I expected Python wcwidth_ to consume most CPU resources during testing, as it
 is frequently called and always the "highest-level" language in the mix, but
@@ -116,54 +118,51 @@ Tilting at Edges
 Terminology_ produces inconsistent results between executions. Our tests are
 designed to be deterministic, so these kinds of results suggest possible state
 corruption. Despite this issue, Terminology offers interesting visual effects
-that would be welcome in other terminals.
+that would be a welcome feature in other terminals.
 
-iTerm2_ may report "supported, but disabled, and cannot be changed" status for
+iTerm2_ reports "supported, but disabled, and cannot be changed" status for
 all `DEC Private Modes`_ queried, including fictional modes like ``9876543``.
 For this reason, the summary of DEC Private Modes shows only those modes that
 are changeable.
 
-Konsole_ does not reply to support queries for `DEC Private modes`_, but does
-support several modes when they are enabled. For this reason, ucs-detect_ cannot
+Konsole_ does not reply to queries about `DEC Private modes`_, but does support
+several modes when they are enabled. For this reason, ucs-detect_ cannot
 automatically infer which DEC Modes Konsole supports.
 
-Similarly, ucs-detect_ and display-modes.py_ from blessed_ both reported "No DEC
-Private Mode Support" for Contour_. I investigated this discrepancy because
-Contour's author also authored a `Mode 2027`_ specification dependent on this
-functionality.
-
-The issue was that blessed_ timed out when Contour responded with an unexpected
-pattern -- a different mode number than the one queried. While developing `a fix`_,
-Contour's latest release from December 2024 presented an additional
-complication: `a bad escape key configuration`_. Each instance of being stuck
-in vi required typing ``CTRL + [`` as a workaround.
+Similarly, ucs-detect_ reports "No DEC Private Mode Support" for Contour_. I
+investigated this discrepancy because Contour's author also authored a `Mode
+2027`_ specification dependent on this functionality.  The issue was that
+Contour responded with a different mode number than the one queried. While
+developing `a fix`_, Contour's latest release from December 2024 presented an
+additional complication: `a bad escape key configuration`_. Each instance of
+being stuck in vi required typing ``CTRL + [`` as a workaround!
 
 Terminals based on libvte_ with software version label ``VTE/7600`` continue to
-show identical performance in our tests, unchanged from 2023.
+show identical performance with low scores in our tests, unchanged from 2023.
 
-My `sincere discussion`_ proposing Unicode support improvements in libvte received
-substantial criticism from Egmont Koblinger. However, Egmont's recent issue
-`Support Emoji Sequences`_ in libvte indicates that proper Emoji support may
-arrive in many popular terminals during 2026.
+My `sincere discussion`_ proposing Unicode support improvements in libvte
+received substantial criticism. However, recent issue `Support Emoji Sequences`_
+in libvte indicates that proper Emoji support may finally arrive in many more
+terminals in 2026.
 
 On Mode 2027
 ============
 
-I included DEC Private `Mode 2027`_ to accompany Mitchell's table in `Grapheme
-Clusters and Terminal Emulators`_, and to verify for myself that it has limited
-utility, as it is already enabled when available. A CLI program can query this
-mode to classify a terminal as "reasonably supporting" unicode, but not of what
-feature of version level. It remains then as only a rough indicator of general
-Unicode support.
+I included DEC Private `Mode 2027`_ in the results to accompany Mitchell's table
+from his article, `Grapheme Clusters and Terminal Emulators`_, and to verify for
+myself that it has limited utility.
+
+In theory, A CLI program can query this mode to classify a terminal as
+"reasonably supporting" unicode, but not of what feature of version level. It
+remains then as only a rough indicator of general Unicode support, and probably
+capable of ZWJ, most certainly wide, maybe vs-16, and maybe most combining or
+zero-width categories. And that other terminals with similar capabilities do not
+respond to Mode 2027 queries, that this binary indicator is left with little
+utility.
 
 The only practical approach to determining Unicode support of a terminal is to
-interactively test for specific Unicode features such as ZWJ, VS16, or specific
-codepoints at the Unicode version levels of interest, as ucs-detect_ does.
-
-Terminals like Terminology_ may have varying percentages of support at each
-individual version level, and, that there is more to measured width, but
-legibility -- although terminals may sometimes accidentally display them
-with the correct width, they may not be legible.
+interactively test for specific features, codepoints, and at the Unicode version
+levels of interest, as ucs-detect_ does.
 
 Beyond Fixed Widths
 ===================
@@ -172,23 +171,34 @@ Terminals cannot reproduce many of the world's languages legibly when constraine
 to monospace cells. The measurements dictated by rapidly expanding Unicode standards
 and varying implementation levels create inherent tension.
 
-`The text sizing protocol`_ published early this year represents a significant
-development that could resolve these constraints. Kovid Goyal describes the motivation
-`in a recent interview`_:
+The `text sizing protocol`_ published early this year represents a significant
+development. Kovid Goyal describes the motivation `in a recent interview`_:
 
 > And then my next windmill that I'm looking at is variable-sized text in the
 > terminal. So when I'm catting a markdown file, I want to see the headings big
 > and. Like in Emacs, right? Yes, yes. So why should only Emacs users benefit.
-
-.. image:: https://img.youtube.com/vi/8PYLPC3dzWQ/maxresdefault.jpg
-   :target: https://www.youtube.com/watch?v=8PYLPC3dzWQ
-   :alt: Interview with Kovid Goyal about Kitty terminal
 
 While this feature may enable more advanced typesetting-like capabilities in
 terminal apps, it is also promising in increasing accessibility. Allowing text
 to escape monospace constraints enables legible support of the diverse set of
 the world's languages.
 
+For example, using Contour with ``ucs-detect --stop-at-error=lang``, stopping to
+take a look at a result of the language Khün_:
+
+.. image:: /images/contour-khun-example.png
+
+In this case Contour_ and Python wcwidth_ disagree on measurement, but more
+important is the legibility. And, can compare this given Khün_ text to the
+Kate_ editor:
+
+.. image:: /images/kate-khun-example.png
+
+They are clearly different, but I regret I cannot study it more carefully, but
+to suggest that terminals could more easily display complex scripts by switching
+to a variable size text mode, and although I have yet to experiment with it, I
+am encouraged to see some resolution to this problem by the progressive changes
+suggested by the `text sizing protocol`_.
 
 .. _`a bad escape key configuration`: https://github.com/contour-terminal/contour/issues/1710
 .. _`a binary search`: https://github.com/jquast/wcwidth/blob/5ba540df3386255dcde94bf867665ddf1cab868f/wcwidth/wcwidth.py#L76-L145
@@ -219,7 +229,7 @@ the world's languages.
 .. _Terminology: https://www.enlightenment.org/about-terminology
 .. _`text-splitting algorithm description`: https://sw.kovidgoyal.net/kitty/text-sizing-protocol/#the-algorithm-for-splitting-text-into-cells
 .. _`UDHR dataset`: https://github.com/eric-muller/udhr/tree/main
-.. _`The text sizing protocol`: https://sw.kovidgoyal.net/kitty/text-sizing-protocol/
+.. _`text sizing protocol`: https://sw.kovidgoyal.net/kitty/text-sizing-protocol/
 .. _ucs-detect: https://github.com/jquast/ucs-detect
 .. _Unicode.org: https://unicode.org/
 .. _`Variation Selector 15`: https://unicode.org/reports/tr51/#Emoji_Variation_Sequences
@@ -227,3 +237,5 @@ the world's languages.
 .. _zig: https://ziglang.org/
 .. _`considered distributing`: https://github.com/jquast/wcwidth/issues/103
 .. _`Extraterm`: https://extraterm.org/
+.. _`Khün`: https://en.wikipedia.org/wiki/Kh%C3%BCn_language
+.. _`Kate`: https://kate-editor.org/

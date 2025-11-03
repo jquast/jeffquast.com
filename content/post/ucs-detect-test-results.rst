@@ -40,7 +40,7 @@ determining the printable width of a string when displayed to a terminal. I
 worked hard to close all open issues, adding support for VS-16, ZWJ, and several
 bug fixes to the Zero-Width table definitions.
 
-Additionally, I authored a Specification_ of how the python wcwidth library
+Additionally, I authored a Specification_ of how the Python wcwidth library
 measures characters.  Then, I updated the python ucs-detect_ tool to
 systematically asses terminal emulators for their compliance with the
 specification.
@@ -144,7 +144,7 @@ Depicted here in iTerm2_ are several combining characters after
 fail to combine, resulting in the display of a "dotted donut".
 
 To explore and visualize combining characters in a naive manner, you can use the
-developer tool `wcwidth-browser.py`_ from the wcwidth repository. Press 'c'
+developer tool `wcwidth-browser.py`_ from the Python wcwidth repository. Press 'c'
 after launch or use the CLI argument ``--combining``. However, this tool serves
 primarily to demonstrate that naive combining is not feasible for a vast number
 of characters.
@@ -253,7 +253,7 @@ Depicted here in iTerm2_ is a single  `U+23F1 <https://codepoints.net/U+23F1>`_
 this is the correct behavior of a terminal when `U+FE0F`_ "Variation
 Selector-16" is not in sequence.
 
-From python wcwidth Specification_ on Wide characters::
+From Python wcwidth Specification_ on Wide characters::
 
 > Any character in sequence with `U+FE0F`_
 > (Variation Selector 16) defined by Emoji
@@ -292,7 +292,7 @@ of multiple emojis into a single representation that embodies their combination.
 This feature resembles a special case of combining_, but it is encoded in a
 completely different manner.
 
-The python wcwidth Specification_ on "Width of 0" reads::
+The Python wcwidth Specification_ on "Width of 0" reads::
 
 > Any character following a ZWJ (U+200D) when
 > in sequence by function wcwidth.wcswidth().

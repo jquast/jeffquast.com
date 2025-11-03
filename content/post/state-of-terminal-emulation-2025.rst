@@ -77,7 +77,7 @@ Testing Results
 ===============
 
 The first table, `General Tabulated Summary`_ describes unicode features
-of each terminal, then a brief summary of DEC Private Modes, sixel support,
+of each terminal, then, a brief summary of DEC Private Modes, sixel support,
 and testing time.
 
 .. figure:: /images/results-table-general.png
@@ -156,8 +156,8 @@ Terminals based on libvte_ with software version label ``VTE/7600`` continue to
 show identical performance with low scores in our tests, unchanged from 2023.
 
 My `attempt to discuss`_ improving Unicode support in libvte received substantial
-criticism. However, recent libvte project issue `Support Emoji Sequences`_ 
-is a positive indicator for better Terminal Emoji support in 2026.
+criticism. However, recent libvte project issue `Support Emoji Sequences`_ is a
+positive indicator for improved language and Emoji support in 2026.
 
 On Mode 2027
 ============

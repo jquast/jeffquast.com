@@ -107,8 +107,8 @@ terminals exhibit stalls or inefficiencies in their event loops that result in
 slow automatic responses, but we should be forgiving; nobody really considered
 the need to handle hundreds of automatic sequence replies per second!
 
-I expected Python wcwidth to consume most CPU resources during testing, as it
-is frequently called and always the "highest-level" language in the mix, but
+I expected Python wcwidth to consume the most CPU resources during testing, as
+it is frequently called and always the "highest-level" language in the mix, but
 it keeps up pretty well for most terminals.
 
 Earlier this year, I dedicated effort to optimizing the Python wcwidth

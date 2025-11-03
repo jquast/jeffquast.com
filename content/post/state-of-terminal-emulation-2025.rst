@@ -54,8 +54,8 @@ is thoroughly correct.
 In 2023, Mitchell published `Grapheme Clusters and Terminal Emulators`_,
 demonstrating a commitment to understanding and implementing the fundamentals.
 His recent announcement of libghostty_ provides a welcome alternative to libvte_,
-potentially enabling a new generation of terminal implementations that share a
-foundation of strong Unicode support and modern features.
+potentially enabling a new generation of terminals on a foundation of strong
+Unicode support.
 
 The Errant Champion
 ===================

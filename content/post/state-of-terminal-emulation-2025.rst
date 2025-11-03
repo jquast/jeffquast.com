@@ -70,7 +70,7 @@ so highly in our test.
 Kitty_ and Ghostty_ are the only terminals that correctly support `Variation
 Selector 15`_, I have not written much about it because it is not likely to see
 any practical use, but, it will be added to a future release of Python
-wcwidth now that there is are multiple standards and reference implementations
+wcwidth now that there are multiple standards and reference implementations
 in agreement.
 
 Testing Results

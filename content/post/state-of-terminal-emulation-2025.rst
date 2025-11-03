@@ -60,8 +60,8 @@ The Errant Champion
 
 Kovid Goyal's Kitty_ scored the highest among all terminals tested.
 Additionally, a `text-splitting algorithm description`_ was published this year
-that closely matches the Python wcwidth specification_, which is unsurprising as
-they are derived from careful interpretation of Unicode.org_ standards.
+that closely matches the `Python wcwidth specification`_, which is unsurprising as
+they are both derived from careful interpretation of Unicode.org_ standards.
 
 Kitty_ is the only terminal that correctly supports `Variation Selector 15`_,
 which will be released for Python wcwidth now that there is a reference
@@ -201,7 +201,7 @@ am encouraged to see some resolution to this problem by the progressive changes
 suggested by the `text sizing protocol`_.
 
 .. _`a bad escape key configuration`: https://github.com/contour-terminal/contour/issues/1710
-.. _`a binary search`: https://github.com/jquast/wcwidth/blob/5ba540df3386255dcde94bf867665ddf1cab868f/wcwidth/wcwidth.py#L76-L145
+.. _`binary search`: https://github.com/jquast/wcwidth/blob/5ba540df3386255dcde94bf867665ddf1cab868f/wcwidth/wcwidth.py#L76-L145
 .. _`a fix`: https://github.com/contour-terminal/contour/pull/1797
 .. _blessed: https://blessed.readthedocs.io/
 .. _Contour: https://contour-terminal.org/

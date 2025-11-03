@@ -206,9 +206,12 @@ Kate_ editor:
 
 They are clearly different. I regret I cannot study it more carefully, but I
 suggest that terminals could more easily display complex scripts by switching
-to a variable size text mode. Although I have yet to experiment with it, I
-am encouraged to see some resolution to this problem by the progressive changes
-suggested by the `text sizing protocol`_.
+to a variable size text mode, allowing the font engine to drive the text without
+careful processing of cell and cursor movement.
+
+Although I have yet to experiment with it, I am encouraged to see some
+resolution to this problem by the progressive changes suggested by the `text
+sizing protocol`_.
 
 .. _`a bad escape key configuration`: https://github.com/contour-terminal/contour/issues/1710
 .. _`binary search`: https://github.com/jquast/wcwidth/blob/5ba540df3386255dcde94bf867665ddf1cab868f/wcwidth/wcwidth.py#L76-L145

@@ -272,11 +272,14 @@ distribution of values,
 Conclusion
 ==========
 
-That's it!  You can play this game with python 3 using commands, ``pip install
-qwack; qwack`` 
+That's it!  You can play this game with python 3 using commands:
 
-I may actually go "all the way to Steam" and distribute
-a tile-based rogue-like terminal game of my own.
+.. code::
+
+    pip install git+https://github.com/jquast/qwack.git
+    qwack
+
+Be sure to use a large terminal size, eg. 400 columns by 120 lines.
 
 I won't be using any of the `Ultima IV`_ assets, as I'm sure Electronic Arts
 would take offense (even though the game is `distributed for free

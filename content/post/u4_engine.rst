@@ -41,8 +41,8 @@ Qwack
 I wrote Qwack_, a "quickly written Hack_ (1985) variant in Python" in 2015,
 offline during a power outage with the hours of battery available on a laptop.
 
-I had just read `Game Programming Patterns`_ (2019, Robert Nystrom) and applied
-what I learned to make this engine.
+I later read `Game Programming Patterns`_ (2019, Robert Nystrom) and applied
+what I learned to rewrite the engine a bit.
 
 Qwack_ is different than most Hack variants in that is a fully 3D Voxel engine,
 like Dwarf Fortress.

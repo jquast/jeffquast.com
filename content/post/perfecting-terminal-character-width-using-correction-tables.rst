@@ -260,7 +260,11 @@ compromise for the typewriter and teletype cellular grid constraints of a termin
 Continuing On
 =============
 
-These correction tables have been years in the making. I hope they serve you well.
+These correction tables have been years in the making. I hope they serve you well. If you'd like to
+browse unicode and the correction tables yourself, try ucs-browser_ and use ``t`` hotkey to toggle
+correction tables::
+
+    uvx --from ucs-detect ucs-browser
 
 If you found this work useful, please consider sponsering_ me on GitHub.
 

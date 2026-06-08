@@ -1,0 +1,21 @@
+.single-wrap {
+    max-width: 900px;
+}
+
+.single-wrap blockquote {
+    font-size: 110%;
+    margin-left: 0;
+}
+
+.single-wrap ul,
+.single-wrap ol {
+    padding-left: 2em;
+}
+
+.single-wrap figcaption,
+.single-wrap .caption {
+    font-size: 70%;
+    font-style: italic;
+    margin-left: 2em;
+    color: #666;
+}

@@ -11,7 +11,8 @@ enableRobotsTXT = true
 	description = "Software Engineer"
 	copyright = "have a day."
 	pageNotFoundTitle = "Page not found"
-	pageNotFoundSubtitle = "Sorry, but the requested page wasn’t <br> found on the server."
+	pageNotFoundSubtitle = "Sorry, but the requested page wasn't <br> found on the server."
+    custom_css = ["css/custom.css"]
 
 [params.offcanvas]
 	# Menu items

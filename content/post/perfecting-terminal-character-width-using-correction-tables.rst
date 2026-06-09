@@ -129,7 +129,7 @@ This is a very good solution for general text sizing issues in terminals; I hope
 integrated into more TUI applications as a solution to the general problem of emoji/grapheme width
 in more REPLs, text editors, and terminals.
 
-I've integrated it into my own public projects, adding ``does_text_sizing()`` and ``text_sized()`` to the
+I've integrated it into my own public projects, adding `does_text_sizing()`_ and `text_sized()`_ to the
 ``blessed`` library to detect and construct KTSP sequences, updating the wcwidth library's
 `width()`_ function to measure width of text containing KTSP sequences, so that it may be aligned with any of
 the `center()`_, `ljust()`_, `rjust()`_ and high-level functions `wrap()`_ and `clip()`_.

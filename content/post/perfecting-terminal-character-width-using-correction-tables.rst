@@ -189,16 +189,16 @@ position report can become mismatched to their actual position.
 API improvements
 ================
 
-The ``wcswidth()`` function was redefined long ago, straying from POSIX:
+The Python ``wcswidth()`` function was redefined long ago, straying from POSIX:
 
     This implementation differs from Markus Kuhn's original POSIX C implementation, in that this
     ``wcswidth()`` processes grapheme strings returned by `iter_graphemes()`_ defined by `Unicode
     Standard Annex #29`_. POSIX `wcswidth(3)`_ is not grapheme-aware and does not measure many kinds
     of emoji or complex scripts correctly.
 
-I decided that the existing ``wcswidth()`` interface was a natural fit to measure a series of
-codepoints by their grapheme boundaries. The context of surrounding codepoints is required to
-accurately measure them, and the grapheme boundary is a standards-defined break.
+The existing ``wcswidth()`` interface is a natural fit to measure a series of codepoints by their
+grapheme boundaries. The context of surrounding codepoints is required to accurately measure them,
+and the grapheme boundary is a standards-defined break.
 
 POSIX `wcwidth(3)`_ and ``wcswidth(3)`` return ``-1`` for C0 and C1 control codes like ``TAB`` or
 sequences beginning with ``ESC``.  This signals the caller to manage these "terminal functions"

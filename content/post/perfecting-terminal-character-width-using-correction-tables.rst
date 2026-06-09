@@ -163,8 +163,8 @@ ENQ_ (``'\05'``) with an automatic "answerback" response. The ``ENQ`` sequence i
 the confusing insert of a ``PuTTYPuTTYPuTTYPuTTY`` into your shell prompt after accidentally
 displaying binary data.
 
-Though not yet demonstrated, it is also possible to rapidly identify a terminal by binary-searching
-its known Unicode measurement quirks using Cursor Position Reports.
+It is also possible to rapidly identify a terminal by querying the terminal with the Cursor Position
+Report sequence while using a binary-search of known Unicode measurement quirks.
 
 Terminal Multiplexers
 =====================

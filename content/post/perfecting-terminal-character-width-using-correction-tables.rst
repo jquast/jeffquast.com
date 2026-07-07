@@ -173,23 +173,23 @@ Terminal multiplexers are excluded from offering correction tables for the same 
 them from my personal workflow: their results are inconsistent depending on the host terminal
 and often confuse their cursor position.
 
-``ucs-detect`` tests these multiplexers using ghostty as a "host terminal", but their displayed width
+`ucs-detect`_ tests these multiplexers using ghostty as a "host terminal", but their displayed width
 and cursor location will vary depending on the host terminal, and automatic replies of the cursor
-position report can become mismatched to their actual position.
+position report can become mismatched to their actual position. This problem compounds in the
+complexity of its corruption and cursor placement.
 
 .. figure:: /images/zellij-cursor-position-misreport.png
    :target: /images/zellij-cursor-position-misreport.png
    :align: center
 
-   Alignment issues compound with terminal multiplexers.  As seen in the above screenshot, the host
-   terminal (ghostty) displays the expected alignment, but the terminal multiplexer (Zellij) has
-   responded by "Cursor Position Report" that this regional indicator, ``🇳``, has advanced the
-   cursor only 1 cell, in disagreement with the host terminal's 2.
+   Alignment issues compound with terminal multiplexers.  Zellij's model of cursor position
+   *reports* a width 1, while ghostty correctly *displays* a width of 2. Note the corruption of
+   zellij's window border of the same line.
 
 API improvements
 ================
 
-The Python ``wcswidth()`` function was redefined long ago, straying from POSIX:
+The Python `wcswidth()`_ function strays from POSIX `wcswidth(3)`_ definition:
 
     This implementation differs from Markus Kuhn's original POSIX C implementation, in that this
     ``wcswidth()`` processes grapheme strings returned by `iter_graphemes()`_ defined by `Unicode
@@ -204,20 +204,20 @@ POSIX `wcwidth(3)`_ and ``wcswidth(3)`` return ``-1`` for C0 and C1 control code
 sequences beginning with ``ESC``.  This signals the caller to manage these "terminal functions"
 itself. In practice, many TUI applications just sum the results, discarding -1 values.
 
-After auditing all downstream uses of ``wcswidth()``, `I wrote
+After auditing all downstream uses of ``wcswidth()`` regarding graphemes and the handling the
+possible -1 return values, `I wrote
 <https://github.com/jquast/wcwidth/issues/79#issuecomment-1741605552>`_, "about every downstream
-library has some issue with the POSIX wcwidth and wcswidth functions." regarding correct
-handling of the possible -1 return values.
+library has some issue with the POSIX wcwidth and wcswidth functions."
 
 I made several new releases to address common needs:
 
-- An easy-to-use ``width()`` function as a wrapper around ``wcswidth()`` capable of measuring most
+- An easy-to-use `width()`_ function as a wrapper around `wcswidth()`_ capable of measuring most
   terminal control codes and sequences, like colors, bold, tabstops, and horizontal cursor movement.
-- Text-justification functions ``ljust()``, ``rjust()``, ``center()``, and the grapheme-aware function
-  ``wrap()``, serving as drop-in replacements for Python standard functions.
+- Text-justification functions `ljust()`_, `rjust()`_, `center()`_, and the grapheme-aware function
+  `wrap()`_, serving as drop-in replacements for Python standard functions.
 - `strip_sequences()`_ removes terminal escape sequences from text altogether.
-- ``clip()`` for substrings by *displayed column positions*.
-- ``iter_graphemes()`` and `iter_sequences()`_ for careful navigation of graphemes and terminal
+- `clip()`_ for substrings by *displayed column positions*.
+- `iter_graphemes()`_ and `iter_sequences()`_ for careful navigation of graphemes and terminal
   sequences as required by editors or REPLs with cursor control, and its complementary
   `iter_graphemes_reverse()`_ and `grapheme_boundary_before()`_ functions for backward cursor
   control.
@@ -249,9 +249,9 @@ was driven by a complex Virama conjunct algorithm for Brahmic scripts such as Ja
 sequence of consonant, virama, consonant, and combining mark (Mc) could accumulate width. The
 algorithm roughly matched web browser width of Virama.
 
-``ucs-detect`` testing of approximately 35 terminals revealed a clear pattern: most grapheme-aware
+`ucs-detect`_ testing of approximately 35 terminals revealed a clear pattern: most grapheme-aware
 terminals supporting Mode 2027 rarely advance a single grapheme beyond 2 cells. And so the
-``specification`` and implementation of wcwidth 0.8.0 have been updated with the rule, "Any grapheme
+`specification`_ and implementation of wcwidth 0.8.0 have been updated with the rule, "Any grapheme
 cluster width is limited to 2 cells since 0.8.0" to match majority support.
 
 Crushing long Virama chains into two cells is often illegible. It is, nevertheless, a fair

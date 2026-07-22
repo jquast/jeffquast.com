@@ -7,8 +7,9 @@ Tags:
     - Python
     - Unicode
     - wcwidth
-    - terminal
+    - wcswidth
     - wcstwidth
+    - terminal
     - ucs-detect
     - grapheme
     - Mode 2027
@@ -80,13 +81,13 @@ not reasonable. My answer is `wcstwidth()`_, which corrects width measurements f
 Correction Tables
 =================
 
-My most important work this year is the new ``wcstwidth()`` function, a variant of the Python wcwidth
+My most important work this year is the new `wcstwidth()`_ function, a variant of the Python wcwidth
 library `wcswidth()`_ function that provides **corrected width** measurements **by the terminal
 software** used to call it.
 
 This is made possible by ``ucs-detect``, which across approximately 35 terminals reports every
-measurement that deviates from wcwidth's specification; ``wcstwidth()`` makes use of this data in the form of "correction
-tables" to return a "corrected" measurement:
+measurement that deviates from wcwidth's specification; ``wcstwidth()`` makes use of this data in
+the form of "correction tables" to return a "corrected" measurement:
 
 .. code-block:: python
 

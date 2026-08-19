@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" width="880" height="400" font-family="Helvetica, Arial, sans-serif" role="img"
+     aria-label="Scoring terms of Micropolis, stage 2. Nine penalties applied in order to the first stage total, most of them multiplicative, compounding a perfect 1000 down to 290.">
+  <title>Scoring terms of Micropolis (stage 2)</title>
+  <text x="440" y="26" font-size="15" font-weight="bold" fill="#222" text-anchor="middle">Scoring terms of Micropolis (stage 2)</text>
+  <line x1="258.0" y1="70" x2="258.0" y2="370" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="258.0" y="64" font-size="10" fill="#888" text-anchor="middle">0</text>
+  <line x1="384.0" y1="70" x2="384.0" y2="370" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="384.0" y="64" font-size="10" fill="#888" text-anchor="middle">250</text>
+  <line x1="510.0" y1="70" x2="510.0" y2="370" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="510.0" y="64" font-size="10" fill="#888" text-anchor="middle">500</text>
+  <line x1="636.0" y1="70" x2="636.0" y2="370" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="636.0" y="64" font-size="10" fill="#888" text-anchor="middle">750</text>
+  <line x1="762.0" y1="70" x2="762.0" y2="370" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="762.0" y="64" font-size="10" fill="#888" text-anchor="middle">1000</text>
+  <text x="258" y="82" font-size="11" fill="#222" text-anchor="start" font-weight="bold">1,000 from stage 1</text>
+  <text x="762" y="82" font-size="10" fill="#888" text-anchor="end">worst case at each step &#8594;</text>
+  <text x="868" y="82" font-size="10" fill="#666" text-anchor="end">costs a 930</text>
+  <text x="16" y="106" font-size="12.5" fill="#222">residential cap</text>
+  <text x="176" y="106" font-size="9.5" fill="#666" font-family="Menlo, Consolas, monospace" text-anchor="end">resCap</text>
+  <rect x="258.0" y="96" width="428.4" height="13" fill="#ebe7e4" rx="1.5"/>
+  <rect x="686.4" y="96" width="75.6" height="13" fill="#b4573c" rx="1.5"/>
+  <text x="758.0" y="106" font-size="9.5" fill="#fff" text-anchor="end">x 0.85</text>
+  <text x="868" y="106" font-size="10.5" fill="#b4573c" text-anchor="end">-141</text>
+  <text x="16" y="136" font-size="12.5" fill="#222">commercial cap</text>
+  <text x="176" y="136" font-size="9.5" fill="#666" font-family="Menlo, Consolas, monospace" text-anchor="end">comCap</text>
+  <rect x="258.0" y="126" width="364.1" height="13" fill="#ebe7e4" rx="1.5"/>
+  <rect x="622.1" y="126" width="64.3" height="13" fill="#b4573c" rx="1.5"/>
+  <text x="682.4" y="136" font-size="9.5" fill="#fff" text-anchor="end">x 0.85</text>
+  <text x="868" y="136" font-size="10.5" fill="#b4573c" text-anchor="end">-141</text>
+  <text x="16" y="166" font-size="12.5" fill="#222">industrial cap</text>
+  <text x="176" y="166" font-size="9.5" fill="#666" font-family="Menlo, Consolas, monospace" text-anchor="end">indCap</text>
+  <rect x="258.0" y="156" width="309.5" height="13" fill="#ebe7e4" rx="1.5"/>
+  <rect x="567.5" y="156" width="54.6" height="13" fill="#b4573c" rx="1.5"/>
+  <text x="618.1" y="166" font-size="9.5" fill="#fff" text-anchor="end">x 0.85</text>
+  <text x="868" y="166" font-size="10.5" fill="#b4573c" text-anchor="end">-141</text>
+  <text x="16" y="196" font-size="12.5" fill="#222">road funding</text>
+  <text x="176" y="196" font-size="9.5" fill="#666" font-family="Menlo, Consolas, monospace" text-anchor="end">roadEffect</text>
+  <rect x="258.0" y="186" width="293.4" height="13" fill="#ebe7e4" rx="1.5"/>
+  <rect x="551.4" y="186" width="16.1" height="13" fill="#cf8b62" rx="1.5"/>
+  <text x="571.5" y="196" font-size="9.5" fill="#666" text-anchor="start">- 32</text>
+  <text x="868" y="196" font-size="10.5" fill="#b4573c" text-anchor="end">-32</text>
+  <text x="16" y="226" font-size="12.5" fill="#222">police funding</text>
+  <text x="176" y="226" font-size="9.5" fill="#666" font-family="Menlo, Consolas, monospace" text-anchor="end">policeEffect</text>
+  <rect x="258.0" y="216" width="264.1" height="13" fill="#ebe7e4" rx="1.5"/>
+  <rect x="522.1" y="216" width="29.3" height="13" fill="#b4573c" rx="1.5"/>
+  <text x="555.4" y="226" font-size="9.5" fill="#666" text-anchor="start">x 0.90</text>
+  <text x="868" y="226" font-size="10.5" fill="#b4573c" text-anchor="end">-94</text>
+  <text x="16" y="256" font-size="12.5" fill="#222">fire funding</text>
+  <text x="176" y="256" font-size="9.5" fill="#666" font-family="Menlo, Consolas, monospace" text-anchor="end">fireEffect</text>
+  <rect x="258.0" y="246" width="237.6" height="13" fill="#ebe7e4" rx="1.5"/>
+  <rect x="495.6" y="246" width="26.4" height="13" fill="#b4573c" rx="1.5"/>
+  <text x="526.1" y="256" font-size="9.5" fill="#666" text-anchor="start">x 0.90</text>
+  <text x="868" y="256" font-size="10.5" fill="#b4573c" text-anchor="end">-94</text>
+  <text x="16" y="286" font-size="12.5" fill="#222">residential valve</text>
+  <text x="176" y="286" font-size="9.5" fill="#666" font-family="Menlo, Consolas, monospace" text-anchor="end">resValve</text>
+  <rect x="258.0" y="276" width="202.0" height="13" fill="#ebe7e4" rx="1.5"/>
+  <rect x="460.0" y="276" width="35.6" height="13" fill="#b4573c" rx="1.5"/>
+  <text x="499.6" y="286" font-size="9.5" fill="#666" text-anchor="start">x 0.85</text>
+  <text x="868" y="286" font-size="10.5" fill="#b4573c" text-anchor="end">-141</text>
+  <text x="16" y="316" font-size="12.5" fill="#222">commercial valve</text>
+  <text x="176" y="316" font-size="9.5" fill="#666" font-family="Menlo, Consolas, monospace" text-anchor="end">comValve</text>
+  <rect x="258.0" y="306" width="171.7" height="13" fill="#ebe7e4" rx="1.5"/>
+  <rect x="429.7" y="306" width="30.3" height="13" fill="#b4573c" rx="1.5"/>
+  <text x="464.0" y="316" font-size="9.5" fill="#666" text-anchor="start">x 0.85</text>
+  <text x="868" y="316" font-size="10.5" fill="#b4573c" text-anchor="end">-141</text>
+  <text x="16" y="346" font-size="12.5" fill="#222">industrial valve</text>
+  <text x="176" y="346" font-size="9.5" fill="#666" font-family="Menlo, Consolas, monospace" text-anchor="end">indValve</text>
+  <rect x="258.0" y="336" width="145.9" height="13" fill="#ebe7e4" rx="1.5"/>
+  <rect x="403.9" y="336" width="25.8" height="13" fill="#b4573c" rx="1.5"/>
+  <text x="433.7" y="346" font-size="9.5" fill="#666" text-anchor="start">x 0.85</text>
+  <text x="868" y="346" font-size="10.5" fill="#b4573c" text-anchor="end">-141</text>
+  <line x1="403.9" y1="90" x2="403.9" y2="368" stroke="#7a3b28" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <text x="403.9" y="381" font-size="11" fill="#7a3b28" text-anchor="middle" font-weight="bold">290 left</text>
+</svg>

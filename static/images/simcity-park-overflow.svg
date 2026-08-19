@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 308" width="880" height="308" font-family="Helvetica, Arial, sans-serif" role="img"
+     aria-label="Too many parks lower value. A 4x4 block half covered in greenery reports 120, the most the engine can count. One tile more wraps the byte and it reports 7. A fully planted block recovers only 112.">
+  <title>Too many parks lower value</title>
+  <text x="440" y="30" font-size="15" font-weight="bold" fill="#222" text-anchor="middle">Too many parks lower value</text>
+  <text x="440" y="54" font-size="11.5" fill="#7a3b28" text-anchor="middle" font-family="Menlo, Consolas, monospace">Byte val = (Byte)(z / 4 + tempMap3.get(x, y)) / 2;</text>
+  <line x1="78" y1="272.0" x2="820.0" y2="272.0" stroke="#ececec"/>
+  <text x="71" y="275.0" font-size="9.5" fill="#888" text-anchor="end">0</text>
+  <line x1="78" y1="229.1" x2="820.0" y2="229.1" stroke="#ececec"/>
+  <text x="71" y="232.1" font-size="9.5" fill="#888" text-anchor="end">30</text>
+  <line x1="78" y1="186.2" x2="820.0" y2="186.2" stroke="#ececec"/>
+  <text x="71" y="189.2" font-size="9.5" fill="#888" text-anchor="end">60</text>
+  <line x1="78" y1="143.2" x2="820.0" y2="143.2" stroke="#ececec"/>
+  <text x="71" y="146.2" font-size="9.5" fill="#888" text-anchor="end">90</text>
+  <line x1="78" y1="100.3" x2="820.0" y2="100.3" stroke="#ececec"/>
+  <text x="71" y="103.3" font-size="9.5" fill="#888" text-anchor="end">120</text>
+  <line x1="78" y1="100.3" x2="820.0" y2="100.3" stroke="#7a3b28" stroke-width="1.1" stroke-dasharray="3 3"/>
+  <rect x="80.0" y="272.0" width="39.6" height="0.0" fill="#4f7d43" rx="1"/>
+  <text x="99.8" y="287" font-size="9.5" fill="#888" text-anchor="middle">0</text>
+  <rect x="123.6" y="250.5" width="39.6" height="21.5" fill="#4f7d43" rx="1"/>
+  <text x="143.5" y="287" font-size="9.5" fill="#888" text-anchor="middle">1</text>
+  <rect x="167.3" y="229.1" width="39.6" height="42.9" fill="#4f7d43" rx="1"/>
+  <text x="187.1" y="287" font-size="9.5" fill="#888" text-anchor="middle">2</text>
+  <rect x="210.9" y="207.6" width="39.6" height="64.4" fill="#4f7d43" rx="1"/>
+  <text x="230.8" y="287" font-size="9.5" fill="#888" text-anchor="middle">3</text>
+  <rect x="254.6" y="186.2" width="39.6" height="85.8" fill="#4f7d43" rx="1"/>
+  <text x="274.4" y="287" font-size="9.5" fill="#888" text-anchor="middle">4</text>
+  <rect x="298.2" y="164.7" width="39.6" height="107.3" fill="#4f7d43" rx="1"/>
+  <text x="318.1" y="287" font-size="9.5" fill="#888" text-anchor="middle">5</text>
+  <rect x="341.9" y="143.2" width="39.6" height="128.8" fill="#4f7d43" rx="1"/>
+  <text x="361.7" y="287" font-size="9.5" fill="#888" text-anchor="middle">6</text>
+  <rect x="385.5" y="121.8" width="39.6" height="150.2" fill="#4f7d43" rx="1"/>
+  <text x="405.4" y="287" font-size="9.5" fill="#888" text-anchor="middle">7</text>
+  <rect x="429.2" y="100.3" width="39.6" height="171.7" fill="#4f7d43" rx="1"/>
+  <text x="449.0" y="287" font-size="9.5" fill="#888" text-anchor="middle">8</text>
+  <text x="449.0" y="80.3" font-size="11" font-weight="bold" fill="#4f7d43" text-anchor="middle">120</text>
+  <text x="449.0" y="93.3" font-size="9.5" fill="#4f7d43" text-anchor="middle">half planted</text>
+  <rect x="472.8" y="262.0" width="39.6" height="10.0" fill="#b4573c" rx="1"/>
+  <text x="492.6" y="287" font-size="9.5" fill="#888" text-anchor="middle">9</text>
+  <text x="492.6" y="242.0" font-size="11" font-weight="bold" fill="#b4573c" text-anchor="middle">7</text>
+  <text x="492.6" y="255.0" font-size="9.5" fill="#b4573c" text-anchor="middle">one tile more</text>
+  <rect x="516.5" y="240.5" width="39.6" height="31.5" fill="#b4573c" rx="1"/>
+  <text x="536.3" y="287" font-size="9.5" fill="#888" text-anchor="middle">10</text>
+  <rect x="560.1" y="219.1" width="39.6" height="52.9" fill="#b4573c" rx="1"/>
+  <text x="579.9" y="287" font-size="9.5" fill="#888" text-anchor="middle">11</text>
+  <rect x="603.8" y="197.6" width="39.6" height="74.4" fill="#b4573c" rx="1"/>
+  <text x="623.6" y="287" font-size="9.5" fill="#888" text-anchor="middle">12</text>
+  <rect x="647.4" y="176.1" width="39.6" height="95.9" fill="#b4573c" rx="1"/>
+  <text x="667.2" y="287" font-size="9.5" fill="#888" text-anchor="middle">13</text>
+  <rect x="691.1" y="154.7" width="39.6" height="117.3" fill="#b4573c" rx="1"/>
+  <text x="710.9" y="287" font-size="9.5" fill="#888" text-anchor="middle">14</text>
+  <rect x="734.7" y="133.2" width="39.6" height="138.8" fill="#b4573c" rx="1"/>
+  <text x="754.5" y="287" font-size="9.5" fill="#888" text-anchor="middle">15</text>
+  <rect x="778.4" y="111.8" width="39.6" height="160.2" fill="#b4573c" rx="1"/>
+  <text x="798.2" y="287" font-size="9.5" fill="#888" text-anchor="middle">16</text>
+  <text x="798.2" y="91.8" font-size="11" font-weight="bold" fill="#b4573c" text-anchor="middle">112</text>
+  <text x="798.2" y="104.8" font-size="9.5" fill="#b4573c" text-anchor="middle">all planted</text>
+  <line x1="78" y1="272" x2="820.0" y2="272" stroke="#ccc"/>
+</svg>

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 410" width="880" height="410"
+     font-family="Helvetica, Arial, sans-serif" role="img"
+     aria-label="Scoring terms of Micropolis, stage 1. Six of the seven terms are bounded at zero and can only lower the score. Unemployment has no lower bound and is the only term that can raise it.">
+
+  <title>Scoring terms of Micropolis (stage 1)</title>
+
+  <defs>
+    <marker id="more" viewBox="0 0 10 10" refX="1" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#b4573c"/>
+    </marker>
+  </defs>
+
+  <!-- header -->
+  <text x="440" y="26" font-size="15" font-weight="bold" fill="#222"
+        text-anchor="middle">Scoring terms of Micropolis (stage 1)</text>
+
+  <text x="440" y="48" font-size="11.5" fill="#7a3b28" text-anchor="middle"
+        font-family="Menlo, Consolas, monospace">score = clamp((256 - sum(seven terms) / 3) * 4, 0, 1000)</text>
+
+  <!-- axis scale labels -->
+  <text x="300" y="90" font-size="10" fill="#888" text-anchor="start">-255</text>
+  <text x="580" y="90" font-size="10" fill="#888" text-anchor="middle">0</text>
+  <text x="860" y="90" font-size="10" fill="#888" text-anchor="end">+255</text>
+
+  <text x="570" y="72" font-size="10.5" fill="#2b6d8f" text-anchor="end">&#8592; credit, raises the score</text>
+  <text x="590" y="72" font-size="10.5" fill="#b4573c" text-anchor="start">penalty, lowers the score &#8594;</text>
+
+  <!-- unemployment row highlight -->
+  <rect x="8" y="312" width="864" height="44" fill="#2b6d8f" opacity="0.07" rx="3"/>
+
+  <!-- zero axis -->
+  <line x1="580" y1="94" x2="580" y2="400" stroke="#999" stroke-width="1"/>
+
+  <!-- row 1: crime -->
+  <text x="16" y="112" font-size="13" fill="#222">crime</text>
+  <text x="16" y="127" font-size="10" fill="#666" font-family="Menlo, Consolas, monospace">crimeAverage</text>
+  <rect x="580" y="108" width="275" height="12" fill="#b4573c" rx="1.5"/>
+
+  <!-- row 2: pollution -->
+  <text x="16" y="156" font-size="13" fill="#222">pollution</text>
+  <text x="16" y="171" font-size="10" fill="#666" font-family="Menlo, Consolas, monospace">pollutionAverage</text>
+  <rect x="580" y="152" width="280" height="12" fill="#b4573c" rx="1.5"/>
+
+  <!-- row 3: housing -->
+  <text x="16" y="200" font-size="13" fill="#222">housing</text>
+  <text x="16" y="215" font-size="10" fill="#666" font-family="Menlo, Consolas, monospace">landValueAverage * 7 / 10</text>
+  <rect x="580" y="196" width="193" height="12" fill="#b4573c" rx="1.5"/>
+
+  <!-- row 4: taxes -->
+  <text x="16" y="244" font-size="13" fill="#222">taxes</text>
+  <text x="16" y="259" font-size="10" fill="#666" font-family="Menlo, Consolas, monospace">cityTax * 10</text>
+  <rect x="580" y="240" width="220" height="12" fill="#b4573c" rx="1.5"/>
+
+  <!-- row 5: traffic -->
+  <text x="16" y="288" font-size="13" fill="#222">traffic</text>
+  <text x="16" y="303" font-size="10" fill="#666" font-family="Menlo, Consolas, monospace">trafficAverage (density * 2.4)</text>
+  <rect x="580" y="284" width="280" height="12" fill="#b4573c" rx="1.5"/>
+  <line x1="856" y1="290" x2="864" y2="290" stroke="#b4573c" stroke-width="2" marker-end="url(#more)"/>
+
+  <!-- row 6: unemployment -->
+  <text x="16" y="332" font-size="13" fill="#222" font-weight="bold">unemployment</text>
+  <text x="16" y="347" font-size="10" fill="#444" font-family="Menlo, Consolas, monospace">(resPop / (8 * jobs) - 1) * 255</text>
+  <rect x="300" y="328" width="280" height="12" fill="#2b6d8f" rx="1.5"/>
+  <rect x="580" y="328" width="280" height="12" fill="#b4573c" rx="1.5"/>
+
+  <!-- row 7: fire -->
+  <text x="16" y="376" font-size="13" fill="#222">fire</text>
+  <text x="16" y="391" font-size="10" fill="#666" font-family="Menlo, Consolas, monospace">min(firePop * 5, 255)</text>
+  <rect x="580" y="372" width="280" height="12" fill="#b4573c" rx="1.5"/>
+</svg>

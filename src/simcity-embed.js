@@ -821,11 +821,30 @@ function updateBars() {
 const QUAKE_REACH_FRAC = 0.018; // ~7 CSS px on a 390px phone
 const QUAKE_REACH_MIN = 3;      // CSS px, so a tiny embed still moves
 const QUAKE_MAX_MS = 2000;
+// prefers-reduced-motion is advisory: it reports a preference, it does not
+// withhold anything, and a canvas translate works the same either way.  What
+// it is FOR is motion the reader did not ask for, so that is all it stops
+// here.  Pick Earthquake off the disaster menu and the map shakes whatever the
+// setting says -- you asked for an earthquake, the shaking is the earthquake.
+// A quake the sim throws on its own in auto mode is the unprompted case, and
+// that one stays still.  (Traffic, sprites and animated tiles never consult
+// the setting at all, so gating the one effect a reader deliberately triggers
+// was the wrong way round.)
+//
 // Held as the query, not its answer: read once at load, someone who turns
 // Reduce Motion off mid-read keeps a dead earthquake until they reload.
 const stillness = window.matchMedia &&
   window.matchMedia("(prefers-reduced-motion: reduce)");
 function wantsStillness() { return !!(stillness && stillness.matches); }
+
+// A window rather than a flag cleared in a finally: doEarthquake() calls back
+// synchronously today, but a disaster routed through the front-end message
+// queue later would arrive a tick after the click and read as unprompted.
+const ASKED_WINDOW_MS = 3000;
+let disasterAskedAt = -Infinity;
+function readerAskedForThis() {
+  return Date.now() - disasterAskedAt < ASKED_WINDOW_MS;
+}
 let quakeEnds = 0;
 let quakeSpan = 1;
 let shakeX = 0;
@@ -837,7 +856,7 @@ function quakeReach() {
 }
 
 function startQuake(strength) {
-  if (wantsStillness()) return;
+  if (wantsStillness() && !readerAskedForThis()) return;
   quakeSpan = Math.min(QUAKE_MAX_MS, Math.max(1, strength || 1000));
   quakeEnds = Date.now() + quakeSpan;
 }
@@ -1150,6 +1169,7 @@ disasterSel.addEventListener("change", () => {
     // since picked something else).  The engine announces the disaster itself
     // ("A Monster has been sighted !!"), so there is nothing to say here.
     m.setEnableDisasters(true);
+    disasterAskedAt = Date.now();
     m[DISASTER_ACTIONS[v]]();
     setTimeout(() => {
       if (disasterSel.value === v) {

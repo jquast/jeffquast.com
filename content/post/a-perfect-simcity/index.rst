@@ -16,9 +16,9 @@ title: A Perfect SimCity
 ---
 
 After 35 years of playing SimCity, I still could not say what makes a "Perfect" city. An evaluation
-screen provides a "Score" up to 1,000, and I struggled to reach 900 without really knowing how to
-score better.  Working that out by experiment is the fun of a simulation game, and this one has the
-advantage that the source is available to more rapidly iterate with the engine.
+screen displays a Score of 0 to 1000, and I struggled to reach 900 and never understood its factors.
+Discovering these factors by play is the fun of a simulation game, and this one has the advantage
+that the source code is also available.
 
 `Don Hopkins`_ has been maintaining FOSS ports of `SimCity (1989)`_ as Micropolis_ and
 MicropolisCore_, faithfully reproducing the ruleset of the original. Using the Python shims provided
@@ -447,10 +447,10 @@ The `PC SimCity manual`_ recommends rails and it is the most obvious strategy th
 on their own. Roads carry traffic and emit pollution, which suppresses residential growth.  Rails
 emit no pollution and register no traffic at all.
 
-Roads and rails incur an annual cost, and Police and Fire are very large budget items, and severely
-impact scoring when under-funded.  Having neither departments is the lowest annual cost allowing for
-the lowest Tax Rate. Raising the Tax Rate lowers the score by an estimated 29 points, through direct
-and indirect factors.
+Roads and rails incur an annual cost, and Police and Fire are very large budget items, they severely
+impact score if they are under-funded and so must be at 100% funding.  Having neither departments is
+the lowest annual cost allowing for the lowest Tax Rate. Raising the Tax Rate to 2% lowers the score
+almost 30 points, through direct and indirect factors.
 
 Citizens Demand More Citizens
 -----------------------------
@@ -516,16 +516,16 @@ The second stage of score calculation is reduction by nine more penalties:
 
 The first three are penalties for failing to build a special zone. Surpassing 500 residents demands
 a stadium, 100 commercial an airport and 70 industrial a seaport. Where a stadium is placed does not
-matter to score, as it no traffic or pollution. Airports and Seaports however do reduce overall
-score because of their high-density pollution.
+matter to score, having no traffic or pollution. However, Airports and Seaports do reduce overall
+score, because of their high-density pollution and so they are not built.
 
 Citizens Demand Fountains
 -------------------------
 
 Each of those seven penalty terms is an average, and the `land value scan.cpp`_ decides what is
-included by each 2x2 square of map, when any of its four tiles is ID 64 or greater. Grass, forest
-and park trees are under 64 and invisible to scoring, but **a fountain of ID 840 includes it for
-grading, even though nobody lives in it**.
+included by each 2x2 square of map by their tile ID. Grass, forest and park trees are under 64 and
+invisible to scoring, but **a fountain of ID 840 includes it for grading, even though nobody lives
+in it!**
 
 These 2x2 squares otherwise carry no population, pulling down the crime penalty term by 33 points.
 
@@ -538,14 +538,17 @@ tile id  tile                 land value  counted
 21-43    forest, park trees   +15         no
 44-63    rubble, flood, fire  no          no
 64-65    bridge               no          yes
-66-206   road                 no          yes
+66-79    road                 no          yes
 ...      ...                  ...         ...
 840      park fountain        **no**      **yes**
 =======  ===================  ==========  =======
 
 *Figure 5. A 2x2 square is counted only when it contains tile ID 64 or greater, while land value is
 credited only from tile IDs below 44.  The park building tool has a one in five chance to draw a
-fountain, ID 840. Placing fountains lower total crime penalty.*
+fountain, ID 840. Placing fountains lower total crime penalty. Road reaches 206 only because each
+of the sixteen road shapes is redrawn in four light-traffic frames and four heavy ones; the cities
+here use just four road tiles, 66 and 67 for plain road and 77 and 78 where one crosses a power
+line.*
 
 Park Overflow
 -------------
@@ -555,8 +558,8 @@ all in Micropolis_.  However, pollution reduces land value, and land value drive
 lower crime indirectly by raising the land value around them.
 
 Water, park and tree tiles all increase land value, and the engine counts them in 4x4 blocks. Every
-such tile credits its block 15 points, and the final Land Value credit is that sum, plus the
-downtown bonus, minus pollution.
+such tile credits its block 15 points, and the final credit to land value is this sum, plus downtown
+bonus, minus pollution.
 
 However, this land value credit is kept as a single byte, and `smoothTerrain() in scan.cpp`_ blends
 a block with its neighbors before it divides, so a block with its surroundings may sum *beyond 255
@@ -591,9 +594,9 @@ map into 4x4 blocks, and then creates an average of only the blocks that contain
 - ``pnum`` is the count of those blocks
 
 Tiles that contain low levels of pollution help bring down total pollution by this averaging, a
-small high-scoring small city should keep the light density pollution for itself. Models suggest
-that a city maximized for population places Industrial on the edge for more important reasons, that
-the land value can be so low for other kinds of zones.
+small high-scoring city should keep the light density pollution for itself. Models suggest that a
+city maximized for population should place industrial zones on map edges for other reasons, that the
+land value there is too low to for other kind of zones.
 
 Citizens Demand Humanity
 ------------------------

@@ -622,10 +622,11 @@ function fitZoom() { return fitted; }
 function zoomCeiling() { return Math.max(MAX_ZOOM, fitted); }
 function isFitted() { return zoom <= fitted * (1 + 1e-9); }
 
-// Pan steps (CSS pixels) for the arrows and WASD, active while zoomed.
-const PANS = { ArrowLeft: [-48, 0], KeyA: [-48, 0], ArrowRight: [48, 0],
-               KeyD: [48, 0], ArrowUp: [0, -48], KeyW: [0, -48],
-               ArrowDown: [0, 48], KeyS: [0, 48] };
+// Pan steps (CSS pixels) for WASD, active while zoomed.  The arrow keys are
+// deliberately left alone: the embed does not take focus, so binding them
+// stole the page scroll from a reader who was nowhere near the city.
+const PANS = { KeyA: [-48, 0], KeyD: [48, 0],
+               KeyW: [0, -48], KeyS: [0, 48] };
 
 function clampView() {
   if (isFitted()) {
@@ -649,7 +650,8 @@ function isFullscreen() {
       || pseudoFullscreen;
 }
 
-function resizeCanvas() {
+// Settles `scale` and the fitted floor from the box as it currently stands.
+function measureFit() {
   const screen = $("simcity-screen");
   const w = screen.clientWidth || window.innerWidth;
   const fullscreen = isFullscreen();
@@ -660,6 +662,24 @@ function resizeCanvas() {
   const byH = Math.floor((h - 8) / (WORLD_H * TILE_H));
   scale = Math.max(1, fullscreen ? Math.min(byW, byH) : byW);
   fitted = w / (WORLD_W * TILE_W * scale);
+}
+
+function resizeCanvas() {
+  const screen = $("simcity-screen");
+  measureFit();
+  // The zoomed and fill classes size the box that the fitted floor is measured
+  // from, and the floor in turn decides those classes, so a caller that sets
+  // the classes first can only set them from the OLD floor.  Going fullscreen
+  // out of a narrow article column is where that bites: the column is a third
+  // of the screen, so fitted triples and swallows the reader's zoom, the view
+  // becomes fitted -- and with the zoomed class still on, `width/height: 100%`
+  // stretches a whole-map canvas across a 16:9 box and every sprite comes out
+  // short.  Correct the classes and re-measure against the box they make.
+  // Once, not in a loop: the second measurement is the one the classes match.
+  if ($("simcity-embed").classList.contains("simcity-zoomed") === isFitted()) {
+    updateZoomClasses();
+    measureFit();
+  }
   if (isFitted()) {
     canvas.width = WORLD_W * TILE_W * scale;
     canvas.height = WORLD_H * TILE_H * scale;
@@ -670,6 +690,7 @@ function resizeCanvas() {
   }
   // Zoomed: fixed viewport at devicePixelRatio, so tiles land on real pixels.
   const dpr = window.devicePixelRatio || 1;
+  const fullscreen = isFullscreen();
   viewport.w = Math.max(1, Math.round(screen.clientWidth));
   viewport.h = Math.max(1, Math.round(fullscreen
       ? screen.clientHeight : screen.clientWidth * WORLD_H / WORLD_W));
@@ -793,17 +814,30 @@ function updateBars() {
 // doEarthquake() hands the front end a strength of 300 to 1000, which the
 // original read as how long to shake the map for, in milliseconds.  The jolt
 // fades over that span so the map settles rather than stopping dead.
-const QUAKE_REACH = 7;          // CSS px at the height of the shaking
+//
+// The reach is a FRACTION of the displayed map, not a fixed pixel count: a
+// constant read as a good hard jolt on a 390px phone and as a barely visible
+// twitch across a desktop column three times as wide.
+const QUAKE_REACH_FRAC = 0.018; // ~7 CSS px on a 390px phone
+const QUAKE_REACH_MIN = 3;      // CSS px, so a tiny embed still moves
 const QUAKE_MAX_MS = 2000;
-const wantsStillness = !!(window.matchMedia &&
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+// Held as the query, not its answer: read once at load, someone who turns
+// Reduce Motion off mid-read keeps a dead earthquake until they reload.
+const stillness = window.matchMedia &&
+  window.matchMedia("(prefers-reduced-motion: reduce)");
+function wantsStillness() { return !!(stillness && stillness.matches); }
 let quakeEnds = 0;
 let quakeSpan = 1;
 let shakeX = 0;
 let shakeY = 0;
 
+function quakeReach() {
+  return Math.max(QUAKE_REACH_MIN, (canvas.clientWidth || 390) *
+      QUAKE_REACH_FRAC);
+}
+
 function startQuake(strength) {
-  if (wantsStillness) return;
+  if (wantsStillness()) return;
   quakeSpan = Math.min(QUAKE_MAX_MS, Math.max(1, strength || 1000));
   quakeEnds = Date.now() + quakeSpan;
 }
@@ -815,7 +849,7 @@ function stepShake() {
     shakeX = shakeY = 0;
     return false;
   }
-  const reach = QUAKE_REACH * (left / quakeSpan);
+  const reach = quakeReach() * (left / quakeSpan);
   shakeX = Math.round((Math.random() * 2 - 1) * reach);
   shakeY = Math.round((Math.random() * 2 - 1) * reach);
   return shakeX !== 0 || shakeY !== 0;
@@ -1533,10 +1567,6 @@ window.addEventListener("keydown", (e) => {
     viewY += PANS[e.code][1];
     clampView();
     frame();
-  } else if (e.code === "ArrowLeft") {
-    loadCityAt(cityIndex - 1);
-  } else if (e.code === "ArrowRight") {
-    loadCityAt(cityIndex + 1);
   }
 });
 

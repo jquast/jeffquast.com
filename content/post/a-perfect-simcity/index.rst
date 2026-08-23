@@ -433,8 +433,10 @@ bigscore4  939.0  12,400      16     30         128         -95           +86
 bigscore5  937.0  14,640      20     41         127         -98           +117
 =========  =====  ==========  =====  =========  ==========  ============  ===========
 
-Travel requirements of residential and industrial zones are simple.  Reads the twelve surrounding
-tiles for any road or rail to decide if it should grow.  If none is there, the zone declines.
+Travel requirements of residential and industrial zones are simple.  They reads the twelve
+surrounding tiles for any road or rail to decide if it should grow.  If none is there, the zone
+declines.
+
 Commercial zones require a "delivery", a vehicle starts on the perimeter road and walks up to 30
 steps, arriving the moment it stands beside a developed tile. *The zone's own tiles count*, so any
 loop of track under 30 steps satisfies it.  Commercial zones are placed in the city center because
@@ -565,8 +567,8 @@ and wrap around*, counter-intuitively lowering land value.
    :align: center
 
    *Figure 4. Number of Water, park or tree tiles in a 4x4 block against the land value it credits.
-   Exactly 1/2 of the tiles (8) is the optimal value. A value of 9 wraps around, driving down land
-   value.*
+   Exactly 1/2 of the tiles (8) is the optimal value of "greenery". At 9 of 16 tiles, it is in
+   danger of driving down land value when summed with its neighbors.*
 
 The `PC SimCity manual`_ declares that "Parks, like forests and water, raise the land value of
 surrounding zones".  However, **too many parks or trees can push push down land value and increase

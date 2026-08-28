@@ -433,14 +433,14 @@ bigscore4  939.0  12,400      16     30         128         -95           +86
 bigscore5  937.0  14,640      20     41         127         -98           +117
 =========  =====  ==========  =====  =========  ==========  ============  ===========
 
-Travel requirements of residential and industrial zones are simple.  They reads the twelve
+Travel requirements of residential and industrial zones are simple.  They check their twelve
 surrounding tiles for any road or rail to decide if it should grow.  If none is there, the zone
 declines.
 
-Commercial zones require a "delivery", a vehicle starts on the perimeter road and walks up to 30
+Commercial zones require a delivery, a vehicle starts on the perimeter road and walks up to 30
 steps, arriving the moment it stands beside a developed tile. *The zone's own tiles count*, so any
 loop of track under 30 steps satisfies it.  Commercial zones are placed in the city center because
-the engine provides a "downtown bonus", starting at +64 and falling off to a -64 penalty in the far
+the engine provides a *downtown bonus*, starting at +64 and falling off to a -64 penalty in the far
 corners of the map.
 
 The `PC SimCity manual`_ recommends rails and it is the most obvious strategy that players discover
@@ -461,7 +461,7 @@ player reporting 911.2k`_.
 
 911.2k is probably out of reach for Micropolis_.  The Super Nintendo is the only edition to offer
 gifts_, which increase land value when placed, allowing for higher zone density in the areas of
-negative "downtown bonus".
+negative *downtown bonus*.
 
 I have also experimented with optimizing for population by algorithm, and I am able to reach 700k by
 automatic code.
@@ -502,8 +502,7 @@ Six out of seven terms are bounded at zero. However, unemployment is unbounded::
 
 When the number of jobs exceeds the residents zoned to fill them, **The Unemployment term goes
 negative and adds to the score**, providing a score bonus of about 128 points. It is the biggest
-lever in the game.  Population factors into the score indirectly, and so we can "right-size" the
-population by design.
+lever in the game.
 
 The second stage of score calculation is reduction by nine more penalties:
 
@@ -545,15 +544,12 @@ tile id  tile                 land value  counted
 
 *Figure 5. A 2x2 square is counted only when it contains tile ID 64 or greater, while land value is
 credited only from tile IDs below 44.  The park building tool has a one in five chance to draw a
-fountain, ID 840. Placing fountains lower total crime penalty. Road reaches 206 only because each
-of the sixteen road shapes is redrawn in four light-traffic frames and four heavy ones; the cities
-here use just four road tiles, 66 and 67 for plain road and 77 and 78 where one crosses a power
-line.*
+fountain, ID 840. Placing fountains lower total crime penalty.*
 
 Park Overflow
 -------------
 
-Many guides recommend parks to reduce or "absorb" pollution, but they do not reduce pollution at
+Many guides recommend parks to reduce or absorb pollution, but they do not reduce pollution at
 all in Micropolis_.  However, pollution reduces land value, and land value drives crime, so parks
 lower crime indirectly by raising the land value around them.
 
@@ -570,7 +566,7 @@ and wrap around*, counter-intuitively lowering land value.
    :align: center
 
    *Figure 4. Number of Water, park or tree tiles in a 4x4 block against the land value it credits.
-   Exactly 1/2 of the tiles (8) is the optimal value of "greenery". At 9 of 16 tiles, it is in
+   Exactly 1/2 of the tiles (8) is the optimal value of greenery. At 9 of 16 tiles, it is in
    danger of driving down land value when summed with its neighbors.*
 
 The `PC SimCity manual`_ declares that "Parks, like forests and water, raise the land value of
@@ -604,9 +600,9 @@ Citizens Demand Humanity
 Jay Wright Forrester's `Urban Dynamics`_ (1969) is often cited as an influence on Will Wright, Chief
 Designer of `SimCity (1989)`_. *Urban Dynamics* is essentially a paperback simulation of cities.
 The Micropolis_ simulation is vaguely recognizable as a minified version of the model in *Urban
-Dynamics* along with some small improvements in including spatial values of "neighboring" tiles that
-Forrester's models lack. Interestingly, both arrive at the same place: the largest "lever" to
-improve a city is *reducing* housing:
+Dynamics* along with some small improvements in including spatial values of neighboring tiles that
+Forrester's models lack. Interestingly, both arrive at the same place: the largest lever for city
+improvement is by *reducing* available housing:
 
     The concurrent reduction of excess housing is absolutely essential. It supplies the land for new
     job-creating structures. Equally important, the resulting housing shortage creates the

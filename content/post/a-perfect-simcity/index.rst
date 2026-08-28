@@ -460,8 +460,8 @@ at a population of 500k. Casual players report cities of 600k to 700k on the SNE
 player reporting 911.2k`_.
 
 911.2k is probably out of reach for Micropolis_.  The Super Nintendo is the only edition to offer
-gifts_, which increase land value when placed, allowing for higher zone density in the areas of
-negative *downtown bonus*.
+gifts_, which increase land value when placed, allowing for higher zone density in the areas outside
+of the *downtown bonus*.
 
 I have also experimented with optimizing for population by algorithm, and I am able to reach 700k by
 automatic code.

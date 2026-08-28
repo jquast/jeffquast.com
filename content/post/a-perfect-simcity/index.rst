@@ -501,8 +501,8 @@ Six out of seven terms are bounded at zero. However, unemployment is unbounded::
     unemployment = (resPop / (8 * jobs) - 1) * 255
 
 When the number of jobs exceeds the residents zoned to fill them, **The Unemployment term goes
-negative and adds to the score**, providing a score bonus of about 128 points. It is the biggest
-lever in the game.
+negative and adds to the score**, providing a score bonus of about 128 points. No other term moves
+the score this much.
 
 The second stage of score calculation is reduction by nine more penalties:
 
@@ -601,8 +601,8 @@ Jay Wright Forrester's `Urban Dynamics`_ (1969) is often cited as an influence o
 Designer of `SimCity (1989)`_. *Urban Dynamics* is essentially a paperback simulation of cities.
 The Micropolis_ simulation is vaguely recognizable as a minified version of the model in *Urban
 Dynamics* along with some small improvements in including spatial values of neighboring tiles that
-Forrester's models lack. Interestingly, both arrive at the same place: the largest lever for city
-improvement is by *reducing* available housing:
+Forrester's models lack. Interestingly, both arrive at the same place: what improves a city
+most is *reducing* available housing:
 
     The concurrent reduction of excess housing is absolutely essential. It supplies the land for new
     job-creating structures. Equally important, the resulting housing shortage creates the
